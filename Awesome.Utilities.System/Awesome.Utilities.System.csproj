@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System</RootNamespace>
-    <AssemblyName>System</AssemblyName>
+    <AssemblyName>Awesome.Utilities.System</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedMath.cs" />
     <Compile Include="Arithmetic\Arithmetics.cs" />
     <Compile Include="Arithmetic\ByteArithmetic.cs" />
     <Compile Include="Arithmetic\DecimalArithmetic.cs" />
