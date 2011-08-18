@@ -27,14 +27,13 @@ namespace System
         /// <param name="name">The name of the parameter</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public Validate NotNull<T>(T toValidate, string name)
+        public void NotNull<T>(T toValidate, string name)
              where T : class
         {
             if (toValidate == null)
             {
                 throw new ArgumentNullException(name);
             }
-            return this;
         }
 
         /// <summary>
@@ -46,14 +45,13 @@ namespace System
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public Validate HigherThan<T>(T toValidate, T toCompare, string name)
+        public void HigherThan<T>(T toValidate, T toCompare, string name)
             where T : IComparable
         {
             if (toValidate.CompareTo(toCompare) <= 0)
             {
                 throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_HigherThan, toCompare), name);
             }
-            return this;
         }
 
         /// <summary>
@@ -65,14 +63,13 @@ namespace System
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public Validate HigherThanOrEqualTo<T>(T toValidate, T toCompare, string name)
+        public void HigherThanOrEqualTo<T>(T toValidate, T toCompare, string name)
             where T : IComparable
         {
             if (toValidate.CompareTo(toCompare) < 0)
             {
                 throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_HigherThanOrEqualTo, toCompare), name);
             }
-            return this;
         }
 
         /// <summary>
@@ -84,14 +81,13 @@ namespace System
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public Validate LowerThan<T>(T toValidate, T toCompare, string name)
+        public void LowerThan<T>(T toValidate, T toCompare, string name)
             where T : IComparable
         {
             if (toValidate.CompareTo(toCompare) >= 0)
             {
                 throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_LowerThan, toCompare), name);
             }
-            return this;
         }
 
         /// <summary>
@@ -103,14 +99,13 @@ namespace System
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public Validate LowerThanOrEqualTo<T>(T toValidate, T toCompare, string name)
+        public void LowerThanOrEqualTo<T>(T toValidate, T toCompare, string name)
             where T : IComparable
         {
             if (toValidate.CompareTo(toCompare) > 0)
             {
                 throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_LowerThanOrEqualTo, toCompare), name);
             }
-            return this;
         }
 
         /// <summary>
@@ -123,7 +118,7 @@ namespace System
         /// <param name="name">The name.</param>
         /// <param name="inclusive">if set to <c>true</c> [inclusive].</param>
         /// <returns></returns>
-        public Validate Between<T>(T toValidate, T lowerLimit, T higherLimit, string name, bool inclusive = true)
+        public void Between<T>(T toValidate, T lowerLimit, T higherLimit, string name, bool inclusive = true)
             where T : IComparable
         {
             if (inclusive)
@@ -140,7 +135,6 @@ namespace System
                     throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_Between, lowerLimit, higherLimit), name);
                 }
             }
-            return this;
         }
     }
 }
