@@ -97,5 +97,37 @@ namespace Awesome.Utilities.Test
                 Validate.Is.Between(toValidate, lowerLimit, higherLimit, "toValidate", inclusive);
             }
         }
+
+        [TestCase(null, true)]
+        [TestCase("", true)]
+        [TestCase(" ", false)]
+        [TestCase("wat", false)]
+        public void When_validating_not_null_or_empty_Then_works(string toValidate, bool shouldThrow)
+        {
+            if (shouldThrow)
+            {
+                Assert.Throws<StringArgumentNullOrEmptyException>(() => Validate.Is.NotNullOrEmpty(toValidate, "toValidate"));
+            }
+            else
+            {
+                Validate.Is.NotNullOrEmpty(toValidate, "toValidate");
+            }
+        }
+
+        [TestCase(null, true)]
+        [TestCase("", true)]
+        [TestCase(" ", true)]
+        [TestCase("wat", false)]
+        public void When_validating_not_null_or_white_space_Then_works(string toValidate, bool shouldThrow)
+        {
+            if (shouldThrow)
+            {
+                Assert.Throws<StringArgumentNullOrWhiteSpaceException>(() => Validate.Is.NotNullOrWhiteSpace(toValidate, "toValidate"));
+            }
+            else
+            {
+                Validate.Is.NotNullOrWhiteSpace(toValidate, "toValidate");
+            }
+        }
     }
 }

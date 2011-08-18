@@ -113,5 +113,23 @@ namespace System.Properties {
                 return ResourceManager.GetString("Validate_LowerThanOrEqualTo", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string must not be null or empty..
+        /// </summary>
+        internal static string Validate_NullOrEmpty {
+            get {
+                return ResourceManager.GetString("Validate_NullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string must not be null or whitespace..
+        /// </summary>
+        internal static string Validate_NullOrWhitespace {
+            get {
+                return ResourceManager.GetString("Validate_NullOrWhitespace", resourceCulture);
+            }
+        }
     }
 }

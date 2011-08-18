@@ -37,6 +37,36 @@ namespace System
         }
 
         /// <summary>
+        /// Validates thats the string supplied is not null or empty.
+        /// </summary>
+        /// <param name="toValidate">the string</param>
+        /// <param name="name">The name of the parameter</param>
+        /// <returns></returns>
+        /// <exception cref="StringArgumentNullOrEmptyException"></exception>
+        public void NotNullOrEmpty(string toValidate, string name)
+        {
+            if (string.IsNullOrEmpty(toValidate))
+            {
+                throw new StringArgumentNullOrEmptyException(name, Properties.Strings.Validate_NullOrEmpty);
+            }
+        }
+
+        /// <summary>
+        /// Validates thats the string supplied is not null or white space.
+        /// </summary>
+        /// <param name="toValidate">the string</param>
+        /// <param name="name">The name of the parameter</param>
+        /// <returns></returns>
+        /// <exception cref="StringArgumentNullOrWhiteSpaceException"></exception>
+        public void NotNullOrWhiteSpace(string toValidate, string name)
+        {
+            if (string.IsNullOrWhiteSpace(toValidate))
+            {
+                throw new StringArgumentNullOrWhiteSpaceException(name, Properties.Strings.Validate_NullOrWhitespace);
+            }
+        }
+
+        /// <summary>
         /// Validates that the value supplied is higher than the comparison value supplied.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -50,7 +80,7 @@ namespace System
         {
             if (toValidate.CompareTo(toCompare) <= 0)
             {
-                throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_HigherThan, toCompare), name);
+                throw new ArgumentOutOfRangeException(name, string.Format(Properties.Strings.Validate_HigherThan, toCompare));
             }
         }
 
@@ -68,7 +98,7 @@ namespace System
         {
             if (toValidate.CompareTo(toCompare) < 0)
             {
-                throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_HigherThanOrEqualTo, toCompare), name);
+                throw new ArgumentOutOfRangeException(name, string.Format(Properties.Strings.Validate_HigherThanOrEqualTo, toCompare));
             }
         }
 
@@ -86,7 +116,7 @@ namespace System
         {
             if (toValidate.CompareTo(toCompare) >= 0)
             {
-                throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_LowerThan, toCompare), name);
+                throw new ArgumentOutOfRangeException(name, string.Format(Properties.Strings.Validate_LowerThan, toCompare));
             }
         }
 
@@ -104,7 +134,7 @@ namespace System
         {
             if (toValidate.CompareTo(toCompare) > 0)
             {
-                throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_LowerThanOrEqualTo, toCompare), name);
+                throw new ArgumentOutOfRangeException(name, string.Format(Properties.Strings.Validate_LowerThanOrEqualTo, toCompare));
             }
         }
 
@@ -125,14 +155,14 @@ namespace System
             {
                 if (toValidate.CompareTo(lowerLimit) < 0 || toValidate.CompareTo(higherLimit) > 0)
                 {
-                    throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_BetweenInclusive, lowerLimit, higherLimit), name);
+                    throw new ArgumentOutOfRangeException(name, string.Format(Properties.Strings.Validate_BetweenInclusive, lowerLimit, higherLimit));
                 }
             }
             else
             {
                 if (toValidate.CompareTo(lowerLimit) <= 0 || toValidate.CompareTo(higherLimit) >= 0)
                 {
-                    throw new ArgumentOutOfRangeException(string.Format(Properties.Strings.Validate_Between, lowerLimit, higherLimit), name);
+                    throw new ArgumentOutOfRangeException(name, string.Format(Properties.Strings.Validate_Between, lowerLimit, higherLimit));
                 }
             }
         }

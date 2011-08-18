@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvancedMath.cs" />
+    <Compile Include="StringArgumentNullOrWhiteSpaceException.cs" />
     <Compile Include="Properties\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="StringArgumentNullOrEmptyException.cs" />
     <Compile Include="Validate.cs" />
     <Compile Include="Arithmetic\Arithmetics.cs" />
     <Compile Include="Arithmetic\ByteArithmetic.cs" />

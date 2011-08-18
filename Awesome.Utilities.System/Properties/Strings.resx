@@ -135,4 +135,10 @@
   <data name="Validate_LowerThanOrEqualTo" xml:space="preserve">
     <value>The value must be lower than or equal to {0}.</value>
   </data>
+  <data name="Validate_NullOrEmpty" xml:space="preserve">
+    <value>The string must not be null or empty.</value>
+  </data>
+  <data name="Validate_NullOrWhitespace" xml:space="preserve">
+    <value>The string must not be null or whitespace.</value>
+  </data>
 </root>
