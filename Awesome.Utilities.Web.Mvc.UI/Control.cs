@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.Mvc;
 
-namespace Awesome.Utilities.Web.Mvc.UI
+namespace System.Web.Mvc.UI
 {
     /// <summary>
     ///     Represents a basic control that is to be subclassed

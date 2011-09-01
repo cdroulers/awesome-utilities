@@ -8,7 +8,7 @@
     <ProjectGuid>{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Awesome.Utilities.Web.Mvc.UI</RootNamespace>
+    <RootNamespace>System.Web.Mvc.UI</RootNamespace>
     <AssemblyName>Awesome.Utilities.Web.Mvc.UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

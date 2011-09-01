@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web.UI;
 
-namespace Awesome.Utilities.Web.Mvc.UI
+namespace System.Web.Mvc.UI
 {
     /// <summary>
     ///     A generic html list.

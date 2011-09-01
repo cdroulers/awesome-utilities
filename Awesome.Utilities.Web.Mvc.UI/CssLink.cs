@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net.Mime;
 
-namespace Awesome.Utilities.Web.Mvc.UI
+namespace System.Web.Mvc.UI
 {
     /// <summary>
     ///     A css link

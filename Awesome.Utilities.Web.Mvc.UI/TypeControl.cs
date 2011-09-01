@@ -5,7 +5,7 @@ using System.Text;
 using System.Net.Mime;
 using System.Web.UI;
 
-namespace Awesome.Utilities.Web.Mvc.UI
+namespace System.Web.Mvc.UI
 {
     /// <summary>
     ///     Represents a control that has a type attribute (e.g. style, script)

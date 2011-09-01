@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Text;
 
-namespace Awesome.Utilities.Web.Mvc.UI
+namespace System.Web.Mvc.UI
 {
     /// <summary>
     ///     Represents a style element

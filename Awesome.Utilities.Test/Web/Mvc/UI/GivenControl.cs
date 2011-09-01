@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HtmlAgilityPack;
 using NUnit.Framework;
-using Awesome.Utilities.Web.Mvc.UI;
+using System.Web.Mvc.UI;
 using System.Diagnostics;
 
 namespace Awesome.Utilities.Test.Web.Mvc.UI
