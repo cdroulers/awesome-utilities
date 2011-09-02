@@ -15,18 +15,15 @@ namespace System.Web.Mvc.UI
         /// Initializes a new instance of the <see cref="CssLink"/> class.
         /// </summary>
         /// <param name="href">The href.</param>
-        public CssLink(string href) : this(href, MediaValue.None) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CssLink"/> class.
-        /// </summary>
-        /// <param name="href">The href.</param>
         /// <param name="mediaValue">The media value.</param>
-        public CssLink(string href, MediaValue mediaValue)
+        public CssLink(string href, MediaValue? mediaValue = null)
             : base(new ContentType("text/css"), href)
         {
             this.Rel = RelValue.Stylesheet;
-            this.Media = mediaValue;
+            if (mediaValue.HasValue)
+            {
+                this.Media = mediaValue.Value;
+            }
         }
     }
 }
