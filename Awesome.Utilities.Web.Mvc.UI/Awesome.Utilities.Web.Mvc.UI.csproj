@@ -48,6 +48,7 @@
     <Compile Include="CssStyle.cs" />
     <Compile Include="HtmlList.cs" />
     <Compile Include="HtmlListKind.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="Javascript.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="MediaValue.cs" />
