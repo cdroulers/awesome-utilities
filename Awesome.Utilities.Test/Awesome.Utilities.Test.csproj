@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="System\Collections\Generic\GivenResultPage.cs" />
     <Compile Include="System\GivenAdvancedMath.cs" />
     <Compile Include="System\GivenValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

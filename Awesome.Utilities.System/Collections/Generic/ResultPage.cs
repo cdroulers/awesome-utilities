@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
+
+namespace System.Collections.Generic
+{
+    /// <summary>
+    ///     A list of items for a current page
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    [DataContract]
+    public class ResultPage<T> : ReadOnlyCollection<T>
+    {
+        [DataMember(Name = "CurrentPage")]
+        private int currentPage;
+        /// <summary>
+        ///     Gets the current page.
+        /// </summary>
+        public int CurrentPage { get { return this.currentPage; } }
+
+        [DataMember(Name = "PerPage")]
+        private int perPage;
+        /// <summary>
+        /// Gets the number of items per page.
+        /// </summary>
+        public int PerPage { get { return this.perPage; } }
+
+        [DataMember(Name = "TotalNumberOfRecords")]
+        private int totalNumberOfRecords;
+        /// <summary>
+        ///     Gets the total number of records.
+        /// </summary>
+        public int TotalNumberOfRecords { get { return this.totalNumberOfRecords; } }
+
+        [DataMember(Name = "LastPage")]
+        private int lastPage;
+        /// <summary>
+        ///     Gets the last page.
+        /// </summary>
+        public int LastPage { get { return this.lastPage; } }
+
+        [DataMember(Name = "NextPage")]
+        private int? nextPage;
+        /// <summary>
+        /// Gets the next page, if there is one.
+        /// </summary>
+        public int? NextPage { get { return this.nextPage; } }
+
+        [DataMember(Name = "PreviousPage")]
+        private int? previousPage;
+        /// <summary>
+        /// Gets the previous page, if there is one.
+        /// </summary>
+        public int? PreviousPage { get { return this.previousPage; } }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResultPage&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <param name="currentPage">The current page.</param>
+        /// <param name="perPage">The per page.</param>
+        /// <param name="totalNumberOfRecords">The total number of records.</param>
+        public ResultPage(IList<T> items, int currentPage, int perPage, int totalNumberOfRecords)
+            : base(items)
+        {
+            this.currentPage = currentPage;
+            this.perPage = perPage;
+            this.totalNumberOfRecords = totalNumberOfRecords;
+
+            this.lastPage = (int)Math.Ceiling((totalNumberOfRecords * 1.0d / perPage));
+            this.nextPage = currentPage < this.lastPage ? currentPage + 1 : new int?();
+            this.previousPage = currentPage > 1 ? currentPage - 1 : new int?();
+        }
+    }
+}
