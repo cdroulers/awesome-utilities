@@ -46,6 +46,7 @@
     <Compile Include="Control.cs" />
     <Compile Include="CssLink.cs" />
     <Compile Include="CssStyle.cs" />
+    <Compile Include="HtmlHelperUIExtensions.cs" />
     <Compile Include="HtmlList.cs" />
     <Compile Include="HtmlListKind.cs" />
     <Compile Include="Image.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="Link.cs" />
     <Compile Include="MediaValue.cs" />
     <Compile Include="OrderedList.cs" />
+    <Compile Include="PageData.cs" />
+    <Compile Include="PageGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelValue.cs" />
     <Compile Include="RssLink.cs" />
@@ -61,6 +64,12 @@
     <Compile Include="TypeControl.cs" />
     <Compile Include="TypeMediaControl.cs" />
     <Compile Include="UnorderedList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Awesome.Utilities.System\Awesome.Utilities.System.csproj">
+      <Project>{BD269F95-E64C-489D-AA68-5FDF6E513AED}</Project>
+      <Name>Awesome.Utilities.System</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -42,6 +42,11 @@ namespace System.Collections.Generic
         /// </summary>
         public int LastPage { get { return this.lastPage; } }
 
+        /// <summary>
+        ///     The first page in a paged list.
+        /// </summary>
+        public const int ValueOfFirstPage = 1;
+
         [DataMember(Name = "NextPage")]
         private int? nextPage;
         /// <summary>

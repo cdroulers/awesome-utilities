@@ -11,17 +11,8 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
-    public class GivenControl
+    public class GivenControl : GivenHtmlBase
     {
-        private HtmlNode GetHtmlNode(string html)
-        {
-            Trace.WriteLine("Loading the following HTML: " + Environment.NewLine + html);
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(html);
-            return doc.DocumentNode.FirstChild;
-        }
-
-
         [TestCase("Name[en]", "Name_en_")]
         [TestCase("Name:wot", "Name:wot")]
         [TestCase("Name:Wot.What_/", "Name:Wot.What__")]

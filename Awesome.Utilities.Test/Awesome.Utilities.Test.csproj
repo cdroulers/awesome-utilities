@@ -39,6 +39,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +53,8 @@
     <Compile Include="System\GivenValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\Mvc\UI\GivenControl.cs" />
+    <Compile Include="Web\Mvc\UI\GivenHtmlBase.cs" />
+    <Compile Include="Web\Mvc\UI\GivenPageGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Awesome.Utilities.System\Awesome.Utilities.System.csproj">
