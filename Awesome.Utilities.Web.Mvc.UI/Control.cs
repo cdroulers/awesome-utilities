@@ -593,6 +593,34 @@ namespace System.Web.Mvc.UI
         }
 
         /// <summary>
+        /// Adds the attribute
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public virtual Control AddAttribute(string name, string value)
+        {
+            this.attributes[name] = value;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Removes the attribute
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public virtual Control RemoveAttribute(string name)
+        {
+            if (this.attributes.ContainsKey(name))
+            {
+                this.attributes.Remove(name);
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Gets or sets the translation delegate that will be used in any control requiring translation
         /// </summary>
         /// <value>The translation delegate.</value>

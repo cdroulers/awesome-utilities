@@ -52,6 +52,7 @@
     <Compile Include="Image.cs" />
     <Compile Include="Javascript.cs" />
     <Compile Include="Link.cs" />
+    <Compile Include="LiteralControl.cs" />
     <Compile Include="MediaValue.cs" />
     <Compile Include="OrderedList.cs" />
     <Compile Include="PageData.cs" />
