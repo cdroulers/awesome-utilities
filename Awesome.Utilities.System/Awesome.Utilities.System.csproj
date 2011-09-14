@@ -50,6 +50,7 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="StringArgumentNullOrEmptyException.cs" />
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="Validate.cs" />
     <Compile Include="Arithmetic\Arithmetics.cs" />
     <Compile Include="Arithmetic\ByteArithmetic.cs" />
