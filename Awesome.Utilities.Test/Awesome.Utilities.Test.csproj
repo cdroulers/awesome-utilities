@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Geolocation\GivenCoordinates.cs" />
+    <Compile Include="Geolocation\Services\GivenIGeolocationService.cs" />
     <Compile Include="System\Collections\Generic\GivenResultPage.cs" />
     <Compile Include="System\GivenAdvancedMath.cs" />
     <Compile Include="System\GivenString.cs" />
@@ -64,6 +66,10 @@
     <Compile Include="Web\Mvc\UI\GivenPageGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Awesome.Utilities.Geolocation\Awesome.Utilities.Geolocation.csproj">
+      <Project>{A7BF2FBE-2BC3-4D3E-9363-52FE6ACBF00E}</Project>
+      <Name>Awesome.Utilities.Geolocation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Awesome.Utilities.System\Awesome.Utilities.System.csproj">
       <Project>{BD269F95-E64C-489D-AA68-5FDF6E513AED}</Project>
       <Name>Awesome.Utilities.System</Name>
