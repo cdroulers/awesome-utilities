@@ -38,7 +38,7 @@ namespace System.Geolocation
 
         public const double MetersPerDegreeLatitude = 2 * Math.PI * EarthRadius / 360;
 
-        public Tuple<Coordinates, Coordinates> BoundingBox(double radius)
+        public BoundingBox BoundingBox(double radius)
         {
             var min = new Coordinates(
                 this.Longitude - (radius / Math.Abs(Math.Cos(Deg2Rad(this.Latitude)) * MetersPerDegreeLatitude)),
@@ -48,18 +48,7 @@ namespace System.Geolocation
                 this.Longitude + (radius / Math.Abs(Math.Cos(Deg2Rad(this.Latitude)) * MetersPerDegreeLatitude)),
                 this.Latitude + (radius / MetersPerDegreeLatitude)
             );
-            return new Tuple<Coordinates, Coordinates>(min, max);
-
-            /*  bounding box"""
-   _METERS_PER_DEGREE_LAT = 2*np.pi*EARTH_RADIUS/360.
-   min_lon = lon - radius_m / \
-             math.fabs(math.cos(math.radians(lat)) * _METERS_PER_DEGREE_LAT)
-   max_lon = lon + radius_m / \
-             math.fabs(math.cos(math.radians(lat)) * _METERS_PER_DEGREE_LAT)
-   min_lat = lat - (radius_m / _METERS_PER_DEGREE_LAT)
-   max_lat = lat + (radius_m / _METERS_PER_DEGREE_LAT)
-
-   return (min_lat, max_lat, min_lon, max_lon)*/
+            return new BoundingBox(min, max);
         }
 
         private double Deg2Rad(double deg)

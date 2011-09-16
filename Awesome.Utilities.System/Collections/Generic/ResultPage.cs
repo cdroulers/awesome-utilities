@@ -62,6 +62,11 @@ namespace System.Collections.Generic
         public int? PreviousPage { get { return this.previousPage; } }
 
         /// <summary>
+        /// Gets an empty result page.
+        /// </summary>
+        public static ResultPage<T> Empty { get { return new ResultPage<T>(new List<T>(), 1, 1, 0); } }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ResultPage&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="items">The items.</param>

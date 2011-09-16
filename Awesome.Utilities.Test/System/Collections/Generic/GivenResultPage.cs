@@ -27,5 +27,19 @@ namespace Awesome.Utilities.Test.System.Collections.Generic
             Assert.That(results.NextPage, Is.EqualTo(next));
             Assert.That(results.LastPage, Is.EqualTo(last));
         }
+
+        [Test]
+        public void When_getting_empty_Then_works()
+        {
+            var temp = ResultPage<string>.Empty;
+
+            Assert.That(temp, Is.Empty);
+            Assert.That(temp.CurrentPage, Is.EqualTo(1));
+            Assert.That(temp.PerPage, Is.EqualTo(1));
+            Assert.That(temp.TotalNumberOfRecords, Is.EqualTo(0));
+            Assert.That(temp.PreviousPage, Is.EqualTo(null));
+            Assert.That(temp.NextPage, Is.EqualTo(null));
+            Assert.That(temp.LastPage, Is.EqualTo(0));
+        }
     }
 }

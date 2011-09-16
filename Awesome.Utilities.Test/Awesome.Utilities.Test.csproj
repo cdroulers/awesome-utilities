@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Geolocation\GivenBoundingBox.cs" />
     <Compile Include="Geolocation\GivenCoordinates.cs" />
     <Compile Include="Geolocation\Services\GivenIGeolocationService.cs" />
     <Compile Include="System\Collections\Generic\GivenResultPage.cs" />

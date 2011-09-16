@@ -29,8 +29,8 @@ namespace Awesome.Utilities.Test.Geolocation
 
             var actual = coordinates.BoundingBox(radius);
 
-            Assert.That(actual.Item1, Is.EqualTo(new Coordinates(minLong, minLat)));
-            Assert.That(actual.Item2, Is.EqualTo(new Coordinates(maxLong, maxLat)));
+            Assert.That(actual.TopLeft, Is.EqualTo(new Coordinates(minLong, minLat)));
+            Assert.That(actual.BottomRight, Is.EqualTo(new Coordinates(maxLong, maxLat)));
         }
     }
 }
