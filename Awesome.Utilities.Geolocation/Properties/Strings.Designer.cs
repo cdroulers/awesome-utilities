@@ -68,5 +68,14 @@ namespace System.Geolocation.Properties {
                 return ResourceManager.GetString("MultipleCoordinatesException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No results found..
+        /// </summary>
+        internal static string NoResultsException {
+            get {
+                return ResourceManager.GetString("NoResultsException", resourceCulture);
+            }
+        }
     }
 }

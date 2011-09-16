@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F6F124C2-DC6E-457E-863D-EFDFC1942D36}</ProjectGuid>
+    <ProjectGuid>{E54299C9-B5DE-424A-9E31-D4FB45C783BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Awesome.Utilities.Test</RootNamespace>
-    <AssemblyName>Awesome.Utilities.Test</AssemblyName>
+    <RootNamespace>Awesome.Utilities.Test.Integration</RootNamespace>
+    <AssemblyName>Awesome.Utilities.Test.Integration</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,19 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\Dependencies\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\Dependencies\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\Dependencies\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,19 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Geolocation\GivenBoundingBox.cs" />
-    <Compile Include="Geolocation\GivenCoordinates.cs" />
-    <Compile Include="System\Collections\Generic\GivenResultPage.cs" />
-    <Compile Include="System\GivenAdvancedMath.cs" />
-    <Compile Include="System\GivenString.cs" />
-    <Compile Include="System\GivenValidate.cs" />
+    <Compile Include="Geolocation\Services\GivenGoogleMapsGeolocationService.cs" />
+    <Compile Include="Geolocation\Services\GivenMapQuestGeolocationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web\Mvc\Helpers.cs" />
-    <Compile Include="Web\Mvc\UI\GivenControl.cs" />
-    <Compile Include="Web\Mvc\UI\GivenHtmlBase.cs" />
-    <Compile Include="Web\Mvc\UI\GivenHtmlHelperExtensions.cs" />
-    <Compile Include="Web\Mvc\UI\GivenLiteralControl.cs" />
-    <Compile Include="Web\Mvc\UI\GivenPageGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Awesome.Utilities.Geolocation\Awesome.Utilities.Geolocation.csproj">
@@ -73,14 +55,6 @@
     <ProjectReference Include="..\Awesome.Utilities.System\Awesome.Utilities.System.csproj">
       <Project>{BD269F95-E64C-489D-AA68-5FDF6E513AED}</Project>
       <Name>Awesome.Utilities.System</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Awesome.Utilities.Web.Mvc.UI\Awesome.Utilities.Web.Mvc.UI.csproj">
-      <Project>{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}</Project>
-      <Name>Awesome.Utilities.Web.Mvc.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Awesome.Utilities.Web.Mvc\Awesome.Utilities.Web.Mvc.csproj">
-      <Project>{2CB5735A-2598-46B6-8967-1BE02C261BC8}</Project>
-      <Name>Awesome.Utilities.Web.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

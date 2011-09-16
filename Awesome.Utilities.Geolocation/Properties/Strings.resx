@@ -120,4 +120,7 @@
   <data name="MultipleCoordinatesException" xml:space="preserve">
     <value>Multiple coordinates were returned for the location "{0}". This method does not handle multiple coordinates.</value>
   </data>
+  <data name="NoResultsException" xml:space="preserve">
+    <value>No results found.</value>
+  </data>
 </root>
