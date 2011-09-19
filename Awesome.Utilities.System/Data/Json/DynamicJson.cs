@@ -16,7 +16,7 @@ namespace System.Data.Json
             var jss = new JavaScriptSerializer();
             jss.RegisterConverters(new JavaScriptConverter[] { new DynamicJsonConverter() });
 
-            dynamic glossaryEntry = jss.Deserialize(json, typeof(object)) as dynamic;
+            dynamic glossaryEntry = jss.Deserialize<object>(json) as dynamic;
             return glossaryEntry;
         }
 
