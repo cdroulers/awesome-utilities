@@ -1,0 +1,900 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>testlinq</name>
+    </assembly>
+    <members>
+        <member name="T:testlinq.northwindEFEntities">
+            <summary>
+            There are no comments for northwindEFEntities in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.#ctor">
+            <summary>
+            Initializes a new northwindEFEntities object using the connection string found in the 'northwindEFEntities' section of the application configuration file.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.#ctor(System.String)">
+            <summary>
+            Initialize a new northwindEFEntities object.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.#ctor(System.Data.EntityClient.EntityConnection)">
+            <summary>
+            Initialize a new northwindEFEntities object.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToCategories(testlinq.Categories)">
+            <summary>
+            There are no comments for Categories in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToCustomers(testlinq.Customers)">
+            <summary>
+            There are no comments for Customers in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToEmployees(testlinq.Employees)">
+            <summary>
+            There are no comments for Employees in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToInternationalOrders(testlinq.InternationalOrders)">
+            <summary>
+            There are no comments for InternationalOrders in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToOrderDetails(testlinq.OrderDetails)">
+            <summary>
+            There are no comments for OrderDetails in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToOrders(testlinq.Orders)">
+            <summary>
+            There are no comments for Orders in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToPreviousEmployees(testlinq.PreviousEmployees)">
+            <summary>
+            There are no comments for PreviousEmployees in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToProducts(testlinq.Products)">
+            <summary>
+            There are no comments for Products in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToRegions(testlinq.Regions)">
+            <summary>
+            There are no comments for Regions in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToSuppliers(testlinq.Suppliers)">
+            <summary>
+            There are no comments for Suppliers in the schema.
+            </summary>
+        </member>
+        <member name="M:testlinq.northwindEFEntities.AddToTerritories(testlinq.Territories)">
+            <summary>
+            There are no comments for Territories in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Categories">
+            <summary>
+            There are no comments for Categories in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Customers">
+            <summary>
+            There are no comments for Customers in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Employees">
+            <summary>
+            There are no comments for Employees in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.InternationalOrders">
+            <summary>
+            There are no comments for InternationalOrders in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.OrderDetails">
+            <summary>
+            There are no comments for OrderDetails in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Orders">
+            <summary>
+            There are no comments for Orders in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.PreviousEmployees">
+            <summary>
+            There are no comments for PreviousEmployees in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Products">
+            <summary>
+            There are no comments for Products in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Regions">
+            <summary>
+            There are no comments for Regions in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Suppliers">
+            <summary>
+            There are no comments for Suppliers in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.northwindEFEntities.Territories">
+            <summary>
+            There are no comments for Territories in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Categories">
+            <summary>
+            There are no comments for northwindEFModel.Categories in the schema.
+            </summary>
+            <KeyProperties>
+            CategoryID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Categories.CreateCategories(System.Int64,System.String)">
+            <summary>
+            Create a new Categories object.
+            </summary>
+            <param name="categoryID">Initial value of CategoryID.</param>
+            <param name="categoryName">Initial value of CategoryName.</param>
+        </member>
+        <member name="P:testlinq.Categories.CategoryID">
+            <summary>
+            There are no comments for Property CategoryID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Categories.CategoryName">
+            <summary>
+            There are no comments for Property CategoryName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Categories.Description">
+            <summary>
+            There are no comments for Property Description in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Categories.Picture">
+            <summary>
+            There are no comments for Property Picture in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Categories.Products">
+            <summary>
+            There are no comments for Products in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Customers">
+            <summary>
+            There are no comments for northwindEFModel.Customers in the schema.
+            </summary>
+            <KeyProperties>
+            CustomerID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Customers.CreateCustomers(System.String,System.String)">
+            <summary>
+            Create a new Customers object.
+            </summary>
+            <param name="customerID">Initial value of CustomerID.</param>
+            <param name="companyName">Initial value of CompanyName.</param>
+        </member>
+        <member name="P:testlinq.Customers.CustomerID">
+            <summary>
+            There are no comments for Property CustomerID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.CompanyName">
+            <summary>
+            There are no comments for Property CompanyName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.ContactName">
+            <summary>
+            There are no comments for Property ContactName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.ContactTitle">
+            <summary>
+            There are no comments for Property ContactTitle in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.Address">
+            <summary>
+            There are no comments for Property Address in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.City">
+            <summary>
+            There are no comments for Property City in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.Region">
+            <summary>
+            There are no comments for Property Region in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.PostalCode">
+            <summary>
+            There are no comments for Property PostalCode in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.Country">
+            <summary>
+            There are no comments for Property Country in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.Phone">
+            <summary>
+            There are no comments for Property Phone in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.Fax">
+            <summary>
+            There are no comments for Property Fax in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Customers.Orders">
+            <summary>
+            There are no comments for Orders in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Employees">
+            <summary>
+            There are no comments for northwindEFModel.Employees in the schema.
+            </summary>
+            <KeyProperties>
+            EmployeeID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Employees.CreateEmployees(System.Int64,System.String,System.String)">
+            <summary>
+            Create a new Employees object.
+            </summary>
+            <param name="employeeID">Initial value of EmployeeID.</param>
+            <param name="lastName">Initial value of LastName.</param>
+            <param name="firstName">Initial value of FirstName.</param>
+        </member>
+        <member name="P:testlinq.Employees.EmployeeID">
+            <summary>
+            There are no comments for Property EmployeeID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.LastName">
+            <summary>
+            There are no comments for Property LastName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.FirstName">
+            <summary>
+            There are no comments for Property FirstName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Title">
+            <summary>
+            There are no comments for Property Title in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.TitleOfCourtesy">
+            <summary>
+            There are no comments for Property TitleOfCourtesy in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.BirthDate">
+            <summary>
+            There are no comments for Property BirthDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.HireDate">
+            <summary>
+            There are no comments for Property HireDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Address">
+            <summary>
+            There are no comments for Property Address in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.City">
+            <summary>
+            There are no comments for Property City in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Region">
+            <summary>
+            There are no comments for Property Region in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.PostalCode">
+            <summary>
+            There are no comments for Property PostalCode in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Country">
+            <summary>
+            There are no comments for Property Country in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.HomePhone">
+            <summary>
+            There are no comments for Property HomePhone in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Extension">
+            <summary>
+            There are no comments for Property Extension in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Photo">
+            <summary>
+            There are no comments for Property Photo in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Notes">
+            <summary>
+            There are no comments for Property Notes in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.PhotoPath">
+            <summary>
+            There are no comments for Property PhotoPath in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Employees.Territories">
+            <summary>
+            There are no comments for Territories in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.InternationalOrders">
+            <summary>
+            There are no comments for northwindEFModel.InternationalOrders in the schema.
+            </summary>
+            <KeyProperties>
+            OrderID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.InternationalOrders.CreateInternationalOrders(System.Int64,System.String,System.Decimal)">
+            <summary>
+            Create a new InternationalOrders object.
+            </summary>
+            <param name="orderID">Initial value of OrderID.</param>
+            <param name="customsDescription">Initial value of CustomsDescription.</param>
+            <param name="exciseTax">Initial value of ExciseTax.</param>
+        </member>
+        <member name="P:testlinq.InternationalOrders.OrderID">
+            <summary>
+            There are no comments for Property OrderID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.InternationalOrders.CustomsDescription">
+            <summary>
+            There are no comments for Property CustomsDescription in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.InternationalOrders.ExciseTax">
+            <summary>
+            There are no comments for Property ExciseTax in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.InternationalOrders.Orders">
+            <summary>
+            There are no comments for Orders in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.InternationalOrders.OrdersReference">
+            <summary>
+            There are no comments for Orders in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.OrderDetails">
+            <summary>
+            There are no comments for northwindEFModel.OrderDetails in the schema.
+            </summary>
+            <KeyProperties>
+            OrderID
+            ProductID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.OrderDetails.CreateOrderDetails(System.Int64,System.Int64,System.Decimal,System.Int16,System.Single)">
+            <summary>
+            Create a new OrderDetails object.
+            </summary>
+            <param name="orderID">Initial value of OrderID.</param>
+            <param name="productID">Initial value of ProductID.</param>
+            <param name="unitPrice">Initial value of UnitPrice.</param>
+            <param name="quantity">Initial value of Quantity.</param>
+            <param name="discount">Initial value of Discount.</param>
+        </member>
+        <member name="P:testlinq.OrderDetails.OrderID">
+            <summary>
+            There are no comments for Property OrderID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.ProductID">
+            <summary>
+            There are no comments for Property ProductID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.UnitPrice">
+            <summary>
+            There are no comments for Property UnitPrice in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.Quantity">
+            <summary>
+            There are no comments for Property Quantity in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.Discount">
+            <summary>
+            There are no comments for Property Discount in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.Orders">
+            <summary>
+            There are no comments for Orders in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.OrdersReference">
+            <summary>
+            There are no comments for Orders in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.Products">
+            <summary>
+            There are no comments for Products in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.OrderDetails.ProductsReference">
+            <summary>
+            There are no comments for Products in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Orders">
+            <summary>
+            There are no comments for northwindEFModel.Orders in the schema.
+            </summary>
+            <KeyProperties>
+            OrderID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Orders.CreateOrders(System.Int64)">
+            <summary>
+            Create a new Orders object.
+            </summary>
+            <param name="orderID">Initial value of OrderID.</param>
+        </member>
+        <member name="P:testlinq.Orders.OrderID">
+            <summary>
+            There are no comments for Property OrderID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.EmployeeID">
+            <summary>
+            There are no comments for Property EmployeeID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.OrderDate">
+            <summary>
+            There are no comments for Property OrderDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.RequiredDate">
+            <summary>
+            There are no comments for Property RequiredDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.ShippedDate">
+            <summary>
+            There are no comments for Property ShippedDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.Freight">
+            <summary>
+            There are no comments for Property Freight in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.ShipName">
+            <summary>
+            There are no comments for Property ShipName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.ShipAddress">
+            <summary>
+            There are no comments for Property ShipAddress in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.ShipCity">
+            <summary>
+            There are no comments for Property ShipCity in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.ShipRegion">
+            <summary>
+            There are no comments for Property ShipRegion in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.ShipPostalCode">
+            <summary>
+            There are no comments for Property ShipPostalCode in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.ShipCountry">
+            <summary>
+            There are no comments for Property ShipCountry in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.Customers">
+            <summary>
+            There are no comments for Customers in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.CustomersReference">
+            <summary>
+            There are no comments for Customers in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.InternationalOrders">
+            <summary>
+            There are no comments for InternationalOrders in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.InternationalOrdersReference">
+            <summary>
+            There are no comments for InternationalOrders in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Orders.OrderDetails">
+            <summary>
+            There are no comments for OrderDetails in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.PreviousEmployees">
+            <summary>
+            There are no comments for northwindEFModel.PreviousEmployees in the schema.
+            </summary>
+            <KeyProperties>
+            EmployeeID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.PreviousEmployees.CreatePreviousEmployees(System.Int64,System.String,System.String)">
+            <summary>
+            Create a new PreviousEmployees object.
+            </summary>
+            <param name="employeeID">Initial value of EmployeeID.</param>
+            <param name="lastName">Initial value of LastName.</param>
+            <param name="firstName">Initial value of FirstName.</param>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.EmployeeID">
+            <summary>
+            There are no comments for Property EmployeeID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.LastName">
+            <summary>
+            There are no comments for Property LastName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.FirstName">
+            <summary>
+            There are no comments for Property FirstName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.Title">
+            <summary>
+            There are no comments for Property Title in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.TitleOfCourtesy">
+            <summary>
+            There are no comments for Property TitleOfCourtesy in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.BirthDate">
+            <summary>
+            There are no comments for Property BirthDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.HireDate">
+            <summary>
+            There are no comments for Property HireDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.Address">
+            <summary>
+            There are no comments for Property Address in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.City">
+            <summary>
+            There are no comments for Property City in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.Region">
+            <summary>
+            There are no comments for Property Region in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.PostalCode">
+            <summary>
+            There are no comments for Property PostalCode in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.Country">
+            <summary>
+            There are no comments for Property Country in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.HomePhone">
+            <summary>
+            There are no comments for Property HomePhone in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.Extension">
+            <summary>
+            There are no comments for Property Extension in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.Photo">
+            <summary>
+            There are no comments for Property Photo in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.Notes">
+            <summary>
+            There are no comments for Property Notes in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.PreviousEmployees.PhotoPath">
+            <summary>
+            There are no comments for Property PhotoPath in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Products">
+            <summary>
+            There are no comments for northwindEFModel.Products in the schema.
+            </summary>
+            <KeyProperties>
+            ProductID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Products.CreateProducts(System.Int64,System.String,System.Boolean)">
+            <summary>
+            Create a new Products object.
+            </summary>
+            <param name="productID">Initial value of ProductID.</param>
+            <param name="productName">Initial value of ProductName.</param>
+            <param name="discontinued">Initial value of Discontinued.</param>
+        </member>
+        <member name="P:testlinq.Products.ProductID">
+            <summary>
+            There are no comments for Property ProductID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.ProductName">
+            <summary>
+            There are no comments for Property ProductName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.QuantityPerUnit">
+            <summary>
+            There are no comments for Property QuantityPerUnit in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.UnitPrice">
+            <summary>
+            There are no comments for Property UnitPrice in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.UnitsInStock">
+            <summary>
+            There are no comments for Property UnitsInStock in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.UnitsOnOrder">
+            <summary>
+            There are no comments for Property UnitsOnOrder in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.ReorderLevel">
+            <summary>
+            There are no comments for Property ReorderLevel in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.Discontinued">
+            <summary>
+            There are no comments for Property Discontinued in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.DiscontinuedDate">
+            <summary>
+            There are no comments for Property DiscontinuedDate in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.Categories">
+            <summary>
+            There are no comments for Categories in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.CategoriesReference">
+            <summary>
+            There are no comments for Categories in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.OrderDetails">
+            <summary>
+            There are no comments for OrderDetails in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.Suppliers">
+            <summary>
+            There are no comments for Suppliers in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Products.SuppliersReference">
+            <summary>
+            There are no comments for Suppliers in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Regions">
+            <summary>
+            There are no comments for northwindEFModel.Regions in the schema.
+            </summary>
+            <KeyProperties>
+            RegionID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Regions.CreateRegions(System.Int64,System.String)">
+            <summary>
+            Create a new Regions object.
+            </summary>
+            <param name="regionID">Initial value of RegionID.</param>
+            <param name="regionDescription">Initial value of RegionDescription.</param>
+        </member>
+        <member name="P:testlinq.Regions.RegionID">
+            <summary>
+            There are no comments for Property RegionID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Regions.RegionDescription">
+            <summary>
+            There are no comments for Property RegionDescription in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Regions.Territories">
+            <summary>
+            There are no comments for Territories in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Suppliers">
+            <summary>
+            There are no comments for northwindEFModel.Suppliers in the schema.
+            </summary>
+            <KeyProperties>
+            SupplierID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Suppliers.CreateSuppliers(System.Int64,System.String)">
+            <summary>
+            Create a new Suppliers object.
+            </summary>
+            <param name="supplierID">Initial value of SupplierID.</param>
+            <param name="companyName">Initial value of CompanyName.</param>
+        </member>
+        <member name="P:testlinq.Suppliers.SupplierID">
+            <summary>
+            There are no comments for Property SupplierID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.CompanyName">
+            <summary>
+            There are no comments for Property CompanyName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.ContactName">
+            <summary>
+            There are no comments for Property ContactName in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.ContactTitle">
+            <summary>
+            There are no comments for Property ContactTitle in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.Address">
+            <summary>
+            There are no comments for Property Address in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.City">
+            <summary>
+            There are no comments for Property City in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.Region">
+            <summary>
+            There are no comments for Property Region in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.PostalCode">
+            <summary>
+            There are no comments for Property PostalCode in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.Country">
+            <summary>
+            There are no comments for Property Country in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.Phone">
+            <summary>
+            There are no comments for Property Phone in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.Fax">
+            <summary>
+            There are no comments for Property Fax in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.HomePage">
+            <summary>
+            There are no comments for Property HomePage in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Suppliers.Products">
+            <summary>
+            There are no comments for Products in the schema.
+            </summary>
+        </member>
+        <member name="T:testlinq.Territories">
+            <summary>
+            There are no comments for northwindEFModel.Territories in the schema.
+            </summary>
+            <KeyProperties>
+            TerritoryID
+            </KeyProperties>
+        </member>
+        <member name="M:testlinq.Territories.CreateTerritories(System.Int64,System.String)">
+            <summary>
+            Create a new Territories object.
+            </summary>
+            <param name="territoryID">Initial value of TerritoryID.</param>
+            <param name="territoryDescription">Initial value of TerritoryDescription.</param>
+        </member>
+        <member name="P:testlinq.Territories.TerritoryID">
+            <summary>
+            There are no comments for Property TerritoryID in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Territories.TerritoryDescription">
+            <summary>
+            There are no comments for Property TerritoryDescription in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Territories.Regions">
+            <summary>
+            There are no comments for Regions in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Territories.RegionsReference">
+            <summary>
+            There are no comments for Regions in the schema.
+            </summary>
+        </member>
+        <member name="P:testlinq.Territories.Employees">
+            <summary>
+            There are no comments for Employees in the schema.
+            </summary>
+        </member>
+    </members>
+</doc>
