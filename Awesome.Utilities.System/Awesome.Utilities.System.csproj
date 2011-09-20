@@ -45,6 +45,8 @@
     <Compile Include="AdvancedMath.cs" />
     <Compile Include="Collections\Generic\ResultPage.cs" />
     <Compile Include="Data\Json\DynamicJson.cs" />
+    <Compile Include="Messages\Notification.cs" />
+    <Compile Include="Messages\NotificationData.cs" />
     <Compile Include="StringArgumentNullOrWhiteSpaceException.cs" />
     <Compile Include="Properties\Strings.Designer.cs">
       <AutoGen>True</AutoGen>

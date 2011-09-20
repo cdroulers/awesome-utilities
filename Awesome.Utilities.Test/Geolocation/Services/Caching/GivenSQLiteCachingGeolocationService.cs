@@ -11,7 +11,7 @@ using System.IO;
 using System.Geolocation;
 using System.Data.SQLite;
 
-namespace Awesome.Utilities.Test.Integration.Geolocation.Services.Caching
+namespace Awesome.Utilities.Test.Geolocation.Services.Caching
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
