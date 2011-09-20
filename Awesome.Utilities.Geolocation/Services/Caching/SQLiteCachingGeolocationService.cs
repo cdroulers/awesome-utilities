@@ -16,9 +16,10 @@ namespace System.Geolocation.Services.Caching
             : base(decorated, connectionString)
         {
             var builder = new SQLiteConnectionStringBuilder(connectionString.ConnectionString);
-            if (!File.Exists(builder.DataSource))
+            string dataSource = builder.DataSource.Replace("|DataDirectory|", (string)AppDomain.CurrentDomain.GetData("DataDirectory"));
+            if (!File.Exists(dataSource))
             {
-                SQLiteConnection.CreateFile(builder.DataSource);
+                SQLiteConnection.CreateFile(dataSource);
             }
             this.BaseSetup();
         }
@@ -27,7 +28,7 @@ namespace System.Geolocation.Services.Caching
         {
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name=@TableName";
+                command.CommandText = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = @TableName";
                 var parameter = command.CreateParameter();
                 parameter.ParameterName = "@TableName";
                 parameter.Value = tableName;
