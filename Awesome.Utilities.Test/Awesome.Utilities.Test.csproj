@@ -65,6 +65,7 @@
     <Compile Include="System\GivenString.cs" />
     <Compile Include="System\GivenValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Security\Cryptography\GivenCryptographyHelper.cs" />
     <Compile Include="WebTestApp\Controllers\TestController.cs" />
     <Compile Include="WebTestApp\Controllers\TestEmptyController.cs" />
     <Compile Include="Web\Mvc\GivenAccess.cs" />

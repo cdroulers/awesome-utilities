@@ -51,7 +51,7 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
             {
                 var node = nodes[i];
                 int value = i + 1;
-                Assert.That(node.InnerText, Is.EqualTo("[" + value + "]"));
+                Assert.That(node.InnerText, Is.EqualTo(value.ToString()));
                 if (value == currentPage)
                 {
                     Assert.That(node.Name, Is.EqualTo("span"));
@@ -119,7 +119,7 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
             {
                 var node = nodes[i];
                 int value = i + 2;
-                Assert.That(node.InnerText, Is.EqualTo("[" + value + "]"));
+                Assert.That(node.InnerText, Is.EqualTo(value.ToString()));
                 if (value == results.CurrentPage)
                 {
                     Assert.That(node.Name, Is.EqualTo("span"));
