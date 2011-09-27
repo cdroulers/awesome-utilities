@@ -14,8 +14,8 @@ namespace System.Web.Mvc.UI
         public readonly ResultPage<T> Items;
         public readonly Func<PageData, MvcHtmlString> PageFunc;
         public readonly int MaximumNumberOfPagesToShow;
-        public string TextBefore { get; set; }
-        public string TextAfter { get; set; }
+        public static string TextBefore { get; set; }
+        public static string TextAfter { get; set; }
 
         public PageGenerator(ResultPage<T> items, Func<PageData, MvcHtmlString> pageFunc)
             : this(items, pageFunc, items.LastPage)
@@ -28,8 +28,12 @@ namespace System.Web.Mvc.UI
             this.Items = items;
             this.PageFunc = pageFunc;
             this.MaximumNumberOfPagesToShow = maximumNumberOfPagesToShow;
-            this.TextBefore = "[";
-            this.TextAfter = "]";
+        }
+
+        public static void Text(string before, string after)
+        {
+            TextBefore = before;
+            TextAfter = after;
         }
 
         protected override void RenderContents(HtmlTextWriter htmlTextWriter)
@@ -69,7 +73,7 @@ namespace System.Web.Mvc.UI
 
             for (int i = min; i <= max; i++)
             {
-                string text = this.TextBefore + i.ToString() + this.TextAfter;
+                string text = TextBefore + i.ToString() + TextAfter;
                 if (this.Items.CurrentPage == i)
                 {
                     htmlTextWriter.WriteLine(@"<span class=""current-page"">" + text + @"</span>");
