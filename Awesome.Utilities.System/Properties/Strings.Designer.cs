@@ -61,6 +61,15 @@ namespace System.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The cryptographic algorithm &quot;{0}&quot; is not supported by this helper..
+        /// </summary>
+        internal static string Cryptography_AlgorithmNotSupported {
+            get {
+                return ResourceManager.GetString("Cryptography_AlgorithmNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value must be between {0} and {1}..
         /// </summary>
         internal static string Validate_Between {
