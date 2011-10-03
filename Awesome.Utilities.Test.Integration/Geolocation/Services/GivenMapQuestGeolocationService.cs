@@ -38,7 +38,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         [Test]
         public void When_getting_coordinates_that_have_no_results_Then_throws()
         {
-            Assert.Throws<ApplicationException>(() => this.geo.GetCoordinates(""));
+            Assert.Throws<AddressNotFoundException>(() => this.geo.GetCoordinates(""));
         }
     }
 }
