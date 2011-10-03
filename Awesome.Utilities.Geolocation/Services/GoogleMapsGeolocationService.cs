@@ -45,7 +45,7 @@ namespace System.Geolocation.Services
 
             if (data.results.Count == 0)
             {
-                throw new ApplicationException(string.Format(Properties.Strings.NoResultsException, address));
+                throw new AddressNotFoundException(string.Format(Properties.Strings.NoResultsException, address));
             }
             if (data.results.Count > 1)
             {

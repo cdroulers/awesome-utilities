@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Services\Caching\BaseCachingGeolocationService.cs" />
     <Compile Include="Services\Caching\SQLiteCachingGeolocationService.cs" />
+    <Compile Include="Services\AddressNotFoundException.cs" />
     <Compile Include="Services\GoogleMapsGeolocationService.cs" />
     <Compile Include="Services\IGeolocationService.cs" />
     <Compile Include="Services\MapQuestGeolocationService.cs" />
