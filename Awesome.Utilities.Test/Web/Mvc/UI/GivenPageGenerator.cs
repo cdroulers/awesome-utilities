@@ -137,8 +137,8 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
         public void When_rendering_empty_page_generator_Then_renders_nothing()
         {
             PageGenerator.HideIfEmpty = true;
-            var temp = new List<string>() {  };
-            var results = new ResultPage<string>(temp, 1, 3, 0);
+            var temp = new List<string>() { "one", "two", "three" };
+            var results = new ResultPage<string>(temp, 1, 3, 3);
             var control = new PageGenerator<string>(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString());
 
             var actual = control.ToString();

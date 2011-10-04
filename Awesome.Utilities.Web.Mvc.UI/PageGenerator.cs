@@ -49,7 +49,7 @@ namespace System.Web.Mvc.UI
 
         protected override void Render(HtmlTextWriter htmlTextWriter)
         {
-            if (HideIfEmpty.GetValueOrDefault(false) && this.Items.TotalNumberOfRecords <= 0)
+            if (HideIfEmpty.GetValueOrDefault(false) && this.Items.LastPage <= 1)
             {
                 return;
             }
