@@ -21,7 +21,7 @@ namespace System.Web.Mvc.UI
         /// <returns></returns>
         public static MvcHtmlString GeneratePages<T>(this HtmlHelper self, ResultPage<T> pagedList, Func<PageData, MvcHtmlString> pageFunc)
         {
-            return self.GeneratePages<T>(pagedList, pageFunc, pagedList.LastPage);
+            return self.GeneratePages<T>(pagedList, pageFunc, PageGenerator<T>.DefaultMaximumNumberOfPagesToShow.GetValueOrDefault(pagedList.LastPage));
         }
 
         /// <summary>

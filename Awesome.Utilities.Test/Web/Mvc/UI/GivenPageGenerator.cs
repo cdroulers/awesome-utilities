@@ -132,5 +132,33 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
                 }
             }
         }
+
+        [Test]
+        public void When_rendering_empty_page_generator_Then_renders_nothing()
+        {
+            PageGenerator.HideIfEmpty = true;
+            var temp = new List<string>() {  };
+            var results = new ResultPage<string>(temp, 1, 3, 0);
+            var control = new PageGenerator<string>(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString());
+
+            var actual = control.ToString();
+
+            Assert.That(actual, Is.Empty);
+
+            PageGenerator.HideIfEmpty = null; // Reset to default
+        }
+
+        [Test]
+        public void When_rendering_page_generator_Then_uses_default_max_pages()
+        {
+            PageGenerator.DefaultMaximumNumberOfPagesToShow = 3;
+            var temp = new List<string>() { "one", "two", "three" };
+            var results = new ResultPage<string>(temp, 2, 3, 15);
+            var control = new PageGenerator<string>(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString());
+
+            Assert.That(control.MaximumNumberOfPagesToShow, Is.EqualTo(3));
+
+            PageGenerator.DefaultMaximumNumberOfPagesToShow = null; // Reset to default
+        }
     }
 }

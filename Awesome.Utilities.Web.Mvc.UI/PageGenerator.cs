@@ -6,10 +6,21 @@ using System.Web.UI;
 
 namespace System.Web.Mvc.UI
 {
+    public abstract class PageGenerator : Control
+    {
+        public static bool? HideIfEmpty { get; set; }
+        public static int? DefaultMaximumNumberOfPagesToShow { get; set; }
+
+        protected PageGenerator()
+            : base(HtmlTextWriterTag.Span, false)
+        {
+        }
+    }
+
     /// <summary>
     ///     A generator of pages.
     /// </summary>
-    public class PageGenerator<T> : Control
+    public class PageGenerator<T> : PageGenerator
     {
         public readonly ResultPage<T> Items;
         public readonly Func<PageData, MvcHtmlString> PageFunc;
@@ -18,11 +29,11 @@ namespace System.Web.Mvc.UI
         public static string TextAfter { get; set; }
 
         public PageGenerator(ResultPage<T> items, Func<PageData, MvcHtmlString> pageFunc)
-            : this(items, pageFunc, items.LastPage)
+            : this(items, pageFunc, DefaultMaximumNumberOfPagesToShow.GetValueOrDefault(items.LastPage))
         {
         }
         public PageGenerator(ResultPage<T> items, Func<PageData, MvcHtmlString> pageFunc, int maximumNumberOfPagesToShow)
-            : base(HtmlTextWriterTag.Span, false)
+            : base()
         {
             this.ControlCssClass = "pager";
             this.Items = items;
@@ -34,6 +45,15 @@ namespace System.Web.Mvc.UI
         {
             TextBefore = before;
             TextAfter = after;
+        }
+
+        protected override void Render(HtmlTextWriter htmlTextWriter)
+        {
+            if (HideIfEmpty.GetValueOrDefault(false) && this.Items.TotalNumberOfRecords <= 0)
+            {
+                return;
+            }
+            base.Render(htmlTextWriter);
         }
 
         protected override void RenderContents(HtmlTextWriter htmlTextWriter)
