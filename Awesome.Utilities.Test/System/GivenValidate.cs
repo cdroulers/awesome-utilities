@@ -129,5 +129,19 @@ namespace Awesome.Utilities.Test.System
                 Validate.Is.NotNullOrWhiteSpace(toValidate, "toValidate");
             }
         }
+
+        [TestCase("US", 2, false)]
+        [TestCase("USA", 2, true)]
+        public void When_validating_equal_to_Then_works(string toValidate, int toCompare, bool shouldThrow)
+        {
+            if (shouldThrow)
+            {
+                Assert.Throws<ArgumentException>(() => Validate.Is.EqualTo(toValidate.Length, toCompare, "toValidate.Length"));
+            }
+            else
+            {
+                Validate.Is.EqualTo(toValidate.Length, toCompare, "toValidate.Length");
+            }
+        }
     }
 }

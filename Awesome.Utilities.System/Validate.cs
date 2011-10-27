@@ -67,6 +67,22 @@ namespace System
         }
 
         /// <summary>
+        /// Validates that the values are equal.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="toValidate">To validate.</param>
+        /// <param name="toCompare">To compare.</param>
+        /// <param name="name">The name.</param>
+        /// <exception cref="ArgumentException"></exception>
+        public void EqualTo<T>(T toValidate, T toCompare, string name)
+        {
+            if (!object.Equals(toValidate, toCompare))
+            {
+                throw new ArgumentException(string.Format(Properties.Strings.Validate_EqualTo, toValidate, toCompare), name);
+            }
+        }
+
+        /// <summary>
         /// Validates that the value supplied is higher than the comparison value supplied.
         /// </summary>
         /// <typeparam name="T"></typeparam>
