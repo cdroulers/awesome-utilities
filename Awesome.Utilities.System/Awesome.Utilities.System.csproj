@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionAssemblyInfo.cs">
+      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AdvancedMath.cs" />
     <Compile Include="Collections\Generic\ResultPage.cs" />
     <Compile Include="Data\Json\DynamicJson.cs" />

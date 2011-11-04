@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionAssemblyInfo.cs">
+      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Access.cs" />
     <Compile Include="MvcHtmlStringExtensions.cs" />
     <Compile Include="NoTrimAttribute.cs" />

@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionAssemblyInfo.cs">
+      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="BoundingBox.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

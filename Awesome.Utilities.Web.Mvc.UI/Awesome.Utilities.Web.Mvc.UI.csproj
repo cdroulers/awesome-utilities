@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionAssemblyInfo.cs">
+      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="A.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="CssLink.cs" />
