@@ -9,7 +9,7 @@ using System.IO;
 
 namespace System.Configuration
 {
-    public class FlexibleConfiguration : IFlexibleConfiguration
+    public class FlexibleConfiguration : DefaultConfiguration, IFlexibleConfiguration
     {
         private static IFlexibleConfiguration instance = new DefaultConfiguration();
 
@@ -22,13 +22,13 @@ namespace System.Configuration
         }
 
         private readonly ConnectionStringSettingsCollection connectionStrings;
-        public ConnectionStringSettingsCollection ConnectionStrings
+        public override ConnectionStringSettingsCollection ConnectionStrings
         {
             get { return this.connectionStrings; }
         }
 
         private readonly NameValueCollection appSettings;
-        public NameValueCollection AppSettings
+        public override NameValueCollection AppSettings
         {
             get { return this.appSettings; }
         }
