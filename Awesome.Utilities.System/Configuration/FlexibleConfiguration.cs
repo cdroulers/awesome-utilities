@@ -128,9 +128,13 @@ namespace System.Configuration
         /// <param name="fileNames">The file names.</param>
         public static void Configure(bool allowLocalOverrides, params string[] fileNames)
         {
-            FlexibleConfiguration.instance = FlexibleConfiguration.Load(allowLocalOverrides, fileNames);
+            FlexibleConfiguration.Configure(FlexibleConfiguration.Load(allowLocalOverrides, fileNames));
         }
 
+        /// <summary>
+        /// Loads the provider factories from all the files. No overrides possible, first to be loaded remains!
+        /// </summary>
+        /// <param name="fileNames">The file names.</param>
         public static void LoadProviderFactories(params string[] fileNames)
         {
             foreach (string fileName in fileNames)
@@ -152,6 +156,16 @@ namespace System.Configuration
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Configures the specified flexible configuration to use a specific manager.
+        /// </summary>
+        /// <param name="manager">The manager.</param>
+        public static void Configure(IFlexibleConfiguration manager)
+        {
+            Validate.Is.NotNull(manager, "manager");
+            FlexibleConfiguration.instance = manager;
         }
     }
 }
