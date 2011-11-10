@@ -59,6 +59,7 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Configuration\GivenFlexibleConfiguration.cs" />
     <Compile Include="Geolocation\GivenBoundingBox.cs" />
     <Compile Include="Geolocation\GivenCoordinates.cs" />
     <Compile Include="Geolocation\Services\Caching\GivenSQLiteCachingGeolocationService.cs" />
@@ -100,6 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Configuration\External.config" />
+    <None Include="Configuration\External2.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
