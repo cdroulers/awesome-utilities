@@ -60,6 +60,7 @@
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Configuration\GivenFlexibleConfiguration.cs" />
+    <Compile Include="Data\Common\GivenConnectionStringHelper.cs" />
     <Compile Include="Geolocation\GivenBoundingBox.cs" />
     <Compile Include="Geolocation\GivenCoordinates.cs" />
     <Compile Include="Geolocation\Services\Caching\GivenSQLiteCachingGeolocationService.cs" />

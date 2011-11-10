@@ -5,6 +5,9 @@ using System.Text;
 
 namespace System.Arithmetic
 {
+    /// <summary>
+    ///     Arithmetic for byte
+    /// </summary>
     public class ByteArithmetic : IArithmetic<byte>
     {
         /// <summary>

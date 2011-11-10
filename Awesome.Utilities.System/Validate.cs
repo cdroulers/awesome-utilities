@@ -18,6 +18,9 @@ namespace System
         {
         }
 
+        /// <summary>
+        ///     Default instance of validate.
+        /// </summary>
         public static readonly Validate Is = new Validate();
 
         /// <summary>

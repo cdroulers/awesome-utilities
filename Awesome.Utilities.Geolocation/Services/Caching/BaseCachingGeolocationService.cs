@@ -9,17 +9,28 @@ using System.Data;
 
 namespace System.Geolocation.Services.Caching
 {
+    /// <summary>
+    ///     A Caching base class. Subclass for each DB provider.
+    /// </summary>
     public abstract class BaseCachingGeolocationService : IGeolocationService
     {
         private readonly IGeolocationService decorated;
         private readonly ConnectionStringSettings connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseCachingGeolocationService"/> class.
+        /// </summary>
+        /// <param name="decorated">The decorated.</param>
+        /// <param name="connectionString">The connection string.</param>
         protected BaseCachingGeolocationService(IGeolocationService decorated, ConnectionStringSettings connectionString)
         {
             this.decorated = decorated;
             this.connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Bases the setup.
+        /// </summary>
         protected virtual void BaseSetup()
         {
             var factory = DbProviderFactories.GetFactory(this.connectionString.ProviderName);
@@ -38,8 +49,19 @@ namespace System.Geolocation.Services.Caching
             }
         }
 
+        /// <summary>
+        /// returns whether the table exists.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="connection">The connection.</param>
+        /// <returns></returns>
         protected abstract bool TableExists(string tableName, IDbConnection connection);
 
+        /// <summary>
+        /// Gets the coordinates of the specified address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
         public Coordinates GetCoordinates(string address)
         {
             var factory = DbProviderFactories.GetFactory(connectionString.ProviderName);

@@ -6,6 +6,9 @@ using System.Web.UI;
 
 namespace System.Web.Mvc.UI
 {
+    /// <summary>
+    ///     HTML Anchor
+    /// </summary>
     public class A : Control
     {
         /// <summary>

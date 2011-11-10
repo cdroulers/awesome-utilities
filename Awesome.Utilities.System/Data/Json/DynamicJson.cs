@@ -9,8 +9,16 @@ using System.Web.Script.Serialization;
 
 namespace System.Data.Json
 {
+    /// <summary>
+    ///     Dynamic JSON parser
+    /// </summary>
     public static class DynamicJson
     {
+        /// <summary>
+        /// Parses the specified json.
+        /// </summary>
+        /// <param name="json">The json.</param>
+        /// <returns></returns>
         public static dynamic Parse(string json)
         {
             var jss = new JavaScriptSerializer();

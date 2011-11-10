@@ -5,6 +5,9 @@ using System.Text;
 
 namespace System.Security.Cryptography
 {
+    /// <summary>
+    ///     Supported Hash Algorithm for CryptographyHelper
+    /// </summary>
     public enum SupportedHashAlgorithm
     {
         /// <summary>

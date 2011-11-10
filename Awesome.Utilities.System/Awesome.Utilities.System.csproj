@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Awesome.Utilities.System.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -51,6 +52,7 @@
     <Compile Include="Configuration\DefaultConfiguration.cs" />
     <Compile Include="Configuration\FlexibleConfiguration.cs" />
     <Compile Include="Configuration\IFlexibleConfiguration.cs" />
+    <Compile Include="Data\Common\ConnectionStringHelper.cs" />
     <Compile Include="Data\Json\DynamicJson.cs" />
     <Compile Include="Messages\Notification.cs" />
     <Compile Include="Messages\NotificationData.cs" />

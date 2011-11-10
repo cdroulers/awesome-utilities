@@ -9,12 +9,21 @@ using System.IO;
 
 namespace System.Configuration
 {
+    /// <summary>
+    ///     Flexible configuration. By default uses ConfigurationManager methods, but can be overriden with .Configure!
+    /// </summary>
     public class FlexibleConfiguration : DefaultConfiguration, IFlexibleConfiguration
     {
         private static IFlexibleConfiguration instance = new DefaultConfiguration();
 
+        /// <summary>
+        /// Gets the current flexible configuration manager.
+        /// </summary>
         public static IFlexibleConfiguration Manager { get { return FlexibleConfiguration.instance; } }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlexibleConfiguration"/> class.
+        /// </summary>
         public FlexibleConfiguration()
         {
             this.connectionStrings = new ConnectionStringSettingsCollection();
@@ -22,12 +31,18 @@ namespace System.Configuration
         }
 
         private readonly ConnectionStringSettingsCollection connectionStrings;
+        /// <summary>
+        /// Gets the connection strings.
+        /// </summary>
         public override ConnectionStringSettingsCollection ConnectionStrings
         {
             get { return this.connectionStrings; }
         }
 
         private readonly NameValueCollection appSettings;
+        /// <summary>
+        /// Gets the app settings.
+        /// </summary>
         public override NameValueCollection AppSettings
         {
             get { return this.appSettings; }

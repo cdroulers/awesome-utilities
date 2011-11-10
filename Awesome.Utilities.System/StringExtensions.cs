@@ -5,6 +5,9 @@ using System.Text;
 
 namespace System
 {
+    /// <summary>
+    ///     String extensions!
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>

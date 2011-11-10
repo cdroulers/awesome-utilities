@@ -5,6 +5,9 @@ using System.Text;
 
 namespace System.Security.Cryptography
 {
+    /// <summary>
+    ///     A helper for cryptography stuff
+    /// </summary>
     public static class CryptographyHelper
     {
         /// <summary>

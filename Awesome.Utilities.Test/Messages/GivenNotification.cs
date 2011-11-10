@@ -12,13 +12,13 @@ namespace Awesome.Utilities.Test.Messages
     public class GivenNotification
     {
         private IDictionary<string, object> store;
-        private Notification notification;
+        private ContextualNotification notification;
 
         [SetUp]
         public void SetUp()
         {
             this.store = new Dictionary<string, object>();
-            this.notification = new Notification(this.store);
+            this.notification = new ContextualNotification(this.store);
         }
 
         [Test]

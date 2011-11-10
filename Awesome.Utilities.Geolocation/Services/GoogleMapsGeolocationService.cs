@@ -8,12 +8,19 @@ using System.Collections.Specialized;
 
 namespace System.Geolocation.Services
 {
+    /// <summary>
+    ///     Google maps geolocation service implementation
+    /// </summary>
     public class GoogleMapsGeolocationService : IGeolocationService
     {
         private static readonly Uri BaseAddressDefault = new Uri("http://maps.googleapis.com/maps/api");
 
         private readonly Uri baseAddress;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GoogleMapsGeolocationService"/> class.
+        /// </summary>
+        /// <param name="baseAddress">The base address.</param>
         public GoogleMapsGeolocationService(Uri baseAddress = null)
         {
             this.baseAddress = baseAddress ?? BaseAddressDefault;
@@ -32,6 +39,11 @@ namespace System.Geolocation.Services
             return builder;
         }
 
+        /// <summary>
+        /// Gets the coordinates of the specified address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
         public Coordinates GetCoordinates(string address)
         {
             var values = new NameValueCollection();

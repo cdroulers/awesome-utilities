@@ -6,11 +6,23 @@ using System.Web.UI;
 
 namespace System.Web.Mvc.UI
 {
+    /// <summary>
+    /// HTML pager generator.
+    /// </summary>
     public abstract class PageGenerator : Control
     {
+        /// <summary>
+        /// Gets or sets the hide if empty.
+        /// </summary>
         public static bool? HideIfEmpty { get; set; }
+        /// <summary>
+        /// Gets or sets the default maximum number of pages to show.
+        /// </summary>
         public static int? DefaultMaximumNumberOfPagesToShow { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PageGenerator"/> class.
+        /// </summary>
         protected PageGenerator()
             : base(HtmlTextWriterTag.Span, false)
         {
@@ -22,16 +34,42 @@ namespace System.Web.Mvc.UI
     /// </summary>
     public class PageGenerator<T> : PageGenerator
     {
+        /// <summary>
+        /// Gets or sets the Items.
+        /// </summary>
         public readonly ResultPage<T> Items;
+        /// <summary>
+        /// Gets or sets the PageFunc.
+        /// </summary>
         public readonly Func<PageData, MvcHtmlString> PageFunc;
+        /// <summary>
+        /// Gets or sets the MaximumNumberOfPagesToShow.
+        /// </summary>
         public readonly int MaximumNumberOfPagesToShow;
+        /// <summary>
+        /// Gets or sets the text before.
+        /// </summary>
         public static string TextBefore { get; set; }
+        /// <summary>
+        /// Gets or sets the text after.
+        /// </summary>
         public static string TextAfter { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PageGenerator&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <param name="pageFunc">The page func.</param>
         public PageGenerator(ResultPage<T> items, Func<PageData, MvcHtmlString> pageFunc)
             : this(items, pageFunc, DefaultMaximumNumberOfPagesToShow.GetValueOrDefault(items.LastPage))
         {
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PageGenerator&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <param name="pageFunc">The page func.</param>
+        /// <param name="maximumNumberOfPagesToShow">The maximum number of pages to show.</param>
         public PageGenerator(ResultPage<T> items, Func<PageData, MvcHtmlString> pageFunc, int maximumNumberOfPagesToShow)
             : base()
         {
@@ -41,12 +79,21 @@ namespace System.Web.Mvc.UI
             this.MaximumNumberOfPagesToShow = maximumNumberOfPagesToShow;
         }
 
+        /// <summary>
+        /// Sets the static variable for text after and before!
+        /// </summary>
+        /// <param name="before">The before.</param>
+        /// <param name="after">The after.</param>
         public static void Text(string before, string after)
         {
             TextBefore = before;
             TextAfter = after;
         }
 
+        /// <summary>
+        /// The basic rendering of the Control (i.e. the opening tag, call render content, close tag)
+        /// </summary>
+        /// <param name="htmlTextWriter">The writer to write to.</param>
         protected override void Render(HtmlTextWriter htmlTextWriter)
         {
             if (HideIfEmpty.GetValueOrDefault(false) && this.Items.LastPage <= 1)
@@ -56,6 +103,10 @@ namespace System.Web.Mvc.UI
             base.Render(htmlTextWriter);
         }
 
+        /// <summary>
+        /// Render the contents of the control
+        /// </summary>
+        /// <param name="htmlTextWriter">The writer to write to</param>
         protected override void RenderContents(HtmlTextWriter htmlTextWriter)
         {
             int diff = this.MaximumNumberOfPagesToShow / 2;

@@ -4,10 +4,16 @@ using System.Linq;
 
 namespace System.Messages
 {
-    public class Notification
+    /// <summary>
+    ///     Contextual notifications for anything!
+    /// </summary>
+    public class ContextualNotification
     {
-        private NotificationData info;
-        public NotificationData Info
+        private ContextualNotificationData info;
+        /// <summary>
+        /// Gets or sets the info notification.
+        /// </summary>
+        public ContextualNotificationData Info
         {
             get
             {
@@ -18,8 +24,11 @@ namespace System.Messages
                 this.Set(ref info, value, "Info");
             }
         }
-        private NotificationData success;
-        public NotificationData Success
+        private ContextualNotificationData success;
+        /// <summary>
+        /// Gets or sets the success notification.
+        /// </summary>
+        public ContextualNotificationData Success
         {
             get
             {
@@ -31,8 +40,11 @@ namespace System.Messages
             }
         }
 
-        private NotificationData warning;
-        public NotificationData Warning
+        private ContextualNotificationData warning;
+        /// <summary>
+        /// Gets or sets the warning notification.
+        /// </summary>
+        public ContextualNotificationData Warning
         {
             get
             {
@@ -44,8 +56,11 @@ namespace System.Messages
             }
         }
 
-        private NotificationData error;
-        public NotificationData Error
+        private ContextualNotificationData error;
+        /// <summary>
+        /// Gets or sets the error notification.
+        /// </summary>
+        public ContextualNotificationData Error
         {
             get
             {
@@ -59,18 +74,22 @@ namespace System.Messages
 
         private readonly IDictionary<string, object> store;
 
-        public Notification(IDictionary<string, object> store)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContextualNotification"/> class.
+        /// </summary>
+        /// <param name="store">The store.</param>
+        public ContextualNotification(IDictionary<string, object> store)
         {
             this.store = store;
-            this.info = new NotificationData(this.store, "Info");
-            this.success = new NotificationData(this.store, "Notice");
-            this.warning = new NotificationData(this.store, "Warning");
-            this.error = new NotificationData(this.store, "Error");
+            this.info = new ContextualNotificationData(this.store, "Info");
+            this.success = new ContextualNotificationData(this.store, "Notice");
+            this.warning = new ContextualNotificationData(this.store, "Warning");
+            this.error = new ContextualNotificationData(this.store, "Error");
         }
 
-        private void Set(ref NotificationData flash, NotificationData newValue, string type)
+        private void Set(ref ContextualNotificationData flash, ContextualNotificationData newValue, string type)
         {
-            if (newValue.Type != NotificationData.DefaultType)
+            if (newValue.Type != ContextualNotificationData.DefaultType)
             {
                 throw new InvalidCastException("Cannot set a flash that is not new");
             }
@@ -78,6 +97,10 @@ namespace System.Messages
             flash.Add((string)newValue);
         }
 
+        /// <summary>
+        /// returns whether any of the notifications have data.
+        /// </summary>
+        /// <returns></returns>
         public bool Any()
         {
             return !this.Info.IsEmpty || !this.Success.IsEmpty || !this.Warning.IsEmpty || !this.Error.IsEmpty;

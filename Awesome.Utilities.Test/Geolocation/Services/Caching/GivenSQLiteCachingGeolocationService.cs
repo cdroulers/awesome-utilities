@@ -20,6 +20,12 @@ namespace Awesome.Utilities.Test.Geolocation.Services.Caching
         private Mock<IGeolocationService> geo;
         private ConnectionStringSettings settings;
 
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            FlexibleConfiguration.LoadProviderFactories(@"..\..\Configuration\External.config");
+        }
+
         [SetUp]
         public void SetUp()
         {

@@ -9,6 +9,9 @@ using System.Collections.Specialized;
 
 namespace System.Geolocation.Services
 {
+    /// <summary>
+    ///     MapQuest geolocation service implementation
+    /// </summary>
     public class MapQuestGeolocationService : IGeolocationService
     {
         private static readonly Uri BaseAddressDefault = new Uri("http://www.mapquestapi.com/geocoding/v1");
@@ -16,6 +19,11 @@ namespace System.Geolocation.Services
         private readonly Uri baseAddress;
         private readonly string key;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapQuestGeolocationService"/> class.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="baseAddress">The base address.</param>
         public MapQuestGeolocationService(string key, Uri baseAddress = null)
         {
             this.key = key;
@@ -35,6 +43,11 @@ namespace System.Geolocation.Services
             return builder;
         }
 
+        /// <summary>
+        /// Gets the coordinates of the specified address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
         public Coordinates GetCoordinates(string address)
         {
             var values = new NameValueCollection();

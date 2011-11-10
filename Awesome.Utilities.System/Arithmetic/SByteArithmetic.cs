@@ -5,6 +5,9 @@ using System.Text;
 
 namespace System.Arithmetic
 {
+    /// <summary>
+    ///     Arithmetic for sbyte
+    /// </summary>
     public class SByteArithmetic : IArithmetic<sbyte>
     {
         /// <summary>

@@ -425,6 +425,10 @@ namespace System.Web.Mvc.UI
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Creates and HTML string from the control
+        /// </summary>
+        /// <returns></returns>
         public MvcHtmlString ToHtmlString()
         {
             return MvcHtmlString.Create(this.ToString());

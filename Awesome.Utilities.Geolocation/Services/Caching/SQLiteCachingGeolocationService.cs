@@ -10,13 +10,21 @@ using System.Data;
 
 namespace System.Geolocation.Services.Caching
 {
+    /// <summary>
+    ///     A caching class for SQLite
+    /// </summary>
     public class SQLiteCachingGeolocationService : BaseCachingGeolocationService
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteCachingGeolocationService"/> class.
+        /// </summary>
+        /// <param name="decorated">The decorated.</param>
+        /// <param name="connectionString">The connection string.</param>
         public SQLiteCachingGeolocationService(IGeolocationService decorated, ConnectionStringSettings connectionString)
             : base(decorated, connectionString)
         {
             var builder = new SQLiteConnectionStringBuilder(connectionString.ConnectionString);
-            string dataSource = builder.DataSource.Replace("|DataDirectory|", (string)AppDomain.CurrentDomain.GetData("DataDirectory"));
+            string dataSource = ConnectionStringHelper.SafeDataDirectoryReplacement(builder.DataSource);
             if (!File.Exists(dataSource))
             {
                 SQLiteConnection.CreateFile(dataSource);
@@ -24,6 +32,12 @@ namespace System.Geolocation.Services.Caching
             this.BaseSetup();
         }
 
+        /// <summary>
+        /// returns whether the table exists.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="connection">The connection.</param>
+        /// <returns></returns>
         protected override bool TableExists(string tableName, IDbConnection connection)
         {
             using (var command = connection.CreateCommand())
