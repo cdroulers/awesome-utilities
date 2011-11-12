@@ -41,5 +41,29 @@ namespace Awesome.Utilities.Test.System.Collections.Generic
             Assert.That(temp.NextPage, Is.EqualTo(null));
             Assert.That(temp.LastPage, Is.EqualTo(0));
         }
+
+        private class Class1
+        {
+            public string Prop1 { get; set; }
+        }
+
+        private class Class2 : Class1
+        {
+            public string Prop2 { get; set; }
+        }
+
+        [Test]
+        public void When_casting_Then_works()
+        {
+            var list = new List<Class1>() { new Class2() { Prop1 = "Prop1-1", Prop2 = "Prop2-1" }, new Class2() { Prop1 = "Prop1-2", Prop2 = "Prop2-2" } };
+
+            var page = new ResultPage<Class1>(list, 1, 2, 2);
+
+            var actual = page.Cast<Class2>();
+
+            Assert.That(actual, Is.InstanceOf<ResultPage<Class2>>());
+            Assert.That(actual.First().Prop2, Is.EqualTo("Prop2-1"));
+            Assert.That(actual.Last().Prop2, Is.EqualTo("Prop2-2"));
+        }
     }
 }

@@ -84,5 +84,15 @@ namespace System.Collections.Generic
             this.nextPage = currentPage < this.lastPage ? currentPage + 1 : new int?();
             this.previousPage = currentPage > 1 ? currentPage - 1 : new int?();
         }
+
+        /// <summary>
+        /// Casts this instance to another type
+        /// </summary>
+        /// <typeparam name="TCast">The type of the cast.</typeparam>
+        /// <returns></returns>
+        public ResultPage<TCast> Cast<TCast>()
+        {
+            return new ResultPage<TCast>(this.Items.Cast<TCast>().ToList(), this.CurrentPage, this.PerPage, this.TotalNumberOfRecords);
+        }
     }
 }
