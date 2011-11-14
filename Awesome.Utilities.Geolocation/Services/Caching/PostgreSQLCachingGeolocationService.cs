@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
-using System.Data.SQLite;
+using Npgsql;
 using System.IO;
 using System.Data.Common;
 using System.Data;
@@ -11,23 +11,34 @@ using System.Data;
 namespace System.Geolocation.Services.Caching
 {
     /// <summary>
-    ///     A caching class for SQLite
+    ///     A caching class for PostgreSQL
     /// </summary>
-    public class SQLiteCachingGeolocationService : BaseCachingGeolocationService
+    public class PostgreSQLCachingGeolocationService : BaseCachingGeolocationService
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SQLiteCachingGeolocationService"/> class.
         /// </summary>
         /// <param name="decorated">The decorated.</param>
         /// <param name="connectionString">The connection string.</param>
-        public SQLiteCachingGeolocationService(IGeolocationService decorated, ConnectionStringSettings connectionString)
+        public PostgreSQLCachingGeolocationService(IGeolocationService decorated, ConnectionStringSettings connectionString)
             : base(decorated, connectionString)
         {
-            var builder = new SQLiteConnectionStringBuilder(connectionString.ConnectionString);
-            string dataSource = ConnectionStringHelper.SafeDataDirectoryReplacement(builder.DataSource);
-            if (!File.Exists(dataSource))
+            var builder = new NpgsqlConnectionStringBuilder(connectionString.ConnectionString);
+            string databaseName = ConnectionStringHelper.SafeDataDirectoryReplacement(builder.Database);
+            builder.Database = null;
+            using (var connection = new NpgsqlConnection(builder.ConnectionString))
             {
-                SQLiteConnection.CreateFile(dataSource);
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = string.Format("SELECT COUNT(*) FROM pg_catalog.pg_database WHERE datname='{0}';", databaseName);
+                    var exists = int.Parse(command.ExecuteScalar().ToString()) > 0;
+                    if (!exists)
+                    {
+                        command.CommandText = string.Format("CREATE DATABASE \"{0}\";", databaseName);
+                        command.ExecuteNonQuery();
+                    }
+                }
             }
             this.BaseSetup();
         }
@@ -42,7 +53,7 @@ namespace System.Geolocation.Services.Caching
         {
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "CREATE TABLE AddressCache (Address NVARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);";
+                command.CommandText = "CREATE UNLOGGED TABLE IF NOT EXISTS AddressCache (Address VARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);";
                 command.ExecuteNonQuery();
             }
         }
@@ -55,18 +66,8 @@ namespace System.Geolocation.Services.Caching
         /// <returns></returns>
         protected override bool TableExists(string tableName, IDbConnection connection)
         {
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = @TableName";
-                var parameter = command.CreateParameter();
-                parameter.ParameterName = "@TableName";
-                parameter.Value = tableName;
-                command.Parameters.Add(parameter);
-                using (var reader = command.ExecuteReader())
-                {
-                    return reader.Read();
-                }
-            }
+            // The validation is done in the create command;
+            return false;
         }
     }
 }

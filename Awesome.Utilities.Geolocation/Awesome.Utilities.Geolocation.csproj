@@ -32,6 +32,12 @@
     <DocumentationFile>bin\Release\Awesome.Utilities.Geolocation.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Security">
+      <HintPath>..\Dependencies\Npgsql\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\Dependencies\Npgsql\Npgsql.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -60,6 +66,7 @@
     <Compile Include="Services\AddressInformation.cs" />
     <Compile Include="Services\AddressInformationComponent.cs" />
     <Compile Include="Services\Caching\BaseCachingGeolocationService.cs" />
+    <Compile Include="Services\Caching\PostgreSQLCachingGeolocationService.cs" />
     <Compile Include="Services\Caching\SQLiteCachingGeolocationService.cs" />
     <Compile Include="Services\AddressNotFoundException.cs" />
     <Compile Include="Services\GoogleMapsGeolocationService.cs" />

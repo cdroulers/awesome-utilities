@@ -9,6 +9,8 @@ using System.Data;
 
 namespace System.Geolocation.Services.Caching
 {
+    //TODO The creation of database/table/insert need to be unit tested
+
     /// <summary>
     ///     A Caching base class. Subclass for each DB provider.
     /// </summary>
@@ -40,14 +42,17 @@ namespace System.Geolocation.Services.Caching
                 connection.Open();
                 if (!this.TableExists("AddressCache", connection))
                 {
-                    using (var command = connection.CreateCommand())
-                    {
-                        command.CommandText = "CREATE TABLE AddressCache (Address NVARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);";
-                        command.ExecuteNonQuery();
-                    }
+                    this.CreateCashingTable(connection);
                 }
             }
         }
+
+        /// <summary>
+        /// Create the cashing table.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns></returns>
+        protected abstract void CreateCashingTable(IDbConnection connection);
 
         /// <summary>
         /// returns whether the table exists.
