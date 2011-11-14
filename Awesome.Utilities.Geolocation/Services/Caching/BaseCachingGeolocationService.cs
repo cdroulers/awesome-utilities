@@ -109,5 +109,10 @@ namespace System.Geolocation.Services.Caching
                 return coordinates;
             }
         }
+        
+        public AddressInformation GetAddressInformation(string address)
+        {
+            return this.decorated.GetAddressInformation(address);
+        }
     }
 }

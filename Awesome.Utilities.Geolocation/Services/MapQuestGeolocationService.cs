@@ -50,6 +50,39 @@ namespace System.Geolocation.Services
         /// <returns></returns>
         public Coordinates GetCoordinates(string address)
         {
+            var data = this.GetJson(address);
+
+            double longitude = (double)data.results[0].locations[0].latLng.lng;
+            double latitude = (double)data.results[0].locations[0].latLng.lat;
+
+            return new Coordinates(longitude, latitude);
+        }
+
+        /// <summary>
+        /// Gets all the address information of an address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
+        public AddressInformation GetAddressInformation(string address)
+        {
+            var data = this.GetJson(address);
+
+            string formatted = data.results[0].providedLocation.location;
+
+            var components = new List<AddressInformationComponent>();
+
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].street, data.results[0].locations[0].street, new string[] { "street_number" }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].postalCode, data.results[0].locations[0].postalCode, new string[] { "postal_code" }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea5, data.results[0].locations[0].adminArea5, new string[] { data.results[0].locations[0].adminArea5Type }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea4, data.results[0].locations[0].adminArea4, new string[] { data.results[0].locations[0].adminArea4Type }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea3, data.results[0].locations[0].adminArea3, new string[] { data.results[0].locations[0].adminArea3Type }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea1, data.results[0].locations[0].adminArea1, new string[] { data.results[0].locations[0].adminArea1Type }));
+
+            return new AddressInformation(components.ToArray(), formatted);
+        }
+
+        private dynamic GetJson(string address)
+        {
             var values = new NameValueCollection();
             values["location"] = address;
             var builder = this.GetBuilder("address", values);
@@ -67,11 +100,7 @@ namespace System.Geolocation.Services
             {
                 throw new MultipleCoordinatesException(string.Format(Properties.Strings.MultipleCoordinatesException, address));
             }
-
-            double longitude = (double)data.results[0].locations[0].latLng.lng;
-            double latitude = (double)data.results[0].locations[0].latLng.lat;
-
-            return new Coordinates(longitude, latitude);
+            return data;
         }
     }
 }

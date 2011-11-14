@@ -57,6 +57,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Services\AddressInformation.cs" />
+    <Compile Include="Services\AddressInformationComponent.cs" />
     <Compile Include="Services\Caching\BaseCachingGeolocationService.cs" />
     <Compile Include="Services\Caching\SQLiteCachingGeolocationService.cs" />
     <Compile Include="Services\AddressNotFoundException.cs" />

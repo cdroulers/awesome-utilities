@@ -46,14 +46,46 @@ namespace System.Geolocation.Services
         /// <returns></returns>
         public Coordinates GetCoordinates(string address)
         {
+            var data = this.GetJson(address);
+
+            double longitude = (double)data.results[0].geometry.location.lng;
+            double latitude = (double)data.results[0].geometry.location.lat;
+
+            return new Coordinates(longitude, latitude);
+        }
+
+        /// <summary>
+        /// Gets all the address information of an address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
+        public AddressInformation GetAddressInformation(string address)
+        {
+            var data = this.GetJson(address);
+
+            string formatted = data.results[0].formatted_address;
+
+            var components = new List<AddressInformationComponent>();
+
+            foreach (var c in data.results[0].address_components)
+            {
+                components.Add(new AddressInformationComponent(c.long_name, c.short_name, (c.types as Collections.ArrayList).ToArray().Select<object, string>(t => t as string).ToArray()));
+            }
+
+            return new AddressInformation(components.ToArray(), formatted);
+        }
+
+        private dynamic GetJson(string address)
+        {
             var values = new NameValueCollection();
             values["address"] = address;
             var builder = this.GetBuilder("geocode/json", values);
 
             var client = new WebClient();
+            client.Encoding = Encoding.UTF8;
 
             string response = client.DownloadString(builder.Uri);
-            dynamic data = DynamicJson.Parse(response);
+            var data = DynamicJson.Parse(response);
 
             if (data.results.Count == 0)
             {
@@ -63,11 +95,7 @@ namespace System.Geolocation.Services
             {
                 throw new MultipleCoordinatesException(string.Format(Properties.Strings.MultipleCoordinatesException, address));
             }
-
-            double longitude = (double)data.results[0].geometry.location.lng;
-            double latitude = (double)data.results[0].geometry.location.lat;
-
-            return new Coordinates(longitude, latitude);
+            return data;
         }
     }
 }

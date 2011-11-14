@@ -40,5 +40,21 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         {
             Assert.Throws<AddressNotFoundException>(() => this.geo.GetCoordinates(""));
         }
+
+        [Test]
+        public void When_getting_info_Then_works()
+        {
+            var info = this.geo.GetAddressInformation("304 Rockland, Ville Mont-Royal, QC, CAN");
+
+            Assert.That(info, Is.Not.Null);
+            Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland, Ville Mont-Royal, QC, CAN"));
+            Assert.That(info.Components, Has.Length.EqualTo(6));
+            Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("[500-600] Avenue Rockland", "[500-600] Avenue Rockland", new string[] { "street_number" })));
+            Assert.That(info.Components[1], Is.EqualTo(new AddressInformationComponent("H2V 2Z3", "H2V 2Z3", new string[] { "postal_code" })));
+            Assert.That(info.Components[2], Is.EqualTo(new AddressInformationComponent("Mont Royal", "Mont Royal", new string[] { "City" })));
+            Assert.That(info.Components[3], Is.EqualTo(new AddressInformationComponent("", "", new string[] { "County" })));
+            Assert.That(info.Components[4], Is.EqualTo(new AddressInformationComponent("QC", "QC", new string[] { "State" })));
+            Assert.That(info.Components[5], Is.EqualTo(new AddressInformationComponent("CA", "CA", new string[] { "Country" })));
+        }
     }
 }
