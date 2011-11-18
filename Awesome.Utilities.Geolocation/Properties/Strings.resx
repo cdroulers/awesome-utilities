@@ -121,6 +121,6 @@
     <value>Multiple coordinates were returned for the location "{0}". This method does not handle multiple coordinates.</value>
   </data>
   <data name="NoResultsException" xml:space="preserve">
-    <value>No results found.</value>
+    <value>No results found for the location "{0}".</value>
   </data>
 </root>
