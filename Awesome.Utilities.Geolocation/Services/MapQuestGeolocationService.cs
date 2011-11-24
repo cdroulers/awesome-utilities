@@ -91,6 +91,7 @@ namespace System.Geolocation.Services
 
             string response = client.DownloadString(builder.Uri);
             dynamic data = DynamicJson.Parse(response);
+            this.CheckError(data);
 
             if (data.results.Count == 1 && data.results[0].locations.Count == 0)
             {
@@ -101,6 +102,14 @@ namespace System.Geolocation.Services
                 throw new MultipleCoordinatesException(string.Format(Properties.Strings.MultipleCoordinatesException, address));
             }
             return data;
+        }
+
+        private void CheckError(dynamic data)
+        {
+            if (data.info.statuscode != 0)
+            {
+                throw new GeolocationGenericException(string.Format(Properties.Strings.GenericException_MapQuest, data.info.statuscode, string.Join(", ", data.info.messages.ToArray())));
+            }
         }
     }
 }

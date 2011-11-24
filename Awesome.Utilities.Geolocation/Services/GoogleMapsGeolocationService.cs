@@ -86,16 +86,25 @@ namespace System.Geolocation.Services
 
             string response = client.DownloadString(builder.Uri);
             var data = DynamicJson.Parse(response);
+            this.CheckError(data, address);
 
-            if (data.results.Count == 0)
-            {
-                throw new AddressNotFoundException(string.Format(Properties.Strings.NoResultsException, address));
-            }
             if (data.results.Count > 1)
             {
                 throw new MultipleCoordinatesException(string.Format(Properties.Strings.MultipleCoordinatesException, address));
             }
             return data;
+        }
+
+        private void CheckError(dynamic data, string address)
+        {
+            if (data.status != "OK")
+            {
+                if (data.status == "ZERO_RESULTS")
+                {
+                    throw new AddressNotFoundException(string.Format(Properties.Strings.NoResultsException, address));
+                }
+                throw new GeolocationGenericException(string.Format(Properties.Strings.GenericException_GoogleMaps, data.status));
+            }
         }
     }
 }
