@@ -83,6 +83,11 @@ namespace System.Geolocation.Services
 
         private dynamic GetJson(string address)
         {
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                throw new AddressNotFoundException(string.Format(Properties.Strings.NoResultsException, address));
+            }
+
             var values = new NameValueCollection();
             values["location"] = address;
             var builder = this.GetBuilder("address", values);
