@@ -69,7 +69,7 @@ namespace System.Geolocation.Services
 
             foreach (var c in data.results[0].address_components)
             {
-                components.Add(new AddressInformationComponent(c.long_name, c.short_name, (c.types as Collections.ArrayList).ToArray().Select<object, string>(t => t as string).ToArray()));
+                components.Add(new AddressInformationComponent(c.long_name, c.short_name, (c.types as Collections.ArrayList).ToArray().Select(t => t as string).ToArray()));
             }
 
             return new AddressInformation(components.ToArray(), formatted);
@@ -88,7 +88,11 @@ namespace System.Geolocation.Services
             var data = DynamicJson.Parse(response);
             this.CheckError(data, address);
 
-            if (data.results.Count > 1)
+            // Strip "natural_feature" results out for now. They seem quite irrelevant.
+            var list = (System.Collections.ArrayList)data.results;
+            var results = list.Cast<dynamic>().Where(s => !s.types.Contains("natural_feature"));
+
+            if (results.Count() > 1)
             {
                 throw new MultipleCoordinatesException(string.Format(Properties.Strings.MultipleCoordinatesException, address));
             }

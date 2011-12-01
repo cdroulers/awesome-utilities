@@ -50,7 +50,7 @@ namespace System.Geolocation.Services
         /// <returns></returns>
         public Coordinates GetCoordinates(string address)
         {
-            var data = this.GetJson(address);
+            var data = this.GetJson(address.RemoveDiacritics()); // MapQuest doesn't like the French, and probably not any other non-English language!
 
             double longitude = (double)data.results[0].locations[0].latLng.lng;
             double latitude = (double)data.results[0].locations[0].latLng.lat;

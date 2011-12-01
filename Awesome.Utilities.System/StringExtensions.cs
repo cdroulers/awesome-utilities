@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -64,6 +65,25 @@ namespace System
                 return self;
             }
             return self.Substring(startIndex, endIndex - startIndex + 1);
+        }
+
+        /// <summary>
+        /// Removes the diacritics from the string.
+        /// </summary>
+        /// <param name="self">The string.</param>
+        /// <returns></returns>
+        public static string RemoveDiacritics(this string self)
+        {
+            string stFormD = self.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+            foreach (char t in stFormD)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(t) != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(t);
+                }
+            }
+            return sb.ToString();
         }
     }
 }

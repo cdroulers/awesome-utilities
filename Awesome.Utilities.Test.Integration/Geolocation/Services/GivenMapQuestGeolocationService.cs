@@ -29,6 +29,14 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
             Assert.That(actual, Is.EqualTo(new Coordinates(longitude, latitude)));
         }
 
+        [TestCase("Montréal, QC, Canada", -73.554398d, 45.512291d)]
+        public void When_getting_coordinates_with_natural_feature_result_Then_works(string address, double longitude, double latitude)
+        {
+            var actual = this.geo.GetCoordinates(address);
+
+            Assert.That(actual, Is.EqualTo(new Coordinates(longitude, latitude)));
+        }
+
         [Test]
         public void When_getting_coordinates_that_arent_precise_enough_Then_throws()
         {
