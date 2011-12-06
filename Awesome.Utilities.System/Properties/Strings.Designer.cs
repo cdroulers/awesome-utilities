@@ -70,6 +70,33 @@ namespace System.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The country with ID &quot;{0}&quot; was not found..
+        /// </summary>
+        internal static string ICountry_NotFoundID {
+            get {
+                return ResourceManager.GetString("ICountry_NotFoundID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country with three letter code &quot;{0}&quot; was not found..
+        /// </summary>
+        internal static string ICountry_NotFoundThreeLetterCode {
+            get {
+                return ResourceManager.GetString("ICountry_NotFoundThreeLetterCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country with two letter code &quot;{0}&quot; was not found..
+        /// </summary>
+        internal static string ICountry_NotFoundTwoLetterCode {
+            get {
+                return ResourceManager.GetString("ICountry_NotFoundTwoLetterCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value must be between {0} and {1}..
         /// </summary>
         internal static string Validate_Between {

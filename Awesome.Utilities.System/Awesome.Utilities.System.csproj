@@ -52,10 +52,21 @@
     <Compile Include="Configuration\DefaultConfiguration.cs" />
     <Compile Include="Configuration\FlexibleConfiguration.cs" />
     <Compile Include="Configuration\IFlexibleConfiguration.cs" />
+    <Compile Include="NotFoundException.cs" />
     <Compile Include="Data\Common\ConnectionStringHelper.cs" />
     <Compile Include="Data\Json\DynamicJson.cs" />
+    <Compile Include="Globalization\Countries\ICountry.cs" />
+    <Compile Include="Globalization\Countries\ICountryRepository.cs" />
+    <Compile Include="Globalization\Countries\Implementations\RegionInfoCountry.cs" />
+    <Compile Include="Globalization\Countries\Implementations\RegionInfoCountryRepository.cs" />
+    <Compile Include="AlreadyExistsException.cs" />
     <Compile Include="Messages\Notification.cs" />
     <Compile Include="Messages\NotificationData.cs" />
+    <Compile Include="Properties\Languages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Languages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Security\Cryptography\CryptographyHelper.cs" />
     <Compile Include="Security\Cryptography\SupportedHashAlgorithm.cs" />
     <Compile Include="StringArgumentNullOrWhiteSpaceException.cs" />
@@ -84,6 +95,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Languages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Languages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
