@@ -12,10 +12,16 @@ namespace System.Globalization.Countries.Implementations
     {
         public IEnumerable<ICountry> GetAll()
         {
+            var results = new List<ICountry>();
             foreach (var info in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
             {
-                yield return new RegionInfoCountry(new RegionInfo(info.Name));
+                var regionInfo = new RegionInfo(info.Name);
+                if (!results.Any(r => r.EnglishName == regionInfo.EnglishName))
+                {
+                    results.Add(new RegionInfoCountry(regionInfo));
+                }
             }
+            return results;
         }
 
         public ICountry GetByTwoLetterCode(string code)

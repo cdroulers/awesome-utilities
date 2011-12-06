@@ -35,5 +35,13 @@ namespace Awesome.Utilities.Test.Globalization.Countries
             Assert.That(country.NativeName, Is.EqualTo(nativeName));
             Assert.That(country.GetDisplayName(new CultureInfo(culture)), Is.EqualTo(cultureName));
         }
+
+        [Test]
+        public void When_getting_all_Then_returns_no_duplicates()
+        {
+            var results = this.countries.GetAll().ToList();
+
+            Assert.That(results, Has.Count.EqualTo(128));
+        }
     }
 }
