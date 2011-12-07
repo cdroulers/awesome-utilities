@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Units.Distances;
+using System.Units.Distances.Metric;
 
 namespace System.Geolocation
 {
@@ -42,7 +44,7 @@ namespace System.Geolocation
         /// </summary>
         /// <param name="other">The other.</param>
         /// <returns></returns>
-        public double DistanceBetween(Coordinates other)
+        public Distance DistanceBetween(Coordinates other)
         {
             // Haversine formula: http://en.wikipedia.org/wiki/Haversine_formula
 
@@ -55,7 +57,7 @@ namespace System.Geolocation
                        Math.Sin(dLon / 2);
             double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
             double d = EarthRadius * c;
-            return d;
+            return new Kilometers((decimal)d);
         }
 
         /// <summary>

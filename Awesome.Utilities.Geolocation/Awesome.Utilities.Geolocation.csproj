@@ -80,6 +80,10 @@
       <Project>{BD269F95-E64C-489D-AA68-5FDF6E513AED}</Project>
       <Name>Awesome.Utilities.System</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Awesome.Utilities.Units\Awesome.Utilities.Units.csproj">
+      <Project>{0652D591-6565-4FC4-811E-A86BD3CBBC89}</Project>
+      <Name>Awesome.Utilities.Units</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Strings.resx">

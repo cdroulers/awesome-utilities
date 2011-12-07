@@ -39,6 +39,54 @@ namespace Awesome.Utilities.Test.Units.Distances
             Assert.Throws<NotSupportedException>(() => Distance.BuildByName("LolWhat", 25));
         }
 
+        [Test]
+        public void When_equaling_Then_works()
+        {
+            var km = new Kilometers(1);
+            var m = new Meters(1000);
+
+            var actual = km.Equals(m);
+            Assert.That(actual, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void When_adding_Then_works()
+        {
+            var km = new Kilometers(1);
+            var mi = new Miles(1);
+
+            var actual = km.Add(mi);
+            Assert.That(actual.Value, Is.EqualTo(2.609344M).Within(0.000001));
+        }
+
+        [Test]
+        public void When_substracting_Then_works()
+        {
+            var mi = new Miles(1);
+            var km = new Kilometers(1);
+
+            var actual = mi.Substract(km);
+            Assert.That(actual.Value, Is.EqualTo(0.378628808).Within(0.000001));
+        }
+
+        [Test]
+        public void When_multiplying_Then_works()
+        {
+            var km = new Kilometers(1.25M);
+
+            var actual = km.Multiply(2);
+            Assert.That(actual.Value, Is.EqualTo(2.5M));
+        }
+
+        [Test]
+        public void When_dividing_Then_works()
+        {
+            var km = new Kilometers(5M);
+
+            var actual = km.Divide(2);
+            Assert.That(actual.Value, Is.EqualTo(2.5M));
+        }
+
         [TestCase(12, typeof(Kilometers), 12)]
         [TestCase(1.564, typeof(Meters), 1564)]
         [TestCase(1.258, typeof(Decimeters), 12580)]
