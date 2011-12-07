@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using System.Security.Cryptography;
 
-namespace Awesome.Utilities.Test.System.Security.Cryptography
+namespace Awesome.Utilities.Test.Security.Cryptography
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]

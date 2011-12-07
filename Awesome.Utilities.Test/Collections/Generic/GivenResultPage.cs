@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 
-namespace Awesome.Utilities.Test.System.Collections.Generic
+namespace Awesome.Utilities.Test.Collections.Generic
 {
     // ReSharper disable InconsistentNaming
     [TestFixture]
