@@ -10,6 +10,10 @@ namespace System.Globalization.Countries.Implementations
     /// </summary>
     public class RegionInfoCountryRepository : ICountryRepository
     {
+        /// <summary>
+        /// Gets all the countries.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<ICountry> GetAll()
         {
             var results = new List<ICountry>();
@@ -24,6 +28,11 @@ namespace System.Globalization.Countries.Implementations
             return results;
         }
 
+        /// <summary>
+        /// Gets a country by two letter code.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <returns></returns>
         public ICountry GetByTwoLetterCode(string code)
         {
             var found = this.GetAll().FirstOrDefault(c => c.TwoLetterCode == code);
@@ -34,6 +43,11 @@ namespace System.Globalization.Countries.Implementations
             return found;
         }
 
+        /// <summary>
+        /// Gets a country by three letter code.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <returns></returns>
         public ICountry GetByThreeLetterCode(string code)
         {
             var found = this.GetAll().FirstOrDefault(c => c.ThreeLetterCode == code);

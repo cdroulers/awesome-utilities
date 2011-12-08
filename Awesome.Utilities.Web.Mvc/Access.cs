@@ -26,6 +26,9 @@ namespace System.Web.Mvc
             GetRolesForUserDelegate = () => Roles.GetRolesForUser();
         }
 
+        /// <summary>
+        ///     Instance.
+        /// </summary>
         public static readonly Access Is = new Access();
 
         /// <summary>

@@ -70,15 +70,16 @@ namespace System.Geolocation
         /// </summary>
         /// <param name="radius">The radius.</param>
         /// <returns></returns>
-        public BoundingBox BoundingBox(double radius)
+        public BoundingBox BoundingBox(Distance radius)
         {
+            double radiusDouble = (double)radius.ConvertTo<Kilometers>().Value;
             var min = new Coordinates(
-                this.Longitude - (radius / Math.Abs(Math.Cos(Deg2Rad(this.Latitude)) * MetersPerDegreeLatitude)),
-                this.Latitude - (radius / MetersPerDegreeLatitude)
+                this.Longitude - (radiusDouble / Math.Abs(Math.Cos(Deg2Rad(this.Latitude)) * MetersPerDegreeLatitude)),
+                this.Latitude - (radiusDouble / MetersPerDegreeLatitude)
             );
             var max = new Coordinates(
-                this.Longitude + (radius / Math.Abs(Math.Cos(Deg2Rad(this.Latitude)) * MetersPerDegreeLatitude)),
-                this.Latitude + (radius / MetersPerDegreeLatitude)
+                this.Longitude + (radiusDouble / Math.Abs(Math.Cos(Deg2Rad(this.Latitude)) * MetersPerDegreeLatitude)),
+                this.Latitude + (radiusDouble / MetersPerDegreeLatitude)
             );
             return new BoundingBox(min, max);
         }

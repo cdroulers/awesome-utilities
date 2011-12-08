@@ -32,5 +32,22 @@ namespace Awesome.Utilities.Test
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [TestCase("Je suis une école de pensée très jolie.", "Je suis une ecole de pensee tres jolie.")]
+        public void When_removing_diacritics_Then_works(string toRemove, string expected)
+        {
+            string actual = toRemove.RemoveDiacritics();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [TestCase("I am an <b>HTML</b> result.", "I am an HTML result.")]
+        [TestCase("I am an <b>HTML result.", "I am an HTML result.")]
+        public void When_removing_html_Then_works(string toRemove, string expected)
+        {
+            string actual = toRemove.RemoveHtml();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }

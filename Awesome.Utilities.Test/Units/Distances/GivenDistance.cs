@@ -87,6 +87,18 @@ namespace Awesome.Utilities.Test.Units.Distances
             Assert.That(actual.Value, Is.EqualTo(2.5M));
         }
 
+        [TestCase("0.#U", "25km")]
+        [TestCase("0.# U", "25 km")]
+        [TestCase("0.#", "25")]
+        [TestCase("U", "km")]
+        public void When_to_string_Then_pretty(string format, string expected)
+        {
+            var km = new Kilometers(25);
+            string actual = km.ToString(format);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
         [TestCase(12, typeof(Kilometers), 12)]
         [TestCase(1.564, typeof(Meters), 1564)]
         [TestCase(1.258, typeof(Decimeters), 12580)]

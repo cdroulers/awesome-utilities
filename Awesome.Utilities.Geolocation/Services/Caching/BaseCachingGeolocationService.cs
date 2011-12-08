@@ -114,7 +114,12 @@ namespace System.Geolocation.Services.Caching
                 return coordinates;
             }
         }
-        
+
+        /// <summary>
+        /// Gets all the address information of an address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
         public AddressInformation GetAddressInformation(string address)
         {
             return this.decorated.GetAddressInformation(address);

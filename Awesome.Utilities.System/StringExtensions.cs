@@ -85,5 +85,38 @@ namespace System
             }
             return sb.ToString();
         }
+
+        /// <summary>
+        ///     Removes the HTML from the string. will return funky results for invalid markup.
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <returns></returns>
+        public static string RemoveHtml(this string self)
+        {
+            var array = new char[self.Length];
+            int arrayIndex = 0;
+            bool inside = false;
+
+            for (int i = 0; i < self.Length; i++)
+            {
+                char let = self[i];
+                if (let == '<')
+                {
+                    inside = true;
+                    continue;
+                }
+                if (let == '>')
+                {
+                    inside = false;
+                    continue;
+                }
+                if (!inside)
+                {
+                    array[arrayIndex] = let;
+                    arrayIndex++;
+                }
+            }
+            return new string(array, 0, arrayIndex);
+        }
     }
 }
