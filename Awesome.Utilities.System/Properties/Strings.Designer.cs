@@ -176,5 +176,50 @@ namespace System.Properties {
                 return ResourceManager.GetString("Validate_NullOrWhitespace", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field failed the comparison to the field &quot;{1}&quot;..
+        /// </summary>
+        internal static string Validation_Comparison {
+            get {
+                return ResourceManager.GetString("Validation_Comparison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field must be greater than the field &quot;{1}&quot;..
+        /// </summary>
+        internal static string Validation_GreaterThan {
+            get {
+                return ResourceManager.GetString("Validation_GreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field must be lesser than or equal to the field &quot;{1}&quot;..
+        /// </summary>
+        internal static string Validation_GreaterThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("Validation_GreaterThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field must be lesser than the field &quot;{1}&quot;..
+        /// </summary>
+        internal static string Validation_LesserThan {
+            get {
+                return ResourceManager.GetString("Validation_LesserThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field must be greater than or equal to the field &quot;{1}&quot;..
+        /// </summary>
+        internal static string Validation_LesserThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("Validation_LesserThanOrEqualTo", resourceCulture);
+            }
+        }
     }
 }

@@ -156,4 +156,19 @@
   <data name="Validate_NullOrWhitespace" xml:space="preserve">
     <value>The string must not be null or whitespace.</value>
   </data>
+  <data name="Validation_Comparison" xml:space="preserve">
+    <value>This field failed the comparison to the field "{1}".</value>
+  </data>
+  <data name="Validation_GreaterThan" xml:space="preserve">
+    <value>This field must be greater than the field "{1}".</value>
+  </data>
+  <data name="Validation_GreaterThanOrEqualTo" xml:space="preserve">
+    <value>This field must be lesser than or equal to the field "{1}".</value>
+  </data>
+  <data name="Validation_LesserThan" xml:space="preserve">
+    <value>This field must be lesser than the field "{1}".</value>
+  </data>
+  <data name="Validation_LesserThanOrEqualTo" xml:space="preserve">
+    <value>This field must be greater than or equal to the field "{1}".</value>
+  </data>
 </root>

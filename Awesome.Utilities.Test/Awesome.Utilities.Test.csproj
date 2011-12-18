@@ -60,7 +60,11 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ComponentModel\DataAnnotations\GivenGreaterThanOrEqualToAttribute.cs" />
+    <Compile Include="ComponentModel\DataAnnotations\GivenLesserThanOrEqualToAttribute.cs" />
+    <Compile Include="ComponentModel\DataAnnotations\GivenLesserThanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenAttributes.cs" />
+    <Compile Include="ComponentModel\DataAnnotations\GivenGreaterThanAttribute.cs" />
     <Compile Include="Configuration\GivenFlexibleConfiguration.cs" />
     <Compile Include="Data\Common\GivenConnectionStringHelper.cs" />
     <Compile Include="Geolocation\GivenBoundingBox.cs" />

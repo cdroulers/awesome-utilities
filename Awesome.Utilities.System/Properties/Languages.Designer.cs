@@ -61,15 +61,6 @@ namespace System.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Caribbean.
-        /// </summary>
-        internal static string _029 {
-            get {
-                return ResourceManager.GetString("029", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to U.A.E..
         /// </summary>
         internal static string AE {
