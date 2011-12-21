@@ -73,12 +73,15 @@ namespace System.Geolocation.Services
 
             components.Add(new AddressInformationComponent(data.results[0].locations[0].street, data.results[0].locations[0].street, new string[] { "street_number" }));
             components.Add(new AddressInformationComponent(data.results[0].locations[0].postalCode, data.results[0].locations[0].postalCode, new string[] { "postal_code" }));
-            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea5, data.results[0].locations[0].adminArea5, new string[] { data.results[0].locations[0].adminArea5Type }));
-            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea4, data.results[0].locations[0].adminArea4, new string[] { data.results[0].locations[0].adminArea4Type }));
-            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea3, data.results[0].locations[0].adminArea3, new string[] { data.results[0].locations[0].adminArea3Type }));
-            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea1, data.results[0].locations[0].adminArea1, new string[] { data.results[0].locations[0].adminArea1Type }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea5, data.results[0].locations[0].adminArea5, new string[] { data.results[0].locations[0].adminArea5Type.ToLowerInvariant() }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea4, data.results[0].locations[0].adminArea4, new string[] { data.results[0].locations[0].adminArea4Type.ToLowerInvariant() }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea3, data.results[0].locations[0].adminArea3, new string[] { data.results[0].locations[0].adminArea3Type.ToLowerInvariant() }));
+            components.Add(new AddressInformationComponent(data.results[0].locations[0].adminArea1, data.results[0].locations[0].adminArea1, new string[] { data.results[0].locations[0].adminArea1Type.ToLowerInvariant() }));
 
-            return new AddressInformation(components.ToArray(), formatted);
+            double longitude = (double)data.results[0].locations[0].latLng.lng;
+            double latitude = (double)data.results[0].locations[0].latLng.lat;
+
+            return new AddressInformation(components.ToArray(), new Coordinates(longitude, latitude), formatted);
         }
 
         private dynamic GetJson(string address)

@@ -72,7 +72,10 @@ namespace System.Geolocation.Services
                 components.Add(new AddressInformationComponent(c.long_name, c.short_name, (c.types as Collections.ArrayList).ToArray().Select(t => t as string).ToArray()));
             }
 
-            return new AddressInformation(components.ToArray(), formatted);
+            double longitude = (double)data.results[0].geometry.location.lng;
+            double latitude = (double)data.results[0].geometry.location.lat;
+
+            return new AddressInformation(components.ToArray(), new Coordinates(longitude, latitude), formatted);
         }
 
         private dynamic GetJson(string address)

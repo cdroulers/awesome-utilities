@@ -18,6 +18,11 @@ namespace System.Geolocation.Services
         public AddressInformationComponent[] Components { get; private set; }
 
         /// <summary>
+        /// Gets the coordinates of the address
+        /// </summary>
+        public Coordinates Coordinates { get; private set; }
+
+        /// <summary>
         /// Gets the formatted address.
         /// </summary>
         public string FormattedAddress { get; private set; }
@@ -26,10 +31,12 @@ namespace System.Geolocation.Services
         /// Initializes a new instance of the <see cref="AddressInformation"/> class.
         /// </summary>
         /// <param name="components">The components.</param>
+        /// <param name="coordinates">The coordinates.</param>
         /// <param name="formattedAddress">The formatted address.</param>
-        public AddressInformation(AddressInformationComponent[] components, string formattedAddress)
+        public AddressInformation(AddressInformationComponent[] components, Coordinates coordinates, string formattedAddress)
         {
             this.Components = components;
+            this.Coordinates = coordinates;
             this.FormattedAddress = formattedAddress;
         }
 

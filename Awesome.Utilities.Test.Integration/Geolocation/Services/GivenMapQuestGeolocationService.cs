@@ -56,13 +56,14 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
 
             Assert.That(info, Is.Not.Null);
             Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland, Ville Mont-Royal, QC, CAN"));
+            Assert.That(info.Coordinates, Is.EqualTo(new Coordinates(-73.61154, 45.51418)));
             Assert.That(info.Components, Has.Length.EqualTo(6));
             Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("[500-600] Avenue Rockland", "[500-600] Avenue Rockland", new string[] { "street_number" })));
             Assert.That(info.Components[1], Is.EqualTo(new AddressInformationComponent("H2V 2Z3", "H2V 2Z3", new string[] { "postal_code" })));
-            Assert.That(info.Components[2], Is.EqualTo(new AddressInformationComponent("Mont Royal", "Mont Royal", new string[] { "City" })));
-            Assert.That(info.Components[3], Is.EqualTo(new AddressInformationComponent("", "", new string[] { "County" })));
-            Assert.That(info.Components[4], Is.EqualTo(new AddressInformationComponent("QC", "QC", new string[] { "State" })));
-            Assert.That(info.Components[5], Is.EqualTo(new AddressInformationComponent("CA", "CA", new string[] { "Country" })));
+            Assert.That(info.Components[2], Is.EqualTo(new AddressInformationComponent("Mont Royal", "Mont Royal", new string[] { "city" })));
+            Assert.That(info.Components[3], Is.EqualTo(new AddressInformationComponent("", "", new string[] { "county" })));
+            Assert.That(info.Components[4], Is.EqualTo(new AddressInformationComponent("QC", "QC", new string[] { "state" })));
+            Assert.That(info.Components[5], Is.EqualTo(new AddressInformationComponent("CA", "CA", new string[] { "country" })));
         }
     }
 }
