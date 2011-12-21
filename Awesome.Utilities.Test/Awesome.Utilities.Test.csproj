@@ -104,10 +104,6 @@
       <Project>{0652D591-6565-4FC4-811E-A86BD3CBBC89}</Project>
       <Name>Awesome.Utilities.Units</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Awesome.Utilities.Web.Mvc.UI\Awesome.Utilities.Web.Mvc.UI.csproj">
-      <Project>{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}</Project>
-      <Name>Awesome.Utilities.Web.Mvc.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Awesome.Utilities.Web.Mvc\Awesome.Utilities.Web.Mvc.csproj">
       <Project>{2CB5735A-2598-46B6-8967-1BE02C261BC8}</Project>
       <Name>Awesome.Utilities.Web.Mvc</Name>

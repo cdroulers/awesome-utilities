@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace System
 {
@@ -117,6 +118,28 @@ namespace System
                 }
             }
             return new string(array, 0, arrayIndex);
+        }
+
+        /// <summary>
+        /// Returns a slug of the specified string.
+        /// </summary>
+        /// <param name="self">The phrase.</param>
+        /// <param name="maxLength">Length of the max.</param>
+        /// <returns></returns>
+        public static string ToSlug(this string self, int maxLength = 50)
+        {
+            string str = self.ToLower().RemoveDiacritics();
+
+            // invalid chars, make into spaces
+            str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
+            // convert multiple spaces/hyphens into one space       
+            str = Regex.Replace(str, @"[\s-]+", " ").Trim();
+            // cut and trim it
+            str = str.Substring(0, str.Length <= maxLength ? str.Length : maxLength).Trim();
+            // hyphens
+            str = Regex.Replace(str, @"\s", "-");
+
+            return str;
         }
     }
 }

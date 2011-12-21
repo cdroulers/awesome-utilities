@@ -49,5 +49,14 @@ namespace Awesome.Utilities.Test
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [TestCase("I am a super special slug.", "i-am-a-super-special-slug")]
+        [TestCase("Je suis une slug géniale!!!!", "je-suis-une-slug-geniale")]
+        public void When_transforming_to_slug_Then_works(string toSlug, string expected)
+        {
+            string actual = toSlug.ToSlug(25);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }

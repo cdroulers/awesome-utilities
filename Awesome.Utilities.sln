@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Test", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Web.Mvc", "Awesome.Utilities.Web.Mvc\Awesome.Utilities.Web.Mvc.csproj", "{2CB5735A-2598-46B6-8967-1BE02C261BC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Web.Mvc.UI", "Awesome.Utilities.Web.Mvc.UI\Awesome.Utilities.Web.Mvc.UI.csproj", "{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Geolocation", "Awesome.Utilities.Geolocation\Awesome.Utilities.Geolocation.csproj", "{A7BF2FBE-2BC3-4D3E-9363-52FE6ACBF00E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Test.Integration", "Awesome.Utilities.Test.Integration\Awesome.Utilities.Test.Integration.csproj", "{E54299C9-B5DE-424A-9E31-D4FB45C783BA}"
@@ -38,10 +36,6 @@ Global
 		{2CB5735A-2598-46B6-8967-1BE02C261BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CB5735A-2598-46B6-8967-1BE02C261BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CB5735A-2598-46B6-8967-1BE02C261BC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B0B2AAA-9F45-4A54-B880-93BA2CAB0206}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7BF2FBE-2BC3-4D3E-9363-52FE6ACBF00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7BF2FBE-2BC3-4D3E-9363-52FE6ACBF00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7BF2FBE-2BC3-4D3E-9363-52FE6ACBF00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
