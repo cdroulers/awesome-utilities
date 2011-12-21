@@ -63,7 +63,7 @@
     <Compile Include="NotFoundException.cs" />
     <Compile Include="Data\Common\ConnectionStringHelper.cs" />
     <Compile Include="Data\Json\DynamicJson.cs" />
-    <Compile Include="Globalization\Countries\ICountry.cs" />
+    <Compile Include="Globalization\Countries\Country.cs" />
     <Compile Include="Globalization\Countries\ICountryRepository.cs" />
     <Compile Include="Globalization\Countries\Implementations\RegionInfoCountry.cs" />
     <Compile Include="Globalization\Countries\Implementations\RegionInfoCountryRepository.cs" />

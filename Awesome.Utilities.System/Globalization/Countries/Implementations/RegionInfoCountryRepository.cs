@@ -14,9 +14,9 @@ namespace System.Globalization.Countries.Implementations
         /// Gets all the countries.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ICountry> GetAll()
+        public IEnumerable<Country> GetAll()
         {
-            var results = new List<ICountry>();
+            var results = new List<Country>();
             foreach (var info in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
             {
                 var regionInfo = new RegionInfo(info.Name);
@@ -33,12 +33,12 @@ namespace System.Globalization.Countries.Implementations
         /// </summary>
         /// <param name="code">The code.</param>
         /// <returns></returns>
-        public ICountry GetByTwoLetterCode(string code)
+        public Country GetByTwoLetterCode(string code)
         {
             var found = this.GetAll().FirstOrDefault(c => c.TwoLetterCode == code);
             if (found == null)
             {
-                throw new NotFoundException(typeof(ICountry), code, "TwoLetterCode", string.Format(Properties.Strings.ICountry_NotFoundTwoLetterCode, code));
+                throw new NotFoundException(typeof(Country), code, "TwoLetterCode", string.Format(Properties.Strings.ICountry_NotFoundTwoLetterCode, code));
             }
             return found;
         }
@@ -48,12 +48,12 @@ namespace System.Globalization.Countries.Implementations
         /// </summary>
         /// <param name="code">The code.</param>
         /// <returns></returns>
-        public ICountry GetByThreeLetterCode(string code)
+        public Country GetByThreeLetterCode(string code)
         {
             var found = this.GetAll().FirstOrDefault(c => c.ThreeLetterCode == code);
             if (found == null)
             {
-                throw new NotFoundException(typeof(ICountry), code, "ThreeLetterCode", string.Format(Properties.Strings.ICountry_NotFoundThreeLetterCode, code));
+                throw new NotFoundException(typeof(Country), code, "ThreeLetterCode", string.Format(Properties.Strings.ICountry_NotFoundThreeLetterCode, code));
             }
             return found;
         }

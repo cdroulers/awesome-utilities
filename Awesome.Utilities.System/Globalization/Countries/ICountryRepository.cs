@@ -14,20 +14,20 @@ namespace System.Globalization.Countries
         /// Gets all the countries.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ICountry> GetAll();
+        IEnumerable<Country> GetAll();
 
         /// <summary>
         /// Gets a country by two letter code.
         /// </summary>
         /// <param name="code">The code.</param>
         /// <returns></returns>
-        ICountry GetByTwoLetterCode(string code);
+        Country GetByTwoLetterCode(string code);
 
         /// <summary>
         /// Gets a country by three letter code.
         /// </summary>
         /// <param name="code">The code.</param>
         /// <returns></returns>
-        ICountry GetByThreeLetterCode(string code);
+        Country GetByThreeLetterCode(string code);
     }
 }

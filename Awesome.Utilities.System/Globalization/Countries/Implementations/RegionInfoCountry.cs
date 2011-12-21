@@ -8,7 +8,7 @@ namespace System.Globalization.Countries.Implementations
     /// <summary>
     ///     A country implementation with RegionInfo
     /// </summary>
-    public class RegionInfoCountry : ICountry
+    public class RegionInfoCountry : Country
     {
         private readonly RegionInfo regionInfo;
 
@@ -25,7 +25,7 @@ namespace System.Globalization.Countries.Implementations
         /// <summary>
         /// Gets the two letter code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
         /// </summary>
-        public string TwoLetterCode
+        public override string TwoLetterCode
         {
             get { return this.regionInfo.TwoLetterISORegionName; }
         }
@@ -33,7 +33,7 @@ namespace System.Globalization.Countries.Implementations
         /// <summary>
         /// Gets the three letter code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
         /// </summary>
-        public string ThreeLetterCode
+        public override string ThreeLetterCode
         {
             get { return this.regionInfo.ThreeLetterISORegionName; }
         }
@@ -41,7 +41,7 @@ namespace System.Globalization.Countries.Implementations
         /// <summary>
         /// Gets the English name.
         /// </summary>
-        public string EnglishName
+        public override string EnglishName
         {
             get { return this.regionInfo.EnglishName; }
         }
@@ -49,19 +49,9 @@ namespace System.Globalization.Countries.Implementations
         /// <summary>
         /// Gets the name of the country in it's native language
         /// </summary>
-        public string NativeName
+        public override string NativeName
         {
             get { return this.regionInfo.NativeName; }
-        }
-
-        /// <summary>
-        /// Gets the display name.
-        /// </summary>
-        /// <param name="cultureInfo">The culture info. Should use current UI culture if not specified</param>
-        /// <returns></returns>
-        public string GetDisplayName(CultureInfo cultureInfo = null)
-        {
-            return Properties.Languages.ResourceManager.GetString(this.TwoLetterCode, cultureInfo ?? CultureInfo.CurrentUICulture);
         }
     }
 }
