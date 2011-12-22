@@ -10,22 +10,26 @@ namespace System.Globalization.Countries.Implementations
     /// </summary>
     public class RegionInfoCountryRepository : ICountryRepository
     {
+        private readonly IList<Country> countries = new List<Country>();
+
         /// <summary>
         /// Gets all the countries.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Country> GetAll()
         {
-            var results = new List<Country>();
-            foreach (var info in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
+            if (!this.countries.Any())
             {
-                var regionInfo = new RegionInfo(info.Name);
-                if (!results.Any(r => r.EnglishName == regionInfo.EnglishName))
+                foreach (var info in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
                 {
-                    results.Add(new RegionInfoCountry(regionInfo));
+                    var regionInfo = new RegionInfo(info.Name);
+                    if (!this.countries.Any(r => r.EnglishName == regionInfo.EnglishName))
+                    {
+                        this.countries.Add(new RegionInfoCountry(regionInfo));
+                    }
                 }
             }
-            return results;
+            return this.countries;
         }
 
         /// <summary>
