@@ -33,20 +33,67 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         public void When_getting_coordinates_with_natural_feature_result_Then_works(string address, double longitude, double latitude)
         {
             var actual = this.geo.GetCoordinates(address);
+            Assert.That(actual, Is.EqualTo(new Coordinates(longitude, latitude)));
 
+
+            this.geo = new GoogleMapsGeolocationService(ignoreCloseMatches: true);
+            actual = this.geo.GetCoordinates(address);
             Assert.That(actual, Is.EqualTo(new Coordinates(longitude, latitude)));
         }
 
         [Test]
         public void When_getting_coordinates_that_arent_precise_enough_Then_throws()
         {
-            Assert.Throws<MultipleCoordinatesException>(() => this.geo.GetCoordinates("London")); // There are like 10 different locations for that
+            var exc = Assert.Throws<MultipleCoordinatesException>(() => this.geo.GetCoordinates("London")); // There are like 4 different locations for that
+
+            Assert.That(exc.Addresses, Has.Length.EqualTo(4));
+        }
+
+        [Test]
+        public void When_getting_coordinates_that_have_close_match_with_param_to_false_Then_throws()
+        {
+            var exc = Assert.Throws<MultipleCoordinatesException>(() => this.geo.GetCoordinates("Boisbriand, QC, Canada"));
+
+            Assert.That(exc.Addresses, Has.Length.EqualTo(2));
+        }
+
+        [Test]
+        public void When_getting_coordinates_that_have_close_match_with_param_to_true_Then_returns()
+        {
+            this.geo = new GoogleMapsGeolocationService(ignoreCloseMatches: true);
+            var actual = this.geo.GetCoordinates("Boisbriand, QC, Canada");
+            Assert.That(actual, Is.EqualTo(new Coordinates(-73.83837330, 45.61263380)));
+        }
+
+        [Test]
+        public void When_getting_coordinates_that_have_close_match_with_param_to_true_but_same_type_Then_throws()
+        {
+            this.geo = new GoogleMapsGeolocationService(ignoreCloseMatches: true);
+            var exc = Assert.Throws<MultipleCoordinatesException>(() => this.geo.GetCoordinates("London")); // There are like 4 different localities for that
+
+            Assert.That(exc.Addresses, Has.Length.EqualTo(4));
         }
 
         [Test]
         public void When_getting_coordinates_that_have_no_results_Then_throws()
         {
             Assert.Throws<AddressNotFoundException>(() => this.geo.GetCoordinates(""));
+
+
+            this.geo = new GoogleMapsGeolocationService(ignoreCloseMatches: true);
+            Assert.Throws<AddressNotFoundException>(() => this.geo.GetCoordinates(""));
+        }
+
+        [Test]
+        public void When_getting_all_information_Then_returns_multiple_results()
+        {
+            var results = this.geo.GetAllAddressInformation("Boston");
+            Assert.That(results, Has.Length.EqualTo(6));
+
+
+            this.geo = new GoogleMapsGeolocationService(ignoreCloseMatches: true);
+            results = this.geo.GetAllAddressInformation("Boston");
+            Assert.That(results, Has.Length.EqualTo(6));
         }
 
         [Test]
@@ -55,6 +102,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
             var info = this.geo.GetAddressInformation("304 Rockland, Ville Mont-Royal, QC, CA");
 
             Assert.That(info, Is.Not.Null);
+            Assert.That(info.Type, Is.EqualTo("street_address"));
             Assert.That(info.FormattedAddress, Is.EqualTo("304 Chemin Rockland, Mont-Royal, QC H3P 2W8, Canada"));
             Assert.That(info.Coordinates, Is.EqualTo(new Coordinates(-73.62904170, 45.52085170)));
             Assert.That(info.Components, Has.Length.EqualTo(7));

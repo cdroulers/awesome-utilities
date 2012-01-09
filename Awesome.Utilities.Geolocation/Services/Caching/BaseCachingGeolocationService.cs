@@ -124,5 +124,15 @@ namespace System.Geolocation.Services.Caching
         {
             return this.decorated.GetAddressInformation(address);
         }
+
+        /// <summary>
+        /// Gets all the address information for all results for a specific address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
+        public AddressInformation[] GetAllAddressInformation(string address)
+        {
+            return this.decorated.GetAllAddressInformation(address);
+        }
     }
 }

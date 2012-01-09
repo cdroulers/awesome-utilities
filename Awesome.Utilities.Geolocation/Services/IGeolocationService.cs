@@ -23,5 +23,12 @@ namespace System.Geolocation.Services
         /// <param name="address">The address.</param>
         /// <returns></returns>
         AddressInformation GetAddressInformation(string address);
+
+        /// <summary>
+        /// Gets all the address information for all results for a specific address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
+        AddressInformation[] GetAllAddressInformation(string address);
     }
 }

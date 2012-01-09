@@ -13,20 +13,29 @@ namespace System.Geolocation.Services
     public class MultipleCoordinatesException : ApplicationException
     {
         /// <summary>
+        /// Gets the addresses that were returned by the provider.
+        /// </summary>
+        public AddressInformation[] Addresses { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MultipleCoordinatesException"/> class.
         /// </summary>
-        public MultipleCoordinatesException()
+        /// <param name="addresses">The addresses.</param>
+        public MultipleCoordinatesException(AddressInformation[] addresses)
             : base()
         {
+            this.Addresses = addresses;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultipleCoordinatesException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        public MultipleCoordinatesException(string message)
+        /// <param name="addresses">The addresses.</param>
+        public MultipleCoordinatesException(string message, AddressInformation[] addresses)
             : base(message)
         {
+            this.Addresses = addresses;
         }
 
         /// <summary>
@@ -45,9 +54,11 @@ namespace System.Geolocation.Services
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
-        public MultipleCoordinatesException(string message, Exception innerException)
+        /// <param name="addresses">The addresses.</param>
+        public MultipleCoordinatesException(string message, Exception innerException, AddressInformation[] addresses)
             : base(message, innerException)
         {
+            this.Addresses = addresses;
         }
     }
 }

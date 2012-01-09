@@ -10,25 +10,32 @@ namespace System.Geolocation.Services
 {
     /// <summary>
     ///     Google maps geolocation service implementation
+    ///     Documentation: http://code.google.com/apis/maps/documentation/geocoding
     /// </summary>
-    public class GoogleMapsGeolocationService : IGeolocationService
+    public class GoogleMapsGeolocationService : GeolocationServiceBase
     {
         private static readonly Uri BaseAddressDefault = new Uri("http://maps.googleapis.com/maps/api");
 
-        private readonly Uri baseAddress;
+        /// <summary>
+        ///     When set to true, this parameter will make the service match results together, and only throw exceptions
+        ///     when two results of the same type are returned.
+        /// </summary>
+        public readonly bool IgnoreCloseMatches;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GoogleMapsGeolocationService"/> class.
         /// </summary>
         /// <param name="baseAddress">The base address.</param>
-        public GoogleMapsGeolocationService(Uri baseAddress = null)
+        /// <param name="ignoreCloseMatches">if set to <c>true</c> [ignore close matches].</param>
+        public GoogleMapsGeolocationService(Uri baseAddress = null, bool ignoreCloseMatches = false)
+            : base(baseAddress ?? BaseAddressDefault)
         {
-            this.baseAddress = baseAddress ?? BaseAddressDefault;
+            this.IgnoreCloseMatches = ignoreCloseMatches;
         }
 
         private UriBuilder GetBuilder(string path, NameValueCollection query)
         {
-            var builder = new UriBuilder(this.baseAddress);
+            var builder = new UriBuilder(this.BaseAddress);
             if (!builder.Path.EndsWith("/"))
             {
                 builder.Path += "/";
@@ -39,43 +46,27 @@ namespace System.Geolocation.Services
             return builder;
         }
 
-        /// <summary>
-        /// Gets the coordinates of the specified address.
-        /// </summary>
-        /// <param name="address">The address.</param>
-        /// <returns></returns>
-        public Coordinates GetCoordinates(string address)
+        public override AddressInformation[] GetAllAddressInformation(string address)
         {
             var data = this.GetJson(address);
 
-            double longitude = (double)data.results[0].geometry.location.lng;
-            double latitude = (double)data.results[0].geometry.location.lat;
-
-            return new Coordinates(longitude, latitude);
-        }
-
-        /// <summary>
-        /// Gets all the address information of an address.
-        /// </summary>
-        /// <param name="address">The address.</param>
-        /// <returns></returns>
-        public AddressInformation GetAddressInformation(string address)
-        {
-            var data = this.GetJson(address);
-
-            string formatted = data.results[0].formatted_address;
-
-            var components = new List<AddressInformationComponent>();
-
-            foreach (var c in data.results[0].address_components)
+            var addresses = new List<AddressInformation>();
+            foreach (var add in data.results)
             {
-                components.Add(new AddressInformationComponent(c.long_name, c.short_name, (c.types as Collections.ArrayList).ToArray().Select(t => t as string).ToArray()));
+                var components = new List<AddressInformationComponent>();
+
+                foreach (var c in add.address_components)
+                {
+                    components.Add(new AddressInformationComponent(c.long_name, c.short_name, (c.types as Collections.ArrayList).ToArray().Select(t => t as string).ToArray()));
+                }
+
+                double longitude = (double)add.geometry.location.lng;
+                double latitude = (double)add.geometry.location.lat;
+
+                addresses.Add(new AddressInformation(components.ToArray(), new Coordinates(longitude, latitude), add.formatted_address, (add.types as Collections.ArrayList).ToArray().First() as string));
             }
 
-            double longitude = (double)data.results[0].geometry.location.lng;
-            double latitude = (double)data.results[0].geometry.location.lat;
-
-            return new AddressInformation(components.ToArray(), new Coordinates(longitude, latitude), formatted);
+            return addresses.ToArray();
         }
 
         private dynamic GetJson(string address)
@@ -91,14 +82,6 @@ namespace System.Geolocation.Services
             var data = DynamicJson.Parse(response);
             this.CheckError(data, address);
 
-            // Strip "natural_feature" results out for now. They seem quite irrelevant.
-            var list = (System.Collections.ArrayList)data.results;
-            var results = list.Cast<dynamic>().Where(s => !s.types.Contains("natural_feature"));
-
-            if (results.Count() > 1)
-            {
-                throw new MultipleCoordinatesException(string.Format(Properties.Strings.MultipleCoordinatesException, address));
-            }
             return data;
         }
 
@@ -113,5 +96,50 @@ namespace System.Geolocation.Services
                 throw new GeolocationGenericException(string.Format(Properties.Strings.GenericException_GoogleMaps, data.status));
             }
         }
+
+        protected override AddressInformation[] FilterResults(AddressInformation[] addresses)
+        {
+            var results = addresses.Where(s => !s.Components.Any(c => c.Types.Contains("natural_feature", StringComparer.InvariantCultureIgnoreCase)));
+
+            if (this.IgnoreCloseMatches)
+            {
+                // Filter stuffs here.
+                foreach (var address in results.ToList())
+                {
+                    // If there are more than one of the same type, then don't filter.
+                    if (results.Count(r => Priorities[r.Type] == Priorities[address.Type]) > 1)
+                    {
+                        return results.ToArray();
+                    }
+                }
+
+                results = results.OrderByDescending(r => Priorities[r.Type]).Take(1);
+            }
+
+            return results.ToArray();
+        }
+
+        private static readonly Dictionary<string, int> Priorities = new Dictionary<string, int>()
+        {
+            { "street_address", 1 },
+            { "intersection", 2 },
+            { "route", 3 },
+            { "subpremise", 4 },
+            { "premise", 5 },
+            { "postal_code", 6 },
+            { "natural_feature", 7 },
+            { "airport", 8 },
+            { "colloquial_area", 9 },
+            { "park", 10 },
+            { "point_of_interest", 11 },
+            { "neighborhood", 12 },
+            { "sublocality", 13 },
+            { "locality", 14 },
+            { "administrative_area_level_1", 15 },
+            { "administrative_area_level_2", 16 },
+            { "administrative_area_level_3", 17 },
+            { "country", 18 },
+            { "political", 19 },
+        };
     }
 }

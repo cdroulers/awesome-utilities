@@ -69,6 +69,7 @@
     <Compile Include="Services\Caching\PostgreSQLCachingGeolocationService.cs" />
     <Compile Include="Services\Caching\SQLiteCachingGeolocationService.cs" />
     <Compile Include="Services\AddressNotFoundException.cs" />
+    <Compile Include="Services\GeolocationServiceBase.cs" />
     <Compile Include="Services\GeolocationGenericException.cs" />
     <Compile Include="Services\GoogleMapsGeolocationService.cs" />
     <Compile Include="Services\IGeolocationService.cs" />

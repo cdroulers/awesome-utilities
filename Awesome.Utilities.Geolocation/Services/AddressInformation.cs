@@ -18,6 +18,11 @@ namespace System.Geolocation.Services
         public AddressInformationComponent[] Components { get; private set; }
 
         /// <summary>
+        /// Gets the type of address this is.
+        /// </summary>
+        public string Type { get; private set; }
+
+        /// <summary>
         /// Gets the coordinates of the address
         /// </summary>
         public Coordinates Coordinates { get; private set; }
@@ -33,11 +38,13 @@ namespace System.Geolocation.Services
         /// <param name="components">The components.</param>
         /// <param name="coordinates">The coordinates.</param>
         /// <param name="formattedAddress">The formatted address.</param>
-        public AddressInformation(AddressInformationComponent[] components, Coordinates coordinates, string formattedAddress)
+        /// <param name="type">The type.</param>
+        public AddressInformation(AddressInformationComponent[] components, Coordinates coordinates, string formattedAddress, string type)
         {
             this.Components = components;
             this.Coordinates = coordinates;
             this.FormattedAddress = formattedAddress;
+            this.Type = type;
         }
 
         /// <summary>

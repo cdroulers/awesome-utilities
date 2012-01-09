@@ -29,14 +29,6 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
             Assert.That(actual, Is.EqualTo(new Coordinates(longitude, latitude)));
         }
 
-        [TestCase("Montréal, QC, Canada", -73.554398d, 45.512291d)]
-        public void When_getting_coordinates_with_natural_feature_result_Then_works(string address, double longitude, double latitude)
-        {
-            var actual = this.geo.GetCoordinates(address);
-
-            Assert.That(actual, Is.EqualTo(new Coordinates(longitude, latitude)));
-        }
-
         [Test]
         public void When_getting_coordinates_that_arent_precise_enough_Then_throws()
         {
@@ -50,11 +42,20 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         }
 
         [Test]
+        public void When_getting_all_information_Then_returns_multiple_results()
+        {
+            var results = this.geo.GetAllAddressInformation("Boston");
+
+            Assert.That(results, Has.Length.EqualTo(10));
+        }
+
+        [Test]
         public void When_getting_info_Then_works()
         {
             var info = this.geo.GetAddressInformation("304 Rockland, Ville Mont-Royal, QC, CAN");
 
             Assert.That(info, Is.Not.Null);
+            Assert.That(info.Type, Is.EqualTo("street_address"));
             Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland, Ville Mont-Royal, QC, CAN"));
             Assert.That(info.Coordinates, Is.EqualTo(new Coordinates(-73.61154, 45.51418)));
             Assert.That(info.Components, Has.Length.EqualTo(6));
