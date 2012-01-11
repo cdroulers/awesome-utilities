@@ -48,6 +48,7 @@
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Access.cs" />
+    <Compile Include="Html\HtmlHelperExtensions.cs" />
     <Compile Include="MvcHtmlStringExtensions.cs" />
     <Compile Include="NoTrimAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -46,6 +46,11 @@ namespace System.Geolocation.Services
             return builder;
         }
 
+        /// <summary>
+        /// Gets all the address information for all results for a specific address.
+        /// </summary>
+        /// <param name="address">The address.</param>
+        /// <returns></returns>
         public override AddressInformation[] GetAllAddressInformation(string address)
         {
             var data = this.GetJson(address);
@@ -97,6 +102,11 @@ namespace System.Geolocation.Services
             }
         }
 
+        /// <summary>
+        /// Filters the results.
+        /// </summary>
+        /// <param name="addresses">The addresses.</param>
+        /// <returns></returns>
         protected override AddressInformation[] FilterResults(AddressInformation[] addresses)
         {
             var results = addresses.Where(s => !s.Components.Any(c => c.Types.Contains("natural_feature", StringComparer.InvariantCultureIgnoreCase)));
