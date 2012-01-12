@@ -48,8 +48,10 @@
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Access.cs" />
-    <Compile Include="Html\HtmlHelperExtensions.cs" />
+    <Compile Include="Binders\NoModelStateModelBinder.cs" />
+    <Compile Include="CustomModelBinder.cs" />
     <Compile Include="MvcHtmlStringExtensions.cs" />
+    <Compile Include="NoModelStateAttribute.cs" />
     <Compile Include="NoTrimAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrimmedStringBinder.cs" />
