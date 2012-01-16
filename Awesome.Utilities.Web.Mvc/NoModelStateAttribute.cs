@@ -23,6 +23,12 @@ namespace System.Web.Mvc
             this.bindType = bindType;
         }
 
+        /// <summary>
+        /// Retrieves the associated model binder.
+        /// </summary>
+        /// <returns>
+        /// A reference to an object that implements the <see cref="T:System.Web.Mvc.IModelBinder"/> interface.
+        /// </returns>
         public override IModelBinder GetBinder()
         {
             return new NoModelStateModelBinder(ModelBinders.Binders.GetBinder(this.bindType, true));

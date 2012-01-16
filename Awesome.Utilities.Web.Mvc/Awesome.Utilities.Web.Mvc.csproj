@@ -77,6 +77,7 @@
     <Compile Include="UI\TypeControl.cs" />
     <Compile Include="UI\TypeMediaControl.cs" />
     <Compile Include="UI\UnorderedList.cs" />
+    <Compile Include="Validation\RequiredBooleanAttributeAdapter.cs" />
     <Compile Include="Validation\LesserThanOrEqualToAttributeAdapter.cs" />
     <Compile Include="Validation\GreaterThanOrEqualToAttributeAdapter.cs" />
     <Compile Include="Validation\LesserThanAttributeAdapter.cs" />

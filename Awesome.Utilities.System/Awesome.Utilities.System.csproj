@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="AdvancedMath.cs" />
     <Compile Include="Collections\Generic\ResultPage.cs" />
+    <Compile Include="ComponentModel\DataAnnotations\RequiredBooleanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\ComparisonAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\LesserThanOrEqualToAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GreaterThanOrEqualToAttribute.cs" />

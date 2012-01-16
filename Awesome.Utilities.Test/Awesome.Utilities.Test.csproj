@@ -60,6 +60,7 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ComponentModel\DataAnnotations\GivenRequiredBooleanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenGreaterThanOrEqualToAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenLesserThanOrEqualToAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenLesserThanAttribute.cs" />

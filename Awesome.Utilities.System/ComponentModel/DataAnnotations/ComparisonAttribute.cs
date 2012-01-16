@@ -20,14 +20,31 @@ namespace System.ComponentModel.DataAnnotations
         /// </summary>
         public string PropertyDisplayName { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComparisonAttribute"/> class.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
         protected ComparisonAttribute(string propertyName)
             : base()
         {
             this.PropertyName = propertyName;
         }
 
+        /// <summary>
+        /// Compares the specified other value.
+        /// </summary>
+        /// <param name="otherValue">The other value.</param>
+        /// <param name="thisValue">The this value.</param>
+        /// <returns></returns>
         protected abstract bool Compare(IComparable otherValue, object thisValue);
 
+        /// <summary>
+        /// Applies formatting to an error message, based on the data field where the error occurred.
+        /// </summary>
+        /// <param name="name">The name to include in the formatted message.</param>
+        /// <returns>
+        /// An instance of the formatted error message.
+        /// </returns>
         public override string FormatErrorMessage(string name)
         {
             if (this.ErrorMessage == null && this.ErrorMessageResourceName == null)
@@ -37,6 +54,14 @@ namespace System.ComponentModel.DataAnnotations
             return string.Format(CultureInfo.CurrentUICulture, this.ErrorMessageString, name, (this.PropertyDisplayName ?? this.PropertyName));
         }
 
+        /// <summary>
+        /// Validates the specified value with respect to the current validation attribute.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="validationContext">The context information about the validation operation.</param>
+        /// <returns>
+        /// An instance of the <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> class.
+        /// </returns>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var property = validationContext.ObjectInstance.GetType().GetProperty(this.PropertyName);

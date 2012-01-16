@@ -22,6 +22,12 @@ namespace System.Web.Mvc.Validation
         {
         }
 
+        /// <summary>
+        /// Retrieves a collection of client validation rules.
+        /// </summary>
+        /// <returns>
+        /// A collection of client validation rules.
+        /// </returns>
         public override IEnumerable<ModelClientValidationRule> GetClientValidationRules()
         {
             var rule = new ModelClientValidationRule()

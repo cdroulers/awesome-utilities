@@ -7,17 +7,17 @@ using System.ComponentModel.DataAnnotations;
 namespace System.Web.Mvc.Validation
 {
     /// <summary>
-    ///     An adapter for LesserThanAttribute
+    ///     An adapter for RequiredBooleanAttribute
     /// </summary>
-    public class LesserThanAttributeAdapter : DataAnnotationsModelValidator<LesserThanAttribute>
+    public class RequiredBooleanAttributeAdapter : DataAnnotationsModelValidator<RequiredBooleanAttribute>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LesserThanAttribute"/> class.
+        /// Initializes a new instance of the <see cref="RequiredBooleanAttributeAdapter"/> class.
         /// </summary>
         /// <param name="metadata">The metadata.</param>
         /// <param name="context">The context.</param>
         /// <param name="attribute">The attribute.</param>
-        public LesserThanAttributeAdapter(ModelMetadata metadata, ControllerContext context, LesserThanAttribute attribute)
+        public RequiredBooleanAttributeAdapter(ModelMetadata metadata, ControllerContext context, RequiredBooleanAttribute attribute)
             : base(metadata, context, attribute)
         {
         }
@@ -33,10 +33,10 @@ namespace System.Web.Mvc.Validation
             var rule = new ModelClientValidationRule()
             {
                 ErrorMessage = this.ErrorMessage,
-                ValidationType = "lesserthan"
+                ValidationType = "requiredboolean"
             };
 
-            rule.ValidationParameters["property"] = this.Attribute.PropertyName;
+            rule.ValidationParameters["value"] = this.Attribute.ExpectedValue.ToString().ToLowerInvariant();
 
             return new[] { rule };
         }

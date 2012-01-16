@@ -221,5 +221,23 @@ namespace System.Properties {
                 return ResourceManager.GetString("Validation_LesserThanOrEqualTo", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field must have the value &quot;false&quot;..
+        /// </summary>
+        internal static string Validation_RequiredBooleanFalse {
+            get {
+                return ResourceManager.GetString("Validation_RequiredBooleanFalse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field must have the value &quot;true&quot;..
+        /// </summary>
+        internal static string Validation_RequiredBooleanTrue {
+            get {
+                return ResourceManager.GetString("Validation_RequiredBooleanTrue", resourceCulture);
+            }
+        }
     }
 }
