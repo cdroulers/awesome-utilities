@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Collections.Specialized;
+using System.Web;
 
 namespace System.Geolocation.Services
 {
@@ -77,7 +78,7 @@ namespace System.Geolocation.Services
         private dynamic GetJson(string address)
         {
             var values = new NameValueCollection();
-            values["address"] = address;
+            values["address"] = HttpUtility.UrlEncode(address);
             var builder = this.GetBuilder("geocode/json", values);
 
             var client = new WebClient();

@@ -26,6 +26,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         [TestCase("Boston, MA, US", -71.056699d, 42.358635d)]
         [TestCase("Boisbriand, QC, Canada", -73.838882d, 45.61204d)]
         [TestCase("Montréal, QC, Canada", -73.554431d, 45.512303d)]
+        [TestCase("5 Patti Page Way # B, Centerville Ma 02632, MA 02632-1434, USA", -70.348637d, 41.650266d)]
         public void When_getting_coordinates_Then_works(string address, double longitude, double latitude)
         {
             var actual = this.geo.GetCoordinates(address);
