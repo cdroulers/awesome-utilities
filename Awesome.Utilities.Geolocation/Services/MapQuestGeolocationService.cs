@@ -56,8 +56,8 @@ namespace System.Geolocation.Services
             {
                 var components = new List<AddressInformationComponent>();
 
-                components.Add(new AddressInformationComponent(add.street, add.street, new string[] { "street_number" }));
-                components.Add(new AddressInformationComponent(add.postalCode, add.postalCode, new string[] { "postal_code" }));
+                components.Add(new AddressInformationComponent(add.street, add.street, new string[] { AddressPartsNames.StreetAddress }));
+                components.Add(new AddressInformationComponent(add.postalCode, add.postalCode, new string[] { AddressPartsNames.PostalCode }));
                 components.Add(new AddressInformationComponent(add.adminArea5, add.adminArea5, new string[] { add.adminArea5Type.ToLowerInvariant() }));
                 components.Add(new AddressInformationComponent(add.adminArea4, add.adminArea4, new string[] { add.adminArea4Type.ToLowerInvariant() }));
                 components.Add(new AddressInformationComponent(add.adminArea3, add.adminArea3, new string[] { add.adminArea3Type.ToLowerInvariant() }));
@@ -70,11 +70,11 @@ namespace System.Geolocation.Services
 
                 if (!string.IsNullOrEmpty(add.street))
                 {
-                    type = "street_address";
+                    type = AddressPartsNames.StreetAddress;
                 }
                 else if (!string.IsNullOrEmpty(add.postalCode))
                 {
-                    type = "postal_code";
+                    type = AddressPartsNames.PostalCode;
                 }
                 else
                 {

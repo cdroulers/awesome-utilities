@@ -5,6 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using System.Geolocation.Services;
 using System.Geolocation;
+using System.Threading;
 
 namespace Awesome.Utilities.Test.Integration.Geolocation.Services
 {
@@ -17,6 +18,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         [SetUp]
         public void SetUp()
         {
+            Thread.Sleep(250); // Google has a rate limit per second. So slow down the tests.
             this.geo = new GoogleMapsGeolocationService();
         }
 

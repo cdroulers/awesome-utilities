@@ -121,6 +121,11 @@
     <value>An error occurred!
 Code: {0}</value>
   </data>
+  <data name="GenericException_YahooMaps" xml:space="preserve">
+    <value>An error occurred!
+Code: {0}
+Message: {1}</value>
+  </data>
   <data name="GenericException_MapQuest" xml:space="preserve">
     <value>An error occurred!
 Code: {0}

@@ -109,7 +109,7 @@ namespace System.Geolocation.Services
         /// <returns></returns>
         protected override AddressInformation[] FilterResults(AddressInformation[] addresses)
         {
-            var results = addresses.Where(s => !s.Components.Any(c => c.Types.Contains("natural_feature", StringComparer.InvariantCultureIgnoreCase)));
+            var results = addresses.Where(s => !s.Components.Any(c => c.Types.Contains(AddressPartsNames.NaturalFeature, StringComparer.InvariantCultureIgnoreCase)));
 
             if (this.IgnoreCloseMatches)
             {
@@ -131,25 +131,25 @@ namespace System.Geolocation.Services
 
         private static readonly Dictionary<string, int> Priorities = new Dictionary<string, int>()
         {
-            { "street_address", 1 },
-            { "intersection", 2 },
-            { "route", 3 },
-            { "subpremise", 4 },
-            { "premise", 5 },
-            { "postal_code", 6 },
-            { "natural_feature", 7 },
-            { "airport", 8 },
-            { "colloquial_area", 9 },
-            { "park", 10 },
-            { "point_of_interest", 11 },
-            { "neighborhood", 12 },
-            { "sublocality", 13 },
-            { "locality", 14 },
-            { "administrative_area_level_1", 15 },
-            { "administrative_area_level_2", 16 },
-            { "administrative_area_level_3", 17 },
-            { "country", 18 },
-            { "political", 19 },
+            { AddressPartsNames.StreetAddress, 1 },
+            { AddressPartsNames.Intersection, 2 },
+            { AddressPartsNames.Route, 3 },
+            { AddressPartsNames.SubPremise, 4 },
+            { AddressPartsNames.Premise, 5 },
+            { AddressPartsNames.PostalCode, 6 },
+            { AddressPartsNames.NaturalFeature, 7 },
+            { AddressPartsNames.Airport, 8 },
+            { AddressPartsNames.ColloquialArea, 9 },
+            { AddressPartsNames.Park, 10 },
+            { AddressPartsNames.PointOfInterest, 11 },
+            { AddressPartsNames.Neighborhood, 12 },
+            { AddressPartsNames.SubLocality, 13 },
+            { AddressPartsNames.Locality, 14 },
+            { AddressPartsNames.AdministrativeAreaLevel1, 15 },
+            { AddressPartsNames.AdministrativeAreaLevel2, 16 },
+            { AddressPartsNames.AdministrativeAreaLevel3, 17 },
+            { AddressPartsNames.Country, 18 },
+            { AddressPartsNames.Political, 19 },
         };
     }
 }

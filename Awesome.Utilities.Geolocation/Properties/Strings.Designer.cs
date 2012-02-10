@@ -82,6 +82,17 @@ namespace System.Geolocation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred!
+        ///Code: {0}
+        ///Message: {1}.
+        /// </summary>
+        internal static string GenericException_YahooMaps {
+            get {
+                return ResourceManager.GetString("GenericException_YahooMaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple coordinates were returned for the location &quot;{0}&quot;. This method does not handle multiple coordinates..
         /// </summary>
         internal static string MultipleCoordinatesException {

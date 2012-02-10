@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using NUnit.Framework;
 using System.Geolocation.Services;
 using System.Geolocation;
@@ -17,6 +18,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         [SetUp]
         public void SetUp()
         {
+            Thread.Sleep(250); // MapQuest has a rate limit per second. So slow down the tests.
             this.geo = new MapQuestGeolocationService("Fmjtd%7Cluu22hu8nl%2Cb5%3Do5-h0and"); // This is a testing key.
         }
 
@@ -59,7 +61,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
             Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland, Ville Mont-Royal, QC, CAN"));
             Assert.That(info.Coordinates, Is.EqualTo(new Coordinates(-73.61154, 45.51418)));
             Assert.That(info.Components, Has.Length.EqualTo(6));
-            Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("[500-600] Avenue Rockland", "[500-600] Avenue Rockland", new string[] { "street_number" })));
+            Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("[500-600] Avenue Rockland", "[500-600] Avenue Rockland", new string[] { "street_address" })));
             Assert.That(info.Components[1], Is.EqualTo(new AddressInformationComponent("H2V 2Z3", "H2V 2Z3", new string[] { "postal_code" })));
             Assert.That(info.Components[2], Is.EqualTo(new AddressInformationComponent("Mont Royal", "Mont Royal", new string[] { "city" })));
             Assert.That(info.Components[3], Is.EqualTo(new AddressInformationComponent("", "", new string[] { "county" })));

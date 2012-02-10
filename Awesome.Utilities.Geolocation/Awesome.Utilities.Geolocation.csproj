@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Services\AddressInformation.cs" />
     <Compile Include="Services\AddressInformationComponent.cs" />
+    <Compile Include="Services\AddressPartsNames.cs" />
     <Compile Include="Services\Caching\BaseCachingGeolocationService.cs" />
     <Compile Include="Services\Caching\PostgreSQLCachingGeolocationService.cs" />
     <Compile Include="Services\Caching\SQLiteCachingGeolocationService.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Services\IGeolocationService.cs" />
     <Compile Include="Services\MapQuestGeolocationService.cs" />
     <Compile Include="Services\MultipleCoordinatesException.cs" />
+    <Compile Include="Services\YahooMapsGeolocationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Awesome.Utilities.System\Awesome.Utilities.System.csproj">
@@ -90,6 +92,7 @@
     <EmbeddedResource Include="Properties\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
