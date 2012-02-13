@@ -121,13 +121,17 @@ namespace System.Geolocation.Services
 
         private void CheckError(dynamic data, string address)
         {
+            if (data.ResultSet.Error == 100 && data.ResultSet.Found == 0)
+            {
+                throw new AddressNotFoundException(string.Format(Properties.Strings.NoResultsException, address));
+            }
             if (data.ResultSet.Error != 0)
             {
-                if (data.ResultSet.Found == 0)
-                {
-                    throw new AddressNotFoundException(string.Format(Properties.Strings.NoResultsException, address));
-                }
                 throw new GeolocationGenericException(string.Format(Properties.Strings.GenericException_YahooMaps, data.ResultSet.Error, data.ResultSet.ErrorMessage));
+            }
+            if (data.ResultSet.Found == 0)
+            {
+                throw new AddressNotFoundException(string.Format(Properties.Strings.NoResultsException, address));
             }
         }
     }
