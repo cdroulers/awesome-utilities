@@ -76,6 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Languages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Runtime\Serialization\DataContractSerializerHelper.cs" />
     <Compile Include="Security\Cryptography\CryptographyHelper.cs" />
     <Compile Include="Security\Cryptography\SupportedHashAlgorithm.cs" />
     <Compile Include="StringArgumentNullOrWhiteSpaceException.cs" />
