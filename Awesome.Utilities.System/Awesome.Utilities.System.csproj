@@ -56,6 +56,7 @@
     <Compile Include="ComponentModel\DataAnnotations\GreaterThanOrEqualToAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\LesserThanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GreaterThanAttribute.cs" />
+    <Compile Include="ComponentModel\DataAnnotations\RequiredGroupAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\UriLengthAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\MailAddressLengthAttribute.cs" />
     <Compile Include="Configuration\DefaultConfiguration.cs" />

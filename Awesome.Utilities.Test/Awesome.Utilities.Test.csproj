@@ -67,6 +67,7 @@
     <Compile Include="ComponentModel\DataAnnotations\GivenLesserThanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenAttributes.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenGreaterThanAttribute.cs" />
+    <Compile Include="ComponentModel\DataAnnotations\GivenRequiredGroupAttribute.cs" />
     <Compile Include="Configuration\GivenFlexibleConfiguration.cs" />
     <Compile Include="Data\Common\GivenConnectionStringHelper.cs" />
     <Compile Include="Geolocation\GivenBoundingBox.cs" />
