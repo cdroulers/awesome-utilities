@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace System.Globalization.Countries.Implementations
 {
@@ -17,6 +18,7 @@ namespace System.Globalization.Countries.Implementations
         /// </summary>
         /// <param name="regionInfo">The region info.</param>
         public RegionInfoCountry(RegionInfo regionInfo)
+            : base(regionInfo.TwoLetterISORegionName)
         {
             Validate.Is.NotNull(regionInfo, "regionInfo");
             this.regionInfo = regionInfo;

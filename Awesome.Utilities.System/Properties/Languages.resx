@@ -144,6 +144,171 @@
   <data name="US" xml:space="preserve">
     <value>United States</value>
   </data>
+  <data name="US_AL" xml:space="preserve">
+    <value>Alabama</value>
+  </data>
+    <data name="US_AK" xml:space="preserve">
+    <value>Alaska</value>
+  </data>
+    <data name="US_AZ" xml:space="preserve">
+    <value>Arizona</value>
+  </data>
+    <data name="US_AR" xml:space="preserve">
+    <value>Arkansas</value>
+  </data>
+    <data name="US_CA" xml:space="preserve">
+    <value>California</value>
+  </data>
+    <data name="US_CO" xml:space="preserve">
+    <value>Colorado</value>
+  </data>
+    <data name="US_CT" xml:space="preserve">
+    <value>Connecticut</value>
+  </data>
+    <data name="US_DE" xml:space="preserve">
+    <value>Delaware</value>
+  </data>
+    <data name="US_FL" xml:space="preserve">
+    <value>Florida</value>
+  </data>
+    <data name="US_GA" xml:space="preserve">
+    <value>Georgia</value>
+  </data>
+    <data name="US_HI" xml:space="preserve">
+    <value>Hawaii</value>
+  </data>
+    <data name="US_ID" xml:space="preserve">
+    <value>Idaho</value>
+  </data>
+    <data name="US_IL" xml:space="preserve">
+    <value>Illinois</value>
+  </data>
+    <data name="US_IN" xml:space="preserve">
+    <value>Indiana</value>
+  </data>
+    <data name="US_IA" xml:space="preserve">
+    <value>Iowa</value>
+  </data>
+    <data name="US_KS" xml:space="preserve">
+    <value>Kansas</value>
+  </data>
+    <data name="US_KY" xml:space="preserve">
+    <value>Kentucky</value>
+  </data>
+    <data name="US_LA" xml:space="preserve">
+    <value>Louisiana</value>
+  </data>
+    <data name="US_ME" xml:space="preserve">
+    <value>Maine</value>
+  </data>
+    <data name="US_MD" xml:space="preserve">
+    <value>Maryland</value>
+  </data>
+    <data name="US_MA" xml:space="preserve">
+    <value>Massachusetts</value>
+  </data>
+    <data name="US_MI" xml:space="preserve">
+    <value>Michigan</value>
+  </data>
+    <data name="US_MN" xml:space="preserve">
+    <value>Minnesota</value>
+  </data>
+    <data name="US_MS" xml:space="preserve">
+    <value>Mississippi</value>
+  </data>
+    <data name="US_MO" xml:space="preserve">
+    <value>Missouri</value>
+  </data>
+    <data name="US_MT" xml:space="preserve">
+    <value>Montana</value>
+  </data>
+    <data name="US_NE" xml:space="preserve">
+    <value>Nebraska</value>
+  </data>
+    <data name="US_NV" xml:space="preserve">
+    <value>Nevada</value>
+  </data>
+    <data name="US_NH" xml:space="preserve">
+    <value>New Hampshire</value>
+  </data>
+    <data name="US_NJ" xml:space="preserve">
+    <value>New Jersey</value>
+  </data>
+    <data name="US_NM" xml:space="preserve">
+    <value>New Mexico</value>
+  </data>
+    <data name="US_NY" xml:space="preserve">
+    <value>New York</value>
+  </data>
+    <data name="US_NC" xml:space="preserve">
+    <value>North Carolina</value>
+  </data>
+    <data name="US_ND" xml:space="preserve">
+    <value>North Dakota</value>
+  </data>
+    <data name="US_OH" xml:space="preserve">
+    <value>Ohio</value>
+  </data>
+    <data name="US_OK" xml:space="preserve">
+    <value>Oklahoma</value>
+  </data>
+    <data name="US_OR" xml:space="preserve">
+    <value>Oregon</value>
+  </data>
+    <data name="US_PA" xml:space="preserve">
+    <value>Pennsylvania</value>
+  </data>
+    <data name="US_RI" xml:space="preserve">
+    <value>Rhode Island</value>
+  </data>
+    <data name="US_SC" xml:space="preserve">
+    <value>South Carolina</value>
+  </data>
+    <data name="US_SD" xml:space="preserve">
+    <value>South Dakota</value>
+  </data>
+    <data name="US_TN" xml:space="preserve">
+    <value>Tennessee</value>
+  </data>
+    <data name="US_TX" xml:space="preserve">
+    <value>Texas</value>
+  </data>
+    <data name="US_UT" xml:space="preserve">
+    <value>Utah</value>
+  </data>
+    <data name="US_VT" xml:space="preserve">
+    <value>Vermont</value>
+  </data>
+    <data name="US_VA" xml:space="preserve">
+    <value>Virginia</value>
+  </data>
+    <data name="US_WA" xml:space="preserve">
+    <value>Washington</value>
+  </data>
+    <data name="US_WV" xml:space="preserve">
+    <value>West Virginia</value>
+  </data>
+    <data name="US_WI" xml:space="preserve">
+    <value>Wisconsin</value>
+  </data>
+    <data name="US_WY" xml:space="preserve">
+    <value>Wyoming</value>
+  </data>
+    <data name="US_DC" xml:space="preserve">
+    <value>District of Columbia</value>
+  </data>
+    <data name="US_GU" xml:space="preserve">
+    <value>Guam</value>
+  </data>
+    <data name="US_VI" xml:space="preserve">
+    <value>Virgin Islands</value>
+  </data>
+    <data name="US_PR" xml:space="preserve">
+    <value>Puerto Rico</value>
+  </data>
+    <data name="US_AS" xml:space="preserve">
+    <value>American Samoa</value>
+  </data>
   <data name="FI" xml:space="preserve">
     <value>Finland</value>
   </data>
@@ -305,6 +470,45 @@
   </data>
   <data name="CA" xml:space="preserve">
     <value>Canada</value>
+  </data>
+  <data name="CA_ON" xml:space="preserve">
+    <value>Ontario</value>
+  </data>
+    <data name="CA_QC" xml:space="preserve">
+    <value>Quebec</value>
+  </data>
+    <data name="CA_NS" xml:space="preserve">
+    <value>Nova Scotia</value>
+  </data>
+    <data name="CA_NB" xml:space="preserve">
+    <value>New Brunswick</value>
+  </data>
+    <data name="CA_MB" xml:space="preserve">
+    <value>Manitoba</value>
+  </data>
+    <data name="CA_BC" xml:space="preserve">
+    <value>British Columbia</value>
+  </data>
+    <data name="CA_PE" xml:space="preserve">
+    <value>Prince Edward Island</value>
+  </data>
+    <data name="CA_SK" xml:space="preserve">
+    <value>Saskatchewan</value>
+  </data>
+    <data name="CA_AB" xml:space="preserve">
+    <value>Alberta</value>
+  </data>
+    <data name="CA_NL" xml:space="preserve">
+    <value>Newfoundland and Labrador</value>
+  </data>
+    <data name="CA_NT" xml:space="preserve">
+    <value>Northwest Territories</value>
+  </data>
+    <data name="CA_YT" xml:space="preserve">
+    <value>Yukon</value>
+  </data>
+    <data name="CA_NU" xml:space="preserve">
+    <value>Nunavut</value>
   </data>
   <data name="ET" xml:space="preserve">
     <value>Ethiopia</value>

@@ -47,6 +47,7 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ComparisonHelper.cs" />
     <Compile Include="Geolocation\Services\GivenYahooMapsGeolocationService.cs" />
     <Compile Include="Geolocation\Services\GivenGoogleMapsGeolocationService.cs" />
     <Compile Include="Geolocation\Services\GivenMapQuestGeolocationService.cs" />

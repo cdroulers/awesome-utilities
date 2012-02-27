@@ -31,7 +31,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         {
             var actual = this.geo.GetCoordinates(address);
 
-            Assert.That(actual, Is.EqualTo(new Coordinates(longitude, latitude)));
+            ComparisonHelper.CompareCoordinates(new Coordinates(longitude, latitude), actual, 0.00001);
         }
 
         [Test]
@@ -62,13 +62,13 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
 
             Assert.That(info, Is.Not.Null);
             Assert.That(info.Type, Is.EqualTo("street_address"));
-            Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland Rd, Mt Royal, QC  H3P, Canada"));
-            Assert.That(info.Coordinates, Is.EqualTo(new Coordinates(-73.628517, 45.520726)));
+            Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland Rd, Montreal, QC  H3P, Canada"));
+            ComparisonHelper.CompareCoordinates(new Coordinates(-73.628517, 45.520726), info.Coordinates, 0.0001);
             Assert.That(info.Components, Has.Length.EqualTo(7));
             Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("304 Rockland Rd", "304 Rockland Rd", new string[] { "street_address" })));
             Assert.That(info.Components[1], Is.EqualTo(new AddressInformationComponent("H3P", "H3P", new string[] { "postal_code" })));
-            Assert.That(info.Components[3], Is.EqualTo(new AddressInformationComponent("Mt Royal", "Mt Royal", new string[] { "locality" })));
-            Assert.That(info.Components[4], Is.EqualTo(new AddressInformationComponent("Montreal", "", new string[] { "administrative_area_level_2" })));
+            Assert.That(info.Components[3], Is.EqualTo(new AddressInformationComponent("Mont-Royal", "Mont-Royal", new string[] { "locality" })));
+            Assert.That(info.Components[4], Is.EqualTo(new AddressInformationComponent("Montréal", "", new string[] { "administrative_area_level_2" })));
             Assert.That(info.Components[5], Is.EqualTo(new AddressInformationComponent("Quebec", "QC", new string[] { "administrative_area_level_1" })));
             Assert.That(info.Components[6], Is.EqualTo(new AddressInformationComponent("Canada", "CA", new string[] { "country" })));
         }

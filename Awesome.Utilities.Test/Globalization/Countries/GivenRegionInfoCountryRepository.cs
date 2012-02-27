@@ -43,5 +43,15 @@ namespace Awesome.Utilities.Test.Globalization.Countries
 
             Assert.That(results, Has.Count.EqualTo(128));
         }
+
+        [TestCase("US", 55)]
+        [TestCase("CA", 13)]
+        [TestCase("DE", 0)]
+        public void When_getting_by_two_letter_code_Then_returns_divisions(string code, int count)
+        {
+            var result = this.countries.GetByTwoLetterCode(code);
+
+            Assert.That(result.Divisions, Has.Count.EqualTo(count));
+        }
     }
 }
