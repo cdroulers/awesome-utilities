@@ -143,5 +143,19 @@ namespace Awesome.Utilities.Test
                 Validate.Is.EqualTo(toValidate.Length, toCompare, "toValidate.Length");
             }
         }
+
+        [TestCase("US,CA,FR", "CA", false)]
+        [TestCase("US,CA,FR", "DE", true)]
+        public void When_validating_contained_in_Then_works(string toSplit, string toCompare, bool shouldThrow)
+        {
+            if (shouldThrow)
+            {
+                Assert.Throws<ArgumentException>(() => Validate.Is.ContainedIn(toCompare, toSplit.Split(','), "toValidate"));
+            }
+            else
+            {
+                Validate.Is.ContainedIn(toCompare, toSplit.Split(','), "toValidate");
+            }
+        }
     }
 }

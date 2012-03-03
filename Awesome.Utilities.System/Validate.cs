@@ -185,5 +185,20 @@ namespace System
                 }
             }
         }
+
+        /// <summary>
+        /// Checks whether "toValidate" is contained in the "array"
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="toValidate">To validate.</param>
+        /// <param name="array">The array.</param>
+        /// <param name="name">The name.</param>
+        public void ContainedIn<T>(T toValidate, IEnumerable<T> array, string name)
+        {
+            if (!array.Contains(toValidate))
+            {
+                throw new ArgumentException(name, string.Format(Properties.Strings.Validate_ContainedIn, toValidate, string.Join(", ", array.Select(a => a.ToString()))));
+            }
+        }
     }
 }

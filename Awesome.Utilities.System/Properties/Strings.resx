@@ -135,6 +135,9 @@
   <data name="Validate_BetweenInclusive" xml:space="preserve">
     <value>The value must be between {0} and {1} (inclusive).</value>
   </data>
+  <data name="Validate_ContainedIn" xml:space="preserve">
+    <value>Teh value "{0}" was not in the array "{1}".</value>
+  </data>
   <data name="Validate_EqualTo" xml:space="preserve">
     <value>The value "{1}" should be equal to "{0}".</value>
   </data>
