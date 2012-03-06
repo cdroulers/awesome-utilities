@@ -136,7 +136,7 @@
     <value>The value must be between {0} and {1} (inclusive).</value>
   </data>
   <data name="Validate_ContainedIn" xml:space="preserve">
-    <value>Teh value "{0}" was not in the array "{1}".</value>
+    <value>The value "{0}" must not be in the array "{1}".</value>
   </data>
   <data name="Validate_EqualTo" xml:space="preserve">
     <value>The value "{1}" should be equal to "{0}".</value>
@@ -152,6 +152,36 @@
   </data>
   <data name="Validate_LowerThanOrEqualTo" xml:space="preserve">
     <value>The value must be lower than or equal to {0}.</value>
+  </data>
+  <data name="Validate_NotBetween" xml:space="preserve">
+    <value>The value must not be between {0} and {1}.</value>
+  </data>
+  <data name="Validate_NotBetweenInclusive" xml:space="preserve">
+    <value>The value must not be between {0} and {1} (inclusive).</value>
+  </data>
+  <data name="Validate_NotContainedIn" xml:space="preserve">
+    <value>The value "{0}" must be in the array "{1}".</value>
+  </data>
+  <data name="Validate_NotEqualTo" xml:space="preserve">
+    <value>The value "{1}" should not be equal to "{0}".</value>
+  </data>
+  <data name="Validate_NotHigherThan" xml:space="preserve">
+    <value>The value must not be higher than {0}.</value>
+  </data>
+  <data name="Validate_NotHigherThanOrEqualTo" xml:space="preserve">
+    <value>The value must not be higher than or equal to {0}.</value>
+  </data>
+  <data name="Validate_NotLowerThan" xml:space="preserve">
+    <value>The value must not be lower than {0}.</value>
+  </data>
+  <data name="Validate_NotLowerThanOrEqualTo" xml:space="preserve">
+    <value>The value must not be lower than or equal to {0}.</value>
+  </data>
+  <data name="Validate_NotNullOrEmpty" xml:space="preserve">
+    <value>The string must be null or empty.</value>
+  </data>
+  <data name="Validate_NotNullOrWhitespace" xml:space="preserve">
+    <value>The string must be null or whitespace.</value>
   </data>
   <data name="Validate_NullOrEmpty" xml:space="preserve">
     <value>The string must not be null or empty.</value>

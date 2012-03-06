@@ -35,8 +35,8 @@ namespace System.Web.Mvc.UI
         /// <returns></returns>
         public static MvcHtmlString GeneratePages<T>(this HtmlHelper self, ResultPage<T> pagedList, Func<PageData, MvcHtmlString> pageFunc, int maximumNumberOfPagesToShow)
         {
-            Validate.Is.NotNull(pagedList, "pagedList");
-            Validate.Is.NotNull(pageFunc, "pageFunc");
+            Validate.Is.Not.Null(pagedList, "pagedList");
+            Validate.Is.Not.Null(pageFunc, "pageFunc");
 
             return new PageGenerator<T>(pagedList, pageFunc, maximumNumberOfPagesToShow).ToHtmlString();
         }
@@ -67,7 +67,7 @@ namespace System.Web.Mvc.UI
         /// <returns></returns>
         public static MvcHtmlString SubmitCancel(this HtmlHelper self, string cancelUrl, string text = null, string cancelText = null, bool cancelFirst = false)
         {
-            Validate.Is.NotNullOrWhiteSpace(cancelUrl, "cancelUrl");
+            Validate.Is.Not.NullOrWhiteSpace(cancelUrl, "cancelUrl");
 
             if (string.IsNullOrEmpty(text))
             {

@@ -31,6 +31,14 @@ namespace System.ComponentModel.DataAnnotations
             this.GroupName = groupName;
         }
 
+        /// <summary>
+        /// Validates the specified value with respect to the current validation attribute.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="validationContext">The context information about the validation operation.</param>
+        /// <returns>
+        /// An instance of the <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> class.
+        /// </returns>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var properties = validationContext.ObjectType.GetProperties().Where(p => p.GetCustomAttributes(typeof(RequiredGroupAttribute), true).Cast<RequiredGroupAttribute>().Where(c => c.GroupName == this.GroupName).Any());

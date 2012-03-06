@@ -115,7 +115,7 @@ namespace System.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Teh value &quot;{0}&quot; was not in the array &quot;{1}&quot;..
+        ///   Looks up a localized string similar to The value &quot;{0}&quot; must not be in the array &quot;{1}&quot;..
         /// </summary>
         internal static string Validate_ContainedIn {
             get {
@@ -165,6 +165,96 @@ namespace System.Properties {
         internal static string Validate_LowerThanOrEqualTo {
             get {
                 return ResourceManager.GetString("Validate_LowerThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must not be between {0} and {1}..
+        /// </summary>
+        internal static string Validate_NotBetween {
+            get {
+                return ResourceManager.GetString("Validate_NotBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must not be between {0} and {1} (inclusive)..
+        /// </summary>
+        internal static string Validate_NotBetweenInclusive {
+            get {
+                return ResourceManager.GetString("Validate_NotBetweenInclusive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value &quot;{0}&quot; must be in the array &quot;{1}&quot;..
+        /// </summary>
+        internal static string Validate_NotContainedIn {
+            get {
+                return ResourceManager.GetString("Validate_NotContainedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value &quot;{1}&quot; should not be equal to &quot;{0}&quot;..
+        /// </summary>
+        internal static string Validate_NotEqualTo {
+            get {
+                return ResourceManager.GetString("Validate_NotEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must not be higher than {0}..
+        /// </summary>
+        internal static string Validate_NotHigherThan {
+            get {
+                return ResourceManager.GetString("Validate_NotHigherThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must not be higher than or equal to {0}..
+        /// </summary>
+        internal static string Validate_NotHigherThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("Validate_NotHigherThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must not be lower than {0}..
+        /// </summary>
+        internal static string Validate_NotLowerThan {
+            get {
+                return ResourceManager.GetString("Validate_NotLowerThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must not be lower than or equal to {0}..
+        /// </summary>
+        internal static string Validate_NotLowerThanOrEqualTo {
+            get {
+                return ResourceManager.GetString("Validate_NotLowerThanOrEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string must be null or empty..
+        /// </summary>
+        internal static string Validate_NotNullOrEmpty {
+            get {
+                return ResourceManager.GetString("Validate_NotNullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string must be null or whitespace..
+        /// </summary>
+        internal static string Validate_NotNullOrWhitespace {
+            get {
+                return ResourceManager.GetString("Validate_NotNullOrWhitespace", resourceCulture);
             }
         }
         

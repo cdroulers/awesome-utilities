@@ -179,7 +179,7 @@ namespace System.Configuration
         /// <param name="manager">The manager.</param>
         public static void Configure(IFlexibleConfiguration manager)
         {
-            Validate.Is.NotNull(manager, "manager");
+            Validate.Is.Not.Null(manager, "manager");
             FlexibleConfiguration.instance = manager;
         }
     }

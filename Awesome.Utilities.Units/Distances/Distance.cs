@@ -79,7 +79,7 @@ namespace System.Units.Distances
 
         internal static Distance Build(Type type, decimal value)
         {
-            Validate.Is.NotNull(type, "type");
+            Validate.Is.Not.Null(type, "type");
             if (!typeof(Distance).IsAssignableFrom(type))
             {
                 throw new NotSupportedException(string.Format(Properties.Strings.Distance_TypeXIsNotADistance, type));

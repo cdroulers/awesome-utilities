@@ -19,7 +19,7 @@ namespace System.Globalization.Countries
         /// <param name="twoLetterIsoCode">The two letter iso code.</param>
         protected Country(string twoLetterIsoCode)
         {
-            Validate.Is.NotNull(twoLetterIsoCode, "twoLetterIsoCode");
+            Validate.Is.Not.Null(twoLetterIsoCode, "twoLetterIsoCode");
             switch (twoLetterIsoCode)
             {
                 case "US":

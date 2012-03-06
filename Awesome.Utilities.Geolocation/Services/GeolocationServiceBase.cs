@@ -24,7 +24,7 @@ namespace System.Geolocation.Services
         /// <param name="baseAddress">The base address.</param>
         protected GeolocationServiceBase(Uri baseAddress)
         {
-            Validate.Is.NotNull(baseAddress, "baseAddress");
+            Validate.Is.Not.Null(baseAddress, "baseAddress");
             this.BaseAddress = baseAddress;
         }
 

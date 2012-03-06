@@ -20,7 +20,7 @@ namespace System.Globalization.Countries.Implementations
         public RegionInfoCountry(RegionInfo regionInfo)
             : base(regionInfo.TwoLetterISORegionName)
         {
-            Validate.Is.NotNull(regionInfo, "regionInfo");
+            Validate.Is.Not.Null(regionInfo, "regionInfo");
             this.regionInfo = regionInfo;
         }
 

@@ -62,11 +62,15 @@
     <Compile Include="Configuration\DefaultConfiguration.cs" />
     <Compile Include="Configuration\FlexibleConfiguration.cs" />
     <Compile Include="Configuration\IFlexibleConfiguration.cs" />
+    <Compile Include="ArgumentNotNullException.cs" />
+    <Compile Include="StringArgumentNotNullOrEmptyException.cs" />
+    <Compile Include="StringArgumentNotNullOrWhiteSpaceException.cs" />
     <Compile Include="Globalization\Countries\District.cs" />
     <Compile Include="Globalization\Countries\CountryDivision.cs" />
     <Compile Include="Globalization\Countries\Province.cs" />
     <Compile Include="Globalization\Countries\State.cs" />
     <Compile Include="Globalization\Countries\Territory.cs" />
+    <Compile Include="IValidate.cs" />
     <Compile Include="Net\Mail\FileSmtpClient.cs" />
     <Compile Include="Net\Mail\ISmtpClient.cs" />
     <Compile Include="Net\Mail\SmtpClientWrapper.cs" />
