@@ -67,6 +67,9 @@
     <Compile Include="Globalization\Countries\Province.cs" />
     <Compile Include="Globalization\Countries\State.cs" />
     <Compile Include="Globalization\Countries\Territory.cs" />
+    <Compile Include="Net\Mail\FileSmtpClient.cs" />
+    <Compile Include="Net\Mail\ISmtpClient.cs" />
+    <Compile Include="Net\Mail\SmtpClientWrapper.cs" />
     <Compile Include="NotFoundException.cs" />
     <Compile Include="Data\Common\ConnectionStringHelper.cs" />
     <Compile Include="Data\Json\DynamicJson.cs" />
