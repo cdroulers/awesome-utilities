@@ -73,6 +73,7 @@
     <Compile Include="Geolocation\GivenBoundingBox.cs" />
     <Compile Include="Geolocation\GivenCoordinates.cs" />
     <Compile Include="Geolocation\Services\Caching\GivenSQLiteCachingGeolocationService.cs" />
+    <Compile Include="GivenClock.cs" />
     <Compile Include="Globalization\Countries\GivenRegionInfoCountryRepository.cs" />
     <Compile Include="Messages\GivenNotification.cs" />
     <Compile Include="Collections\Generic\GivenResultPage.cs" />

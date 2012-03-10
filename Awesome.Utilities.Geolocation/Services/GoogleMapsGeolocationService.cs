@@ -114,6 +114,10 @@ namespace System.Geolocation.Services
 
             if (this.IgnoreCloseMatches)
             {
+                if (results.Any(r => !Priorities.ContainsKey(r.Type)))
+                {
+                    return addresses;
+                }
                 // Filter stuffs here.
                 foreach (var address in results.ToList())
                 {
@@ -132,25 +136,26 @@ namespace System.Geolocation.Services
 
         private static readonly Dictionary<string, int> Priorities = new Dictionary<string, int>()
         {
-            { AddressPartsNames.StreetAddress, 1 },
-            { AddressPartsNames.Intersection, 2 },
-            { AddressPartsNames.Route, 3 },
-            { AddressPartsNames.SubPremise, 4 },
-            { AddressPartsNames.Premise, 5 },
-            { AddressPartsNames.PostalCode, 6 },
-            { AddressPartsNames.NaturalFeature, 7 },
-            { AddressPartsNames.Airport, 8 },
-            { AddressPartsNames.ColloquialArea, 9 },
-            { AddressPartsNames.Park, 10 },
-            { AddressPartsNames.PointOfInterest, 11 },
-            { AddressPartsNames.Neighborhood, 12 },
-            { AddressPartsNames.SubLocality, 13 },
-            { AddressPartsNames.Locality, 14 },
-            { AddressPartsNames.AdministrativeAreaLevel1, 15 },
-            { AddressPartsNames.AdministrativeAreaLevel2, 16 },
-            { AddressPartsNames.AdministrativeAreaLevel3, 17 },
-            { AddressPartsNames.Country, 18 },
-            { AddressPartsNames.Political, 19 },
+            { AddressPartsNames.StreetAddress, 10 },
+            { AddressPartsNames.Intersection, 20 },
+            { AddressPartsNames.Route, 30 },
+            { AddressPartsNames.SubPremise, 40 },
+            { AddressPartsNames.University, 45 },
+            { AddressPartsNames.Premise, 50 },
+            { AddressPartsNames.PostalCode, 60 },
+            { AddressPartsNames.NaturalFeature, 70 },
+            { AddressPartsNames.Airport, 80 },
+            { AddressPartsNames.ColloquialArea, 90 },
+            { AddressPartsNames.Park, 100 },
+            { AddressPartsNames.PointOfInterest, 110 },
+            { AddressPartsNames.Neighborhood, 120 },
+            { AddressPartsNames.SubLocality, 130 },
+            { AddressPartsNames.Locality, 140 },
+            { AddressPartsNames.AdministrativeAreaLevel1, 150 },
+            { AddressPartsNames.AdministrativeAreaLevel2, 160 },
+            { AddressPartsNames.AdministrativeAreaLevel3, 170 },
+            { AddressPartsNames.Country, 180 },
+            { AddressPartsNames.Political, 190 },
         };
     }
 }

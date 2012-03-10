@@ -49,6 +49,7 @@
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AdvancedMath.cs" />
+    <Compile Include="Clock.cs" />
     <Compile Include="Collections\Generic\ResultPage.cs" />
     <Compile Include="ComponentModel\DataAnnotations\RequiredBooleanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\ComparisonAttribute.cs" />

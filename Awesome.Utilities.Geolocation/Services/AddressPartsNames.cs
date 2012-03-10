@@ -27,6 +27,10 @@ namespace System.Geolocation.Services
         /// </summary>
         public const string SubPremise = "subpremise";
         /// <summary>
+        /// university
+        /// </summary>
+        public const string University = "university";
+        /// <summary>
         /// premise
         /// </summary>
         public const string Premise = "premise";

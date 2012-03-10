@@ -52,6 +52,14 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         }
 
         [Test]
+        public void When_getting_university_coordinates_Then_works()
+        {
+            this.geo = new GoogleMapsGeolocationService(ignoreCloseMatches: true);
+
+            var coordinates = this.geo.GetCoordinates("Florida International University - Modesto A. Maidique Campus, Miami, FL");
+        }
+
+        [Test]
         public void When_getting_coordinates_that_have_close_match_with_param_to_false_Then_throws()
         {
             var exc = Assert.Throws<MultipleCoordinatesException>(() => this.geo.GetCoordinates("Boisbriand, QC, Canada"));
