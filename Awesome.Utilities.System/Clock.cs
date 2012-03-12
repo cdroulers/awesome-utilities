@@ -16,21 +16,13 @@ namespace System
         private static bool IsPaused { get; set; }
 
         /// <summary>
-        /// Gets the now.
-        /// </summary>
-        public static DateTime Now
-        {
-            get { return IsPaused ? now.Value : DateTime.Now; }
-        }
-
-        /// <summary>
         /// Returns a DateTime representing the current date and time. The
         /// resolution of the returned value depends on the system timer. For Windows NT 3.5 and later the timer resolution is approximately 10ms, 
         /// for Windows NT 3.1 it is approximately 16ms, and for Windows 95 and 98 it is approximately 55ms. 
         /// </summary>
-        public static DateTime UtcNow
+        public static DateTime Now
         {
-            get { return IsPaused ? utcNow.Value : DateTime.UtcNow; }
+            get { return Clock.IsPaused ? now.Value : DateTime.Now; }
         }
 
         /// <summary>
@@ -38,12 +30,28 @@ namespace System
         /// resolution of the returned value depends on the system timer. For Windows NT 3.5 and later the timer resolution is approximately 10ms, 
         /// for Windows NT 3.1 it is approximately 16ms, and for Windows 95 and 98 it is approximately 55ms. 
         /// </summary>
+        public static DateTime UtcNow
+        {
+            get { return Clock.IsPaused ? utcNow.Value : DateTime.UtcNow; }
+        }
+
+        /// <summary>
+        ///     Pauses the clock on the current time.
+        /// </summary>
         public static IDisposable Pause()
         {
-            IsPaused = true;
-            now = DateTime.Now;
-            utcNow = DateTime.UtcNow;
-            return new DisposableAction(() => IsPaused = false);
+            return Clock.Pause(DateTime.UtcNow);
+        }
+
+        /// <summary>
+        ///     Pauses the clock on the specified time.
+        /// </summary>
+        public static IDisposable Pause(DateTime utcNow)
+        {
+            Clock.IsPaused = true;
+            Clock.now = utcNow.ToLocalTime();
+            Clock.utcNow = utcNow;
+            return new DisposableAction(() => Clock.IsPaused = false);
         }
 
         private class DisposableAction : IDisposable
