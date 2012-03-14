@@ -18,6 +18,9 @@ namespace System.Geolocation.Services.Caching
         private readonly ConnectionStringSettings connectionString;
         private readonly TimeSpan MaximumLifeTime;
 
+        /// <summary>
+        ///     The table name.
+        /// </summary>
         protected const string TableName = "address_cache";
 
         /// <summary>
@@ -25,6 +28,7 @@ namespace System.Geolocation.Services.Caching
         /// </summary>
         /// <param name="decorated">The decorated.</param>
         /// <param name="connectionString">The connection string.</param>
+        /// <param name="maximumLifeTime">The maximum life time.</param>
         protected BaseCachingGeolocationService(IGeolocationService decorated, ConnectionStringSettings connectionString, TimeSpan? maximumLifeTime = null)
         {
             this.decorated = decorated;
@@ -32,6 +36,10 @@ namespace System.Geolocation.Services.Caching
             this.MaximumLifeTime = maximumLifeTime.GetValueOrDefault(TimeSpan.FromDays(30));
         }
 
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <returns></returns>
         protected IDbConnection GetConnection()
         {
             var factory = DbProviderFactories.GetFactory(this.connectionString.ProviderName);
@@ -71,6 +79,10 @@ namespace System.Geolocation.Services.Caching
 
         private static AddressInformationComponent[] GetComponents(string components)
         {
+            if (string.IsNullOrWhiteSpace(components))
+            {
+                return new AddressInformationComponent[0];
+            }
             string[] parts = components.Split('\n');
             var results = new List<AddressInformationComponent>();
             foreach (string part in parts)
