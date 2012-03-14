@@ -9,8 +9,6 @@ using System.Data;
 
 namespace System.Geolocation.Services.Caching
 {
-    //TODO The creation of database/table/insert need to be unit tested
-
     /// <summary>
     ///     A Caching base class. Subclass for each DB provider.
     /// </summary>
@@ -18,16 +16,29 @@ namespace System.Geolocation.Services.Caching
     {
         private readonly IGeolocationService decorated;
         private readonly ConnectionStringSettings connectionString;
+        private readonly TimeSpan MaximumLifeTime;
+
+        protected const string TableName = "address_cache";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseCachingGeolocationService"/> class.
         /// </summary>
         /// <param name="decorated">The decorated.</param>
         /// <param name="connectionString">The connection string.</param>
-        protected BaseCachingGeolocationService(IGeolocationService decorated, ConnectionStringSettings connectionString)
+        protected BaseCachingGeolocationService(IGeolocationService decorated, ConnectionStringSettings connectionString, TimeSpan? maximumLifeTime = null)
         {
             this.decorated = decorated;
             this.connectionString = connectionString;
+            this.MaximumLifeTime = maximumLifeTime.GetValueOrDefault(TimeSpan.FromDays(30));
+        }
+
+        protected IDbConnection GetConnection()
+        {
+            var factory = DbProviderFactories.GetFactory(this.connectionString.ProviderName);
+            var connection = factory.CreateConnection();
+            connection.ConnectionString = this.connectionString.ConnectionString;
+            connection.Open();
+            return connection;
         }
 
         /// <summary>
@@ -35,15 +46,9 @@ namespace System.Geolocation.Services.Caching
         /// </summary>
         protected virtual void BaseSetup()
         {
-            var factory = DbProviderFactories.GetFactory(this.connectionString.ProviderName);
-            using (var connection = factory.CreateConnection())
+            using (var connection = this.GetConnection())
             {
-                connection.ConnectionString = this.connectionString.ConnectionString;
-                connection.Open();
-                if (!this.TableExists("AddressCache", connection))
-                {
-                    this.CreateCachingTable(connection);
-                }
+                this.VerifyCachingTable(connection);
             }
         }
 
@@ -52,15 +57,7 @@ namespace System.Geolocation.Services.Caching
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns></returns>
-        protected abstract void CreateCachingTable(IDbConnection connection);
-
-        /// <summary>
-        /// returns whether the table exists.
-        /// </summary>
-        /// <param name="tableName">Name of the table.</param>
-        /// <param name="connection">The connection.</param>
-        /// <returns></returns>
-        protected abstract bool TableExists(string tableName, IDbConnection connection);
+        protected abstract void VerifyCachingTable(IDbConnection connection);
 
         /// <summary>
         /// Gets the coordinates of the specified address.
@@ -69,27 +66,24 @@ namespace System.Geolocation.Services.Caching
         /// <returns></returns>
         public Coordinates GetCoordinates(string address)
         {
-            var factory = DbProviderFactories.GetFactory(connectionString.ProviderName);
-            using (var connection = factory.CreateConnection())
+            return this.GetAddressInformation(address).Coordinates;
+        }
+
+        private static AddressInformationComponent[] GetComponents(string components)
+        {
+            string[] parts = components.Split('\n');
+            var results = new List<AddressInformationComponent>();
+            foreach (string part in parts)
             {
-                connection.ConnectionString = this.connectionString.ConnectionString;
-                connection.Open();
-                using (var reader = connection.ExecuteReader("SELECT Longitude, Latitude FROM AddressCache WHERE Address = {0}", address))
-                {
-                    if (reader.Read())
-                    {
-                        return new Coordinates(
-                            reader.GetDouble(0),
-                            reader.GetDouble(1)
-                        );
-                    }
-                }
-
-                var coordinates = this.decorated.GetCoordinates(address);
-
-                connection.ExecuteNonQuery("INSERT INTO AddressCache (Address, Longitude, Latitude) VALUES ({0}, {1}, {2})", address, coordinates.Longitude, coordinates.Latitude);
-                return coordinates;
+                var subParts = part.Split('&');
+                results.Add(new AddressInformationComponent(subParts[0], subParts[1], subParts[2].Split(';')));
             }
+            return results.ToArray();
+        }
+
+        private static string GetComponents(AddressInformationComponent[] components)
+        {
+            return string.Join("\n", components.Select(c => c.LongName + "&" + c.ShortName + "&" + string.Join(";", c.Types)));
         }
 
         /// <summary>
@@ -99,7 +93,9 @@ namespace System.Geolocation.Services.Caching
         /// <returns></returns>
         public AddressInformation GetAddressInformation(string address)
         {
-            return this.decorated.GetAddressInformation(address);
+            var addresses = this.GetAllAddressInformation(address);
+            addresses = GeolocationServiceBase.CheckMultipleResults(address, addresses, a => a);
+            return addresses.First();
         }
 
         /// <summary>
@@ -109,7 +105,62 @@ namespace System.Geolocation.Services.Caching
         /// <returns></returns>
         public AddressInformation[] GetAllAddressInformation(string address)
         {
-            return this.decorated.GetAllAddressInformation(address);
+            using (var connection = this.GetConnection())
+            {
+                bool deleteValues = false;
+                using (var reader = connection.ExecuteReader("SELECT formatted_address, longitude, latitude, type, components, updated_on FROM address_cache WHERE LOWER(address) = {0}", address.ToLowerInvariant()))
+                {
+                    var addresses = new List<AddressInformation>();
+                    while (reader.Read())
+                    {
+                        var expires = reader.GetDateTime(5) + this.MaximumLifeTime;
+
+                        var info = new AddressInformation(
+                            GetComponents(reader.GetString(4)),
+                            new Coordinates(
+                                reader.GetDouble(1),
+                                reader.GetDouble(2)
+                            ),
+                            reader.GetString(0),
+                            reader.GetString(3)
+                        );
+                        addresses.Add(info);
+
+                        if (Clock.UtcNow > expires)
+                        {
+                            deleteValues = true;
+                        }
+                    }
+
+                    if (addresses.Any() && !deleteValues)
+                    {
+                        return addresses.ToArray();
+                    }
+
+                    if (deleteValues)
+                    {
+                        foreach (var info in addresses)
+                        {
+                            connection.ExecuteNonQuery("DELETE FROM address_cache WHERE address = {0} AND formatted_address = {1}", address, info.FormattedAddress);
+                        }
+                    }
+                }
+
+                var results = this.decorated.GetAllAddressInformation(address);
+
+                foreach (var result in results)
+                {
+                    connection.ExecuteNonQuery("INSERT INTO address_cache (address, formatted_address, longitude, latitude, type, components, updated_on) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                        address,
+                        result.FormattedAddress,
+                        result.Coordinates.Longitude,
+                        result.Coordinates.Latitude,
+                        result.Type,
+                        GetComponents(result.Components),
+                        Clock.UtcNow);
+                }
+                return results;
+            }
         }
     }
 }

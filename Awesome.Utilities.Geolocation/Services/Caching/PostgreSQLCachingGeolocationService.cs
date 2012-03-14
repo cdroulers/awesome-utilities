@@ -45,21 +45,29 @@ namespace System.Geolocation.Services.Caching
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns></returns>
-        protected override void CreateCachingTable(IDbConnection connection)
+        protected override void VerifyCachingTable(IDbConnection connection)
         {
-            connection.ExecuteNonQuery("CREATE UNLOGGED TABLE IF NOT EXISTS AddressCache (Address VARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);");
-        }
+            bool tableExists = false;
+            using (var reader = connection.ExecuteReader("SELECT relname FROM pg_class WHERE relname = {0}", BaseCachingGeolocationService.TableName))
+            {
+                tableExists = reader.Read();
+            }
+            if (!tableExists)
+            {
+                connection.ExecuteNonQuery(
+                    string.Format(@"CREATE UNLOGGED TABLE {0} (
+    address VARCHAR(250) NOT NULL,
+    formatted_address VARCHAR(250) NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
+    latitude DOUBLE PRECISION NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    components TEXT NOT NULL,
+    updated_on TIMESTAMP NOT NULL,
+    CONSTRAINT address_cache_pk PRIMARY KEY (address, formatted_address));",
+                        BaseCachingGeolocationService.TableName));
 
-        /// <summary>
-        /// returns whether the table exists.
-        /// </summary>
-        /// <param name="tableName">Name of the table.</param>
-        /// <param name="connection">The connection.</param>
-        /// <returns></returns>
-        protected override bool TableExists(string tableName, IDbConnection connection)
-        {
-            // The validation is done in the create command;
-            return false;
+                connection.ExecuteNonQuery(@"CREATE INDEX ""address_cache_address_asc"" ON address_cache (LOWER(address));");
+            }
         }
     }
 }

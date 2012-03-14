@@ -38,22 +38,26 @@ namespace System.Geolocation.Services.Caching
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns></returns>
-        protected override void CreateCachingTable(IDbConnection connection)
+        protected override void VerifyCachingTable(IDbConnection connection)
         {
-            connection.ExecuteNonQuery("CREATE TABLE AddressCache (Address NVARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);");
-        }
-
-        /// <summary>
-        /// returns whether the table exists.
-        /// </summary>
-        /// <param name="tableName">Name of the table.</param>
-        /// <param name="connection">The connection.</param>
-        /// <returns></returns>
-        protected override bool TableExists(string tableName, IDbConnection connection)
-        {
-            using (var reader = connection.ExecuteReader("SELECT name FROM sqlite_master WHERE type = 'table' AND name = @TableName", tableName))
+            bool tableExists = false;
+            using (var reader = connection.ExecuteReader("SELECT name FROM sqlite_master WHERE type = 'table' AND name = {0}", BaseCachingGeolocationService.TableName))
             {
-                return reader.Read();
+                tableExists = reader.Read();
+            }
+            if (!tableExists)
+            {
+                connection.ExecuteNonQuery(
+                    string.Format(@"CREATE TABLE {0} (
+    address NVARCHAR(250) NOT NULL,
+    formatted_address NVARCHAR(250) NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
+    latitude DOUBLE PRECISION NOT NULL,
+    type NVARCHAR(100) NOT NULL,
+    components TEXT NOT NULL,
+    updated_on TIMESTAMP NOT NULL,
+    CONSTRAINT address_cache_pk PRIMARY KEY (address, formatted_address));",
+                        BaseCachingGeolocationService.TableName));
             }
         }
     }

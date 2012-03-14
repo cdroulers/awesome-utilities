@@ -57,5 +57,32 @@ namespace System.Geolocation.Services
         {
             return this.FormattedAddress;
         }
+
+        public bool Equals(AddressInformation other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return other.Components.SequenceEqual(Components) && Equals(other.Type, Type) && other.Coordinates.Equals(Coordinates) && Equals(other.FormattedAddress, FormattedAddress);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (AddressInformation)) return false;
+            return Equals((AddressInformation) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int result = (Components != null ? Components.GetHashCode() : 0);
+                result = (result*397) ^ (Type != null ? Type.GetHashCode() : 0);
+                result = (result*397) ^ Coordinates.GetHashCode();
+                result = (result*397) ^ (FormattedAddress != null ? FormattedAddress.GetHashCode() : 0);
+                return result;
+            }
+        }
     }
 }

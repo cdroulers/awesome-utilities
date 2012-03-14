@@ -31,6 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Npgsql\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\Dependencies\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.11.92, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Npgsql\Npgsql.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\Dependencies\nunit.framework.dll</HintPath>
     </Reference>
@@ -53,6 +64,8 @@
     </Compile>
     <Compile Include="ComparisonHelper.cs" />
     <Compile Include="Data\GivenDbConnectionExtensions.cs" />
+    <Compile Include="Geolocation\Services\Caching\GivenPostgreSQLCachingGeolocationService.cs" />
+    <Compile Include="Geolocation\Services\Caching\GivenSQLiteCachingGeolocationService.cs" />
     <Compile Include="Geolocation\Services\GivenYahooMapsGeolocationService.cs" />
     <Compile Include="Geolocation\Services\GivenGoogleMapsGeolocationService.cs" />
     <Compile Include="Geolocation\Services\GivenMapQuestGeolocationService.cs" />
@@ -67,6 +80,9 @@
       <Project>{BD269F95-E64C-489D-AA68-5FDF6E513AED}</Project>
       <Name>Awesome.Utilities.System</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

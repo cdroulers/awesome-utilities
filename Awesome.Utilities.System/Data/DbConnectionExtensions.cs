@@ -24,7 +24,7 @@ namespace System.Data
                     parameter.Value = parameters[i];
                     command.Parameters.Add(parameter);
                 }
-                text = string.Format(text, parameterNames);
+                text = string.Format(text, parameterNames.ToArray());
             }
             command.CommandText = text;
         }

@@ -46,7 +46,7 @@ namespace System.Geolocation.Services
         public virtual AddressInformation GetAddressInformation(string address)
         {
             var addresses = this.GetAllAddressInformation(address);
-            addresses = this.CheckMultipleResults(address, addresses);
+            addresses = GeolocationServiceBase.CheckMultipleResults(address, addresses, this.FilterResults);
             return addresses.First();
         }
 
@@ -60,9 +60,9 @@ namespace System.Geolocation.Services
             return addresses;
         }
 
-        private AddressInformation[] CheckMultipleResults(string address, AddressInformation[] addresses)
+        internal static AddressInformation[] CheckMultipleResults(string address, AddressInformation[] addresses, Func<AddressInformation[], AddressInformation[]> filter)
         {
-            var results = this.FilterResults(addresses);
+            var results = filter(addresses);
             if (results.Length > 1)
             {
                 throw new MultipleCoordinatesException(string.Format(Properties.Strings.MultipleCoordinatesException, address), addresses);
