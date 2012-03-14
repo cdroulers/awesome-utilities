@@ -64,6 +64,7 @@
     <Compile Include="Configuration\FlexibleConfiguration.cs" />
     <Compile Include="Configuration\IFlexibleConfiguration.cs" />
     <Compile Include="ArgumentNotNullException.cs" />
+    <Compile Include="Data\DbConnectionExtensions.cs" />
     <Compile Include="StringArgumentNotNullOrEmptyException.cs" />
     <Compile Include="StringArgumentNotNullOrWhiteSpaceException.cs" />
     <Compile Include="Globalization\Countries\District.cs" />

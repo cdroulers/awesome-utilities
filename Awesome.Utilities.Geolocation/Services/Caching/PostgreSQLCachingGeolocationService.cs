@@ -29,15 +29,11 @@ namespace System.Geolocation.Services.Caching
             using (var connection = new NpgsqlConnection(builder.ConnectionString))
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
+                var scalar = connection.ExecuteScalar<object>(string.Format("SELECT COUNT(*) FROM pg_catalog.pg_database WHERE datname='{0}';", databaseName));
+                var exists = int.Parse(scalar.ToString()) > 0;
+                if (!exists)
                 {
-                    command.CommandText = string.Format("SELECT COUNT(*) FROM pg_catalog.pg_database WHERE datname='{0}';", databaseName);
-                    var exists = int.Parse(command.ExecuteScalar().ToString()) > 0;
-                    if (!exists)
-                    {
-                        command.CommandText = string.Format("CREATE DATABASE \"{0}\";", databaseName);
-                        command.ExecuteNonQuery();
-                    }
+                    connection.ExecuteNonQuery(string.Format("CREATE DATABASE \"{0}\";", databaseName));
                 }
             }
             this.BaseSetup();
@@ -45,17 +41,13 @@ namespace System.Geolocation.Services.Caching
 
 
         /// <summary>
-        /// Create the cashing table.
+        /// Create the caching table.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns></returns>
-        protected override void CreateCashingTable(IDbConnection connection)
+        protected override void CreateCachingTable(IDbConnection connection)
         {
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = "CREATE UNLOGGED TABLE IF NOT EXISTS AddressCache (Address VARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);";
-                command.ExecuteNonQuery();
-            }
+            connection.ExecuteNonQuery("CREATE UNLOGGED TABLE IF NOT EXISTS AddressCache (Address VARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);");
         }
 
         /// <summary>

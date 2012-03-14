@@ -34,17 +34,13 @@ namespace System.Geolocation.Services.Caching
 
 
         /// <summary>
-        /// Create the cashing table.
+        /// Create the caching table.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns></returns>
-        protected override void CreateCashingTable(IDbConnection connection)
+        protected override void CreateCachingTable(IDbConnection connection)
         {
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = "CREATE TABLE AddressCache (Address NVARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);";
-                command.ExecuteNonQuery();
-            }
+            connection.ExecuteNonQuery("CREATE TABLE AddressCache (Address NVARCHAR(250) NOT NULL, Longitude DOUBLE PRECISION NOT NULL, Latitude DOUBLE PRECISION NOT NULL);");
         }
 
         /// <summary>
@@ -55,17 +51,9 @@ namespace System.Geolocation.Services.Caching
         /// <returns></returns>
         protected override bool TableExists(string tableName, IDbConnection connection)
         {
-            using (var command = connection.CreateCommand())
+            using (var reader = connection.ExecuteReader("SELECT name FROM sqlite_master WHERE type = 'table' AND name = @TableName", tableName))
             {
-                command.CommandText = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = @TableName";
-                var parameter = command.CreateParameter();
-                parameter.ParameterName = "@TableName";
-                parameter.Value = tableName;
-                command.Parameters.Add(parameter);
-                using (var reader = command.ExecuteReader())
-                {
-                    return reader.Read();
-                }
+                return reader.Read();
             }
         }
     }

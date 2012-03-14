@@ -42,17 +42,17 @@ namespace System.Geolocation.Services.Caching
                 connection.Open();
                 if (!this.TableExists("AddressCache", connection))
                 {
-                    this.CreateCashingTable(connection);
+                    this.CreateCachingTable(connection);
                 }
             }
         }
 
         /// <summary>
-        /// Create the cashing table.
+        /// Create the caching table.
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns></returns>
-        protected abstract void CreateCashingTable(IDbConnection connection);
+        protected abstract void CreateCachingTable(IDbConnection connection);
 
         /// <summary>
         /// returns whether the table exists.
@@ -74,43 +74,20 @@ namespace System.Geolocation.Services.Caching
             {
                 connection.ConnectionString = this.connectionString.ConnectionString;
                 connection.Open();
-                using (var command = connection.CreateCommand())
+                using (var reader = connection.ExecuteReader("SELECT Longitude, Latitude FROM AddressCache WHERE Address = {0}", address))
                 {
-                    command.CommandText = "SELECT Longitude, Latitude FROM AddressCache WHERE Address = @Address";
-                    var parameter = command.CreateParameter();
-                    parameter.ParameterName = "@Address";
-                    parameter.Value = address;
-                    command.Parameters.Add(parameter);
-                    using (var reader = command.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
-                        {
-                            return new Coordinates(
-                                reader.GetDouble(0),
-                                reader.GetDouble(1)
-                            );
-                        }
+                        return new Coordinates(
+                            reader.GetDouble(0),
+                            reader.GetDouble(1)
+                        );
                     }
                 }
 
                 var coordinates = this.decorated.GetCoordinates(address);
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "INSERT INTO AddressCache (Address, Longitude, Latitude) VALUES (@Address, @Longitude, @Latitude)";
-                    var parameter1 = command.CreateParameter();
-                    parameter1.ParameterName = "@Address";
-                    parameter1.Value = address;
-                    var parameter2 = command.CreateParameter();
-                    parameter2.ParameterName = "@Longitude";
-                    parameter2.Value = coordinates.Longitude;
-                    var parameter3 = command.CreateParameter();
-                    parameter3.ParameterName = "@Latitude";
-                    parameter3.Value = coordinates.Latitude;
-                    command.Parameters.Add(parameter1);
-                    command.Parameters.Add(parameter2);
-                    command.Parameters.Add(parameter3);
-                    command.ExecuteNonQuery();
-                }
+
+                connection.ExecuteNonQuery("INSERT INTO AddressCache (Address, Longitude, Latitude) VALUES ({0}, {1}, {2})", address, coordinates.Longitude, coordinates.Latitude);
                 return coordinates;
             }
         }
