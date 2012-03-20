@@ -19,11 +19,11 @@ namespace System.Security.Cryptography
         /// </summary>
         Sha1,
         /// <summary>
-        ///     The SHA1 hash algorithm
+        ///     The SHA256 hash algorithm
         /// </summary>
         Sha256,
         /// <summary>
-        ///     The SHA1 hash algorithm
+        ///     The SHA512 hash algorithm
         /// </summary>
         Sha512,
     }
