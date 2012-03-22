@@ -13,7 +13,10 @@ namespace System
     {
         private static DateTime? now;
         private static DateTime? utcNow;
-        private static bool IsPaused { get; set; }
+        /// <summary>
+        /// Gets a value indicating whether this instance is paused.
+        /// </summary>
+        public static bool IsPaused { get; private set; }
 
         /// <summary>
         /// Returns a DateTime representing the current date and time. The
@@ -52,21 +55,6 @@ namespace System
             Clock.now = utcNow.ToLocalTime();
             Clock.utcNow = utcNow;
             return new DisposableAction(() => Clock.IsPaused = false);
-        }
-
-        private class DisposableAction : IDisposable
-        {
-            private readonly Action action;
-
-            public DisposableAction(Action action)
-            {
-                this.action = action;
-            }
-            
-            public void Dispose()
-            {
-                action.Invoke();
-            }
         }
     }
 }

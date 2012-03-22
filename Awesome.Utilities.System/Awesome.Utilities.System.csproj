@@ -65,6 +65,8 @@
     <Compile Include="Configuration\IFlexibleConfiguration.cs" />
     <Compile Include="ArgumentNotNullException.cs" />
     <Compile Include="Data\DbConnectionExtensions.cs" />
+    <Compile Include="DisposableAction.cs" />
+    <Compile Include="Globalization\Culture.cs" />
     <Compile Include="Security\Cryptography\SupportedCipherAlgorithm.cs" />
     <Compile Include="Security\Cryptography\ICryptographyCipher.cs" />
     <Compile Include="Security\Cryptography\ICryptographyHasher.cs" />

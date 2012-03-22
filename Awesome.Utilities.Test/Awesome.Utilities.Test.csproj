@@ -74,6 +74,7 @@
     <Compile Include="Geolocation\GivenCoordinates.cs" />
     <Compile Include="GivenClock.cs" />
     <Compile Include="Globalization\Countries\GivenRegionInfoCountryRepository.cs" />
+    <Compile Include="Globalization\GivenCulture.cs" />
     <Compile Include="Messages\GivenNotification.cs" />
     <Compile Include="Collections\Generic\GivenResultPage.cs" />
     <Compile Include="GivenAdvancedMath.cs" />
