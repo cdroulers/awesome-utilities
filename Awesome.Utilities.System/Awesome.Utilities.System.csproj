@@ -67,6 +67,8 @@
     <Compile Include="Data\DbConnectionExtensions.cs" />
     <Compile Include="DisposableAction.cs" />
     <Compile Include="Globalization\Culture.cs" />
+    <Compile Include="Globalization\Currencies\CurrencyHelper.cs" />
+    <Compile Include="Globalization\Currencies\CurrencyPart.cs" />
     <Compile Include="Security\Cryptography\SupportedCipherAlgorithm.cs" />
     <Compile Include="Security\Cryptography\ICryptographyCipher.cs" />
     <Compile Include="Security\Cryptography\ICryptographyHasher.cs" />
