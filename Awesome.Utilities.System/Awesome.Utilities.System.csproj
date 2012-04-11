@@ -37,6 +37,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,7 +51,10 @@
     </Compile>
     <Compile Include="AdvancedMath.cs" />
     <Compile Include="Clock.cs" />
+    <Compile Include="Collections\Generic\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\DictionaryHelper.cs" />
     <Compile Include="Collections\Generic\ResultPage.cs" />
+    <Compile Include="Collections\Specialized\NameValueCollectionExtensions.cs" />
     <Compile Include="ComponentModel\DataAnnotations\RequiredBooleanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\ComparisonAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\LesserThanOrEqualToAttribute.cs" />
@@ -94,8 +98,8 @@
     <Compile Include="Globalization\Countries\Implementations\RegionInfoCountry.cs" />
     <Compile Include="Globalization\Countries\Implementations\RegionInfoCountryRepository.cs" />
     <Compile Include="AlreadyExistsException.cs" />
-    <Compile Include="Messages\Notification.cs" />
-    <Compile Include="Messages\NotificationData.cs" />
+    <Compile Include="Messages\ContextualNotification.cs" />
+    <Compile Include="Messages\ContextualNotificationData.cs" />
     <Compile Include="Properties\Languages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -61,6 +61,9 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Collections\Generic\GivenDictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\GivenDictionaryHelper.cs" />
+    <Compile Include="Collections\Specialized\GivenNameValueCollectionExtensions.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenRequiredBooleanAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenGreaterThanOrEqualToAttribute.cs" />
     <Compile Include="ComponentModel\DataAnnotations\GivenLesserThanOrEqualToAttribute.cs" />
