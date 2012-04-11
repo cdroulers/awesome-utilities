@@ -25,5 +25,44 @@ namespace Awesome.Utilities.Test.Collections.Generic
             Assert.That(nvc["2"], Is.EqualTo("False"));
             Assert.That(nvc["3"], Is.EqualTo("True"));
         }
+
+        [Test]
+        public void When_getting_value_or_default_with_value_Then_works()
+        {
+            var dict = new Dictionary<int, bool>()
+            {
+                { 1, true },
+                { 2, false }
+            };
+
+            var value = dict.GetValueOrDefault(1);
+            Assert.That(value, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void When_getting_value_or_default_without_value_Then_returns_default_T()
+        {
+            var dict = new Dictionary<int, bool>()
+            {
+                { 1, true },
+                { 2, false }
+            };
+
+            var value = dict.GetValueOrDefault(3);
+            Assert.That(value, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void When_getting_value_or_default_without_value_Then_returns_specified_default()
+        {
+            var dict = new Dictionary<int, bool>()
+            {
+                { 1, true },
+                { 2, false }
+            };
+
+            var value = dict.GetValueOrDefault(3, true);
+            Assert.That(value, Is.EqualTo(true));
+        }
     }
 }

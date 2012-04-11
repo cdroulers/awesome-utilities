@@ -31,5 +31,20 @@ namespace System.Collections.Generic
             }
             return result;
         }
+
+        /// <summary>
+        /// Gets the value for the specified key, or a specified default.
+        /// </summary>
+        /// <typeparam name="K"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="self">The self.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns></returns>
+        public static V GetValueOrDefault<K, V>(this IDictionary<K, V> self, K key, V defaultValue = default(V))
+        {
+            V value;
+            return self.TryGetValue(key, out value) ? value : defaultValue;
+        }
     }
 }
