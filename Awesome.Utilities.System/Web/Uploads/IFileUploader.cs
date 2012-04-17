@@ -17,5 +17,13 @@ namespace System.Web.Uploads
         /// <param name="fileName">Name of the file.</param>
         /// <returns></returns>
         Uri Upload(HttpPostedFileBase file, string fileName);
+
+        /// <summary>
+        ///     Renames a previously uploaded file to the specified file name.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="newFileName">New name of the file.</param>
+        /// <returns></returns>
+        Uri Rename(string fileName, string newFileName);
     }
 }

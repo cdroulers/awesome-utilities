@@ -36,13 +36,18 @@ namespace System.Web.Uploads
         /// <returns></returns>
         public Uri Upload(HttpPostedFileBase file, string fileName)
         {
-            var fullPath = Path.Combine(this.localPath, fileName + Path.GetExtension(file.FileName));
+            var fullPath = Path.Combine(this.localPath, fileName);
             var serverPath = fullPath.StartsWith("~") ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
             var directory = Path.GetDirectoryName(serverPath);
             new DirectoryInfo(directory).Create();
 
             file.SaveAs(serverPath);
 
+            return this.GetUri(fullPath);
+        }
+
+        private Uri GetUri(string fullPath)
+        {
             if (this.resultToUriFunc != null)
             {
                 return this.resultToUriFunc(fullPath);
@@ -53,6 +58,29 @@ namespace System.Web.Uploads
                 builder.Path = VirtualPathUtility.ToAbsolute(fullPath, HttpContext.Current.Request.ApplicationPath);
                 return builder.Uri;
             }
+        }
+
+        /// <summary>
+        /// Renames a previously uploaded file to the specified file name.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="newFileName">New name of the file.</param>
+        /// <returns></returns>
+        public Uri Rename(string fileName, string newFileName)
+        {
+            var fullPath = Path.Combine(this.localPath, fileName);
+            var serverPath = fullPath.StartsWith("~") ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
+            
+            var newFullPath = Path.Combine(this.localPath, newFileName);
+            var newServerPath = fullPath.StartsWith("~") ? HttpContext.Current.Server.MapPath(newFullPath) : newFullPath;
+
+            if (File.Exists(newServerPath))
+            {
+                File.Delete(newServerPath);
+            }
+            File.Move(serverPath, newServerPath);
+
+            return this.GetUri(newFullPath);
         }
     }
 }
