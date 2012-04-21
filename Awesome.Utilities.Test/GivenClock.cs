@@ -28,5 +28,26 @@ namespace Awesome.Utilities.Test
 
             Assert.That(outNow, Is.Not.EqualTo(Clock.Now));
         }
+
+
+        [Test]
+        public void When_transforming_Then_works()
+        {
+            using (Clock.Pause())
+            {
+                var result = Clock.UtcNow;
+
+                Assert.That(result.Kind, Is.EqualTo(DateTimeKind.Utc));
+
+                Clock.Transform = d => { return new DateTime(d.Ticks, DateTimeKind.Unspecified); };
+
+                var result2 = Clock.UtcNow;
+
+                Assert.That(result2.Kind, Is.EqualTo(DateTimeKind.Unspecified));
+                Assert.That(result2, Is.EqualTo(result));
+
+                Clock.Transform = null;
+            }
+        }
     }
 }

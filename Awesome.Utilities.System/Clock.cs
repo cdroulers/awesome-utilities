@@ -25,7 +25,7 @@ namespace System
         /// </summary>
         public static DateTime Now
         {
-            get { return Clock.IsPaused ? now.Value : DateTime.Now; }
+            get { return Clock.ApplyTransform(Clock.IsPaused ? now.Value : DateTime.Now); }
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace System
         /// </summary>
         public static DateTime UtcNow
         {
-            get { return Clock.IsPaused ? utcNow.Value : DateTime.UtcNow; }
+            get { return Clock.ApplyTransform(Clock.IsPaused ? utcNow.Value : DateTime.UtcNow); }
         }
 
         /// <summary>
@@ -56,5 +56,18 @@ namespace System
             Clock.utcNow = utcNow;
             return new DisposableAction(() => Clock.IsPaused = false);
         }
+
+        private static DateTime ApplyTransform(DateTime dateTime)
+        {
+            return Clock.Transform != null ? Clock.Transform(dateTime) : dateTime;
+        }
+
+        /// <summary>
+        /// Gets or sets a function that will be applied to all returned DateTime values.
+        /// </summary>
+        /// <value>
+        /// The transform.
+        /// </value>
+        public static Func<DateTime, DateTime> Transform { get; set; }
     }
 }
