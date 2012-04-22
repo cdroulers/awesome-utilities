@@ -26,5 +26,26 @@ namespace Awesome.Utilities.Test.Globalization
             Assert.That(CultureInfo.CurrentCulture, Is.Not.EqualTo(new CultureInfo("es-ES")));
             Assert.That(CultureInfo.CurrentUICulture, Is.Not.EqualTo(new CultureInfo("es-ES")));
         }
+
+        [TestCase("en-CA", true, "en-CA", false)]
+        [TestCase("en-us", true, "en-US", false)]
+        [TestCase("EN", true, "en", false)]
+        [TestCase("en_CA", true, "en-CA", false)]
+        [TestCase("asdfsdf", false, "", false)]
+        [TestCase("", true, "", true)]
+        [TestCase(null, true, "", true)]
+        [TestCase("", false, "", false)]
+        [TestCase(null, false, "", false)]
+        public void When_parsing_Then_works(string toParse, bool expected, string expectedName, bool allowInvariant)
+        {
+            CultureInfo result;
+            bool actual = Culture.TryParse(toParse, out result, allowInvariant);
+
+            Assert.That(actual, Is.EqualTo(expected));
+            if (expected)
+            {
+                Assert.That(result.Name, Is.EqualTo(expectedName));
+            }
+        }
     }
 }

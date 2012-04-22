@@ -45,5 +45,33 @@ namespace System.Globalization
                 Thread.CurrentThread.CurrentUICulture = oldUICulture;
             });
         }
+
+        /// <summary>
+        /// Tries to create a CultureInfo from the string.
+        /// </summary>
+        /// <param name="culture">The culture.</param>
+        /// <param name="result">The result.</param>
+        /// <param name="allowInvariant">if set to <c>true</c> [allow invariant].</param>
+        /// <returns>
+        /// true if it was parsed.
+        /// </returns>
+        public static bool TryParse(string culture, out CultureInfo result, bool allowInvariant = false)
+        {
+            try
+            {
+                if (!allowInvariant && string.IsNullOrWhiteSpace(culture))
+                {
+                    result = null;
+                    return false;
+                }
+                result = new CultureInfo((culture ?? string.Empty).Replace("_", "-"));
+                return true;
+            }
+            catch (CultureNotFoundException)
+            {
+                result = null;
+                return false;
+            }
+        }
     }
 }
