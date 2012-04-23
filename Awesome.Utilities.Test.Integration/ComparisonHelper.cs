@@ -9,10 +9,10 @@ namespace Awesome.Utilities.Test.Integration
 {
     public static class ComparisonHelper
     {
-        public static void CompareCoordinates(Coordinates expected, Coordinates actual, double within = 0)
+        public static void CompareCoordinates(Coordinates actual, Coordinates expected, double within = 0)
         {
-            Assert.That(expected.Longitude, Is.EqualTo(actual.Longitude).Within(within));
-            Assert.That(expected.Latitude, Is.EqualTo(actual.Latitude).Within(within));
+            Assert.That(actual.Longitude, Is.EqualTo(expected.Longitude).Within(within));
+            Assert.That(actual.Latitude, Is.EqualTo(expected.Latitude).Within(within));
         }
     }
 }

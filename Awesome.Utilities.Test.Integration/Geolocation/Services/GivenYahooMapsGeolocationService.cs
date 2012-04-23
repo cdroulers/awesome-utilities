@@ -26,12 +26,12 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         [TestCase("Boston, MA, US", -71.056699d, 42.358635d)]
         [TestCase("Boisbriand, QC, Canada", -73.838882d, 45.61204d)]
         [TestCase("Montréal, QC, Canada", -73.554431d, 45.512303d)]
-        [TestCase("5 Patti Page Way # B, Centerville Ma 02632, MA 02632-1434, USA", -70.348637d, 41.650266d)]
+        [TestCase("5 Patti Page Way # B, Centerville Ma 02632, MA 02632-1434, USA", -70.346874d, 41.649885d)]
         public void When_getting_coordinates_Then_works(string address, double longitude, double latitude)
         {
             var actual = this.geo.GetCoordinates(address);
 
-            ComparisonHelper.CompareCoordinates(new Coordinates(longitude, latitude), actual, 0.00001);
+            ComparisonHelper.CompareCoordinates(actual, new Coordinates(longitude, latitude), 0.001);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
             Assert.That(info, Is.Not.Null);
             Assert.That(info.Type, Is.EqualTo("street_address"));
             Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland Rd, Mt Royal, QC  H3P, Canada").Or.EqualTo("304 Rockland Rd, Montreal, QC  H3P, Canada"));
-            ComparisonHelper.CompareCoordinates(new Coordinates(-73.628517, 45.520726), info.Coordinates, 0.0001);
+            ComparisonHelper.CompareCoordinates(info.Coordinates, new Coordinates(-73.628517, 45.520726), 0.0001);
             Assert.That(info.Components, Has.Length.EqualTo(7));
             Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("304 Rockland Rd", "304 Rockland Rd", new string[] { "street_address" })));
             Assert.That(info.Components[1], Is.EqualTo(new AddressInformationComponent("H3P", "H3P", new string[] { "postal_code" })));

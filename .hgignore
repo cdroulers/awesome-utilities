@@ -3,3 +3,5 @@ glob:*ReSharper*
 glob:bin/
 glob:obj/
 glob:*.user
+syntax: glob
+packages/*
