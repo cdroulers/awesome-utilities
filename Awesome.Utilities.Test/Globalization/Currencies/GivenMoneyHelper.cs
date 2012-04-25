@@ -20,6 +20,29 @@ namespace Awesome.Utilities.Test.Globalization.Currencies
         [TestCase("en-GB", 123456789.123, 1, "123,456,789", 2, "12", 0, "£")]
         [TestCase("de-DE", 5.0, 0, "5", 1, "00", 2, " €")]
         [TestCase("de-DE", 123456789.123, 0, "123.456.789", 1, "12", 2, " €")]
+        [TestCase("hi-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "रु ")]
+        [TestCase("gu-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "રૂ ")]
+        [TestCase("kn-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "ರೂ ")]
+        [TestCase("kok-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "रु ")]
+        [TestCase("mr-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "रु ")]
+        [TestCase("pa-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "ਰੁ ")]
+        [TestCase("sa-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "रु ")]
+        [TestCase("ta-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "ரூ ")]
+        [TestCase("te-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "రూ ")]
+        [TestCase("te-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "రూ ")]
+        [TestCase("hi", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "रु ")]
+        [TestCase("hi-IN", 0, 1, "0", 2, "00", 0, "रु ")]
+        [TestCase("gu-IN", 0, 1, "0", 2, "00", 0, "રૂ ")]
+        [TestCase("kn-IN", 0, 1, "0", 2, "00", 0, "ರೂ ")]
+        [TestCase("kok-IN", 0, 1, "0", 2, "00", 0, "रु ")]
+        [TestCase("mr-IN", 0, 1, "0", 2, "00", 0, "रु ")]
+        [TestCase("pa-IN", 0, 1, "0", 2, "00", 0, "ਰੁ ")]
+        [TestCase("sa-IN", 0, 1, "0", 2, "00", 0, "रु ")]
+        [TestCase("ta-IN", 0, 1, "0", 2, "00", 0, "ரூ ")]
+        [TestCase("te-IN", 0, 1, "0", 2, "00", 0, "రూ ")]
+        [TestCase("hi", 0, 1, "0", 2, "00", 0, "रु ")]
+
+        [TestCase("is", 123456789.123, 0, "123.456.789", 1, "", 2, " kr.")]
         public void When_splitting_Then_returns_proper_tokens(string culture, decimal amount, int amountIndex, string amountValue, int decimalsIndex, string decimalsValue, int symbolIndex, string symbolValue)
         {
             var actual = CurrencyHelper.Split(amount, culture: new CultureInfo(culture));
@@ -28,6 +51,23 @@ namespace Awesome.Utilities.Test.Globalization.Currencies
             Assert.That(actual[amountIndex], Is.EqualTo(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Amount, amountValue)));
             Assert.That(actual[decimalsIndex], Is.EqualTo(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Decimals, decimalsValue)));
             Assert.That(actual[symbolIndex], Is.EqualTo(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Symbol, symbolValue)));
+        }
+
+        [Test]
+        public void When_splitting_with_all_cultures_Then_doesnt_throw()
+        {
+            foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures))
+            {
+                try
+                {
+                    var result = CurrencyHelper.Split(123.23M, culture);
+                    Console.WriteLine("{0} => ({4}) {1} {2} {3}", culture.Name, result[0], result[1], result[2], (123.3M).ToString("C", culture));
+                }
+                catch (Exception e)
+                {
+                    Assert.Fail("Culture failure! " + culture.Name + " " + e.Message);
+                }
+            }
         }
     }
 }

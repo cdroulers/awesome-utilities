@@ -23,21 +23,21 @@ namespace System.Globalization.Currencies
             var results = new List<KeyValuePair<CurrencyPart, string>>();
 
             string number = s.Replace(culture.NumberFormat.CurrencySymbol, string.Empty).Trim();
+            int indexOfNumber = s.IndexOf(number);
             int indexOfCurrency = s.IndexOf(culture.NumberFormat.CurrencySymbol);
-            int indexOfDecimalSeparator = s.IndexOf(culture.NumberFormat.CurrencyDecimalSeparator);
 
-            if (indexOfCurrency < indexOfDecimalSeparator)
+            if (indexOfCurrency < indexOfNumber)
             {
                 results.Add(new KeyValuePair<CurrencyPart,string>(CurrencyPart.Symbol, s.Replace(number, string.Empty)));
                 var parts = number.Split(new[] { culture.NumberFormat.CurrencyDecimalSeparator }, StringSplitOptions.RemoveEmptyEntries);
                 results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Amount, parts[0]));
-                results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Decimals, parts[1]));
+                results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Decimals, parts.Length > 1 ? parts[1] : string.Empty));
             }
             else
             {
                 var parts = number.Split(new[] { culture.NumberFormat.CurrencyDecimalSeparator }, StringSplitOptions.RemoveEmptyEntries);
                 results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Amount, parts[0]));
-                results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Decimals, parts[1]));
+                results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Decimals, parts.Length > 1 ? parts[1] : string.Empty));
                 results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Symbol, s.Replace(number, string.Empty)));
             }
 
