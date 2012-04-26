@@ -82,8 +82,10 @@ namespace System.Runtime.Serialization
         public virtual void Serialize<T>(T graph, StringBuilder builder)
         {
             builder.AppendLine(GetTypeName(graph != null ? graph.GetType() : typeof(T)));
-            this.Serialize(graph, builder, 1);
+            this.Serialize(graph, builder, AwfulSerializer.DefaultLevel);
         }
+
+        private const int DefaultLevel = 1;
 
         private void Serialize(object graph, StringBuilder builder, int level)
         {
@@ -99,7 +101,7 @@ namespace System.Runtime.Serialization
             }
             else if (typeof(IEnumerable).IsAssignableFrom(type))
             {
-                if (level > 0)
+                if (level > AwfulSerializer.DefaultLevel)
                 {
                     builder.AppendLine();
                 }
