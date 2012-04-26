@@ -91,6 +91,7 @@
     <Compile Include="GivenUriExtensions.cs" />
     <Compile Include="GivenValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\Serialization\GivenAwfulSerializer.cs" />
     <Compile Include="Runtime\Serialization\GivenDataContractJsonSerializerHelper.cs" />
     <Compile Include="Runtime\Serialization\GivenDataContractSerializerHelper.cs" />
     <Compile Include="Security\Cryptography\GivenCryptographyHelper.cs" />

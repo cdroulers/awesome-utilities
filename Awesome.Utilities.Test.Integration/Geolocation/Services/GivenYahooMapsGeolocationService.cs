@@ -31,7 +31,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         {
             var actual = this.geo.GetCoordinates(address);
 
-            ComparisonHelper.CompareCoordinates(actual, new Coordinates(longitude, latitude), 0.001);
+            ComparisonHelper.CompareCoordinates(actual, new Coordinates(longitude, latitude), 0.1);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
             Assert.That(info, Is.Not.Null);
             Assert.That(info.Type, Is.EqualTo("street_address"));
             Assert.That(info.FormattedAddress, Is.EqualTo("304 Rockland Rd, Mt Royal, QC  H3P, Canada").Or.EqualTo("304 Rockland Rd, Montreal, QC  H3P, Canada"));
-            ComparisonHelper.CompareCoordinates(info.Coordinates, new Coordinates(-73.628517, 45.520726), 0.0001);
+            ComparisonHelper.CompareCoordinates(info.Coordinates, new Coordinates(-73.628517, 45.520726), 0.01);
             Assert.That(info.Components, Has.Length.EqualTo(7));
             Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("304 Rockland Rd", "304 Rockland Rd", new string[] { "street_address" })));
             Assert.That(info.Components[1], Is.EqualTo(new AddressInformationComponent("H3P", "H3P", new string[] { "postal_code" })));

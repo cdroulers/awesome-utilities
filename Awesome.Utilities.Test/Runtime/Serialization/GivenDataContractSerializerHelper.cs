@@ -21,7 +21,7 @@ namespace Awesome.Utilities.Test.Runtime.Serialization
         [Test]
         public void When_serializing_Then_works()
         {
-            string result = DataContractSerializerHelper.Serialize(new TestClass() { Value = "Wot" });
+            string result = new DataContractSerializerHelper().Serialize(new TestClass() { Value = "Wot" });
 
             Assert.That(result, Is.EqualTo(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <GivenDataContractSerializerHelper.TestClass xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">
@@ -32,7 +32,7 @@ namespace Awesome.Utilities.Test.Runtime.Serialization
         [Test]
         public void When_deserializing_Then_works()
         {
-            var result = DataContractSerializerHelper.Deserialize<TestClass>(@"<GivenDataContractSerializerHelper.TestClass>
+            var result = new DataContractSerializerHelper().Deserialize<TestClass>(@"<GivenDataContractSerializerHelper.TestClass>
   <Value>Wot</Value>
 </GivenDataContractSerializerHelper.TestClass>");
 

@@ -10,16 +10,15 @@ namespace System.Runtime.Serialization.Json
     /// <summary>
     ///     Data Contract serializer helper
     /// </summary>
-    public static class DataContractJsonSerializerHelper
+    public class DataContractJsonSerializerHelper
     {
         /// <summary>
         /// Serializes the specified graph.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="graph">The graph.</param>
-        /// <param name="indent">if set to <c>true</c> [indent].</param>
         /// <returns></returns>
-        public static string Serialize<T>(T graph, bool indent = true)
+        public virtual string Serialize<T>(T graph)
         {
             var data = new DataContractJsonSerializer(typeof(T));
 
@@ -40,7 +39,7 @@ namespace System.Runtime.Serialization.Json
         /// <typeparam name="T"></typeparam>
         /// <param name="json">The json.</param>
         /// <returns></returns>
-        public static T Deserialize<T>(string json)
+        public virtual T Deserialize<T>(string json)
         {
             var data = new DataContractJsonSerializer(typeof(T));
 

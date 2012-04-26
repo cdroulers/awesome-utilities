@@ -22,7 +22,7 @@ namespace Awesome.Utilities.Test.Runtime.Serialization
         [Test]
         public void When_serializing_Then_works()
         {
-            string result = DataContractJsonSerializerHelper.Serialize(new TestClass() { Value = "Wot" });
+            string result = new DataContractJsonSerializerHelper().Serialize(new TestClass() { Value = "Wot" });
 
             Assert.That(result, Is.EqualTo(@"{""Value"":""Wot""}"));
         }
@@ -30,7 +30,7 @@ namespace Awesome.Utilities.Test.Runtime.Serialization
         [Test]
         public void When_deserializing_Then_works()
         {
-            var result = DataContractJsonSerializerHelper.Deserialize<TestClass>(@"{""Value"":""Wot""}");
+            var result = new DataContractJsonSerializerHelper().Deserialize<TestClass>(@"{""Value"":""Wot""}");
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Value, Is.EqualTo("Wot"));

@@ -76,6 +76,8 @@
     <Compile Include="Net\EnhancedWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Runtime\Serialization\AwfulSerializer.cs" />
+    <Compile Include="Runtime\Serialization\Serializers.cs" />
     <Compile Include="Security\Cryptography\SupportedCipherAlgorithm.cs" />
     <Compile Include="Security\Cryptography\ICryptographyCipher.cs" />
     <Compile Include="Security\Cryptography\ICryptographyHasher.cs" />
