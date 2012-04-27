@@ -53,7 +53,7 @@ namespace Awesome.Utilities.Test.Runtime.Serialization
                 Assert.That(actual, Is.EqualTo(@"TestClass
   StringValue (String) => SOME STRING TEXT HERE
   IntValue (Int32) => 1
-  DateTimeValue (DateTime) => 2012-04-26 14:59:00
+  DateTimeValue (DateTime) => 04/26/2012 14:59:00
   StringArray (String[]) => 
     0    => Text one
     1    => Text two
