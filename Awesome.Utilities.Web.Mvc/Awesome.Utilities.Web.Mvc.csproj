@@ -59,6 +59,7 @@
     <Compile Include="UI\Control.cs" />
     <Compile Include="UI\CssLink.cs" />
     <Compile Include="UI\CssStyle.cs" />
+    <Compile Include="UI\HtmlAttribute.cs" />
     <Compile Include="UI\HtmlHelperUIExtensions.cs" />
     <Compile Include="UI\HtmlList.cs" />
     <Compile Include="UI\HtmlListKind.cs" />

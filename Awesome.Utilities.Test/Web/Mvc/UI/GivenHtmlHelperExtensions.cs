@@ -92,5 +92,46 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
 
             Control.TranslationDelegate = s => s;
         }
+
+        [Test]
+        public void When_creating_attribute_Then_works()
+        {
+            var result = html.Attr("class", "lol").Add("wat").ToHtmlString();
+
+            Assert.That(result, Is.EqualTo("class=\"lol wat\""));
+        }
+
+        [TestCase(false, "")]
+        [TestCase(true, "class=\"\"")]
+        public void When_creating_attribute_with_no_value_Then_works(bool displayEmpty, string expected)
+        {
+            var result = html.Attr("class", "", displayEmpty).Add("").ToHtmlString();
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void When_creating_attributes_Then_works()
+        {
+            var result = html.Attrs(new { data_test_wot = "omg", @class = "lol wat" }).ToHtmlString();
+
+            Assert.That(result, Is.EqualTo("data-test-wot=\"omg\" class=\"lol wat\""));
+        }
+
+        [Test]
+        public void When_creating_with_null_attributes_Then_works()
+        {
+            var result = html.Attrs(null).ToHtmlString();
+
+            Assert.That(result, Is.EqualTo(""));
+
+            result = html.Attrs((object)null).ToHtmlString();
+
+            Assert.That(result, Is.EqualTo(""));
+
+            result = html.Attrs((IDictionary<string, object>)null).ToHtmlString();
+
+            Assert.That(result, Is.EqualTo(""));
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Routing;
 
 namespace System.Web.Mvc.UI
 {
@@ -80,6 +81,69 @@ namespace System.Web.Mvc.UI
             var submit = new LiteralControl(Web.UI.HtmlTextWriterTag.Input, isSelfClosing: true).AddAttribute("type", "submit").AddAttribute("value", text);
             var cancel = new A(cancelText, cancelUrl) { Rel = "cancel" };
             return cancelFirst ? MvcHtmlString.Create(cancel.ToString() + submit.ToString()) : MvcHtmlString.Create(submit.ToString() + cancel.ToString());
+        }
+
+        /// <summary>
+        /// Creates an HTML attribute object to easily build HTML attributes.
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="displayEmptyValue">if set to <c>true</c> [display empty value].</param>
+        /// <returns></returns>
+        public static HtmlAttribute Attr(this HtmlHelper self, string name, string value, bool displayEmptyValue = false)
+        {
+            return new HtmlAttribute(name, value, displayEmptyValue);
+        }
+
+        /// <summary>
+        /// Creates an HTML string containing all defined attributes in a dictionary
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns></returns>
+        public static IHtmlString Attrs(this HtmlHelper self, object htmlAttributes)
+        {
+            if (htmlAttributes == null)
+            {
+                return MvcHtmlString.Empty;
+            }
+            return self.Attrs(new RouteValueDictionary(htmlAttributes));
+        }
+
+        /// <summary>
+        /// Creates an HTML string containing all defined attributes in a dictionary
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns></returns>
+        public static IHtmlString Attrs(this HtmlHelper self, IDictionary<string, object> htmlAttributes)
+        {
+            if (htmlAttributes == null)
+            {
+                return MvcHtmlString.Empty;
+            }
+            return self.Attrs(new RouteValueDictionary(htmlAttributes));
+        }
+
+        /// <summary>
+        /// Creates an HTML string containing all defined attributes in a dictionary
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns></returns>
+        public static IHtmlString Attrs(this HtmlHelper self, RouteValueDictionary htmlAttributes)
+        {
+            if (htmlAttributes == null)
+            {
+                return MvcHtmlString.Empty;
+            }
+            var builder = new StringBuilder();
+            foreach (KeyValuePair<string, object> value in htmlAttributes)
+            {
+                builder.Append(new HtmlAttribute(value.Key.Replace("_", "-"), value.Value == null ? string.Empty : value.Value.ToString()) + " ");
+            }
+            return MvcHtmlString.Create(builder.ToString().Trim());
         }
     }
 }

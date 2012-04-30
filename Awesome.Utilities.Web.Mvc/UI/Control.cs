@@ -13,7 +13,7 @@ namespace System.Web.Mvc.UI
     /// <summary>
     ///     Represents a basic control that is to be subclassed
     /// </summary>
-    public abstract class Control
+    public abstract class Control : IHtmlString
     {
         /// <summary>
         ///     If set to false, will not create new lines before and after the tags
@@ -633,6 +633,11 @@ namespace System.Web.Mvc.UI
         static Control()
         {
             TranslationDelegate = (s) => s;
+        }
+
+        string IHtmlString.ToHtmlString()
+        {
+            return this.ToString();
         }
     }
 }
