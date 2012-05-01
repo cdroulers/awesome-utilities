@@ -39,6 +39,11 @@ namespace System.Data
         public int? PreviousPage { get { return this.CurrentPage > 1 ? this.CurrentPage - 1 : new int?(); } }
 
         /// <summary>
+        /// Gets the items in the data table. i.e. The rows already cast as objects.
+        /// </summary>
+        public IEnumerable<DataRow> Items { get { return this.Rows.Cast<DataRow>(); } }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PagedDataTable"/> class.
         /// </summary>
         /// <param name="currentPage">The current page.</param>

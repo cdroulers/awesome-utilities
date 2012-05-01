@@ -15,31 +15,29 @@ namespace System.Web.Mvc.UI
         /// <summary>
         /// Generates the pages for the specified ResultPage.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="self">The self.</param>
-        /// <param name="pagedList">The paged list.</param>
+        /// <param name="pageable">The pageable.</param>
         /// <param name="pageFunc">The page func.</param>
         /// <returns></returns>
-        public static MvcHtmlString GeneratePages<T>(this HtmlHelper self, ResultPage<T> pagedList, Func<PageData, MvcHtmlString> pageFunc)
+        public static MvcHtmlString GeneratePages(this HtmlHelper self, IPageable pageable, Func<PageData, MvcHtmlString> pageFunc)
         {
-            return self.GeneratePages<T>(pagedList, pageFunc, PageGenerator<T>.DefaultMaximumNumberOfPagesToShow.GetValueOrDefault(pagedList.LastPage));
+            return self.GeneratePages(pageable, pageFunc, PageGenerator.DefaultMaximumNumberOfPagesToShow.GetValueOrDefault(pageable.LastPage));
         }
 
         /// <summary>
         /// Generates the pages for the specified ResultPage.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="self">The self.</param>
-        /// <param name="pagedList">The paged list.</param>
+        /// <param name="pageable">The pageable.</param>
         /// <param name="pageFunc">The page func.</param>
         /// <param name="maximumNumberOfPagesToShow">The maximum number of pages to show.</param>
         /// <returns></returns>
-        public static MvcHtmlString GeneratePages<T>(this HtmlHelper self, ResultPage<T> pagedList, Func<PageData, MvcHtmlString> pageFunc, int maximumNumberOfPagesToShow)
+        public static MvcHtmlString GeneratePages(this HtmlHelper self, IPageable pageable, Func<PageData, MvcHtmlString> pageFunc, int maximumNumberOfPagesToShow)
         {
-            Validate.Is.Not.Null(pagedList, "pagedList");
+            Validate.Is.Not.Null(pageable, "pageable");
             Validate.Is.Not.Null(pageFunc, "pageFunc");
 
-            return new PageGenerator<T>(pagedList, pageFunc, maximumNumberOfPagesToShow).ToHtmlString();
+            return new PageGenerator(pageable, pageFunc, maximumNumberOfPagesToShow).ToHtmlString();
         }
 
         /// <summary>

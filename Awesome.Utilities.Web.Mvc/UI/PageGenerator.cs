@@ -9,7 +9,7 @@ namespace System.Web.Mvc.UI
     /// <summary>
     /// HTML pager generator.
     /// </summary>
-    public abstract class PageGenerator : Control
+    public class PageGenerator : Control
     {
         /// <summary>
         /// Gets or sets the hide if empty.
@@ -21,23 +21,15 @@ namespace System.Web.Mvc.UI
         public static int? DefaultMaximumNumberOfPagesToShow { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PageGenerator"/> class.
+        ///     The first page in a paged list.
         /// </summary>
-        protected PageGenerator()
-            : base(HtmlTextWriterTag.Span, false)
-        {
-        }
-    }
+        public const int ValueOfFirstPage = 1;
 
-    /// <summary>
-    ///     A generator of pages.
-    /// </summary>
-    public class PageGenerator<T> : PageGenerator
-    {
         /// <summary>
-        /// Gets or sets the Items.
+        ///     Whatever item we are paging.
         /// </summary>
-        public readonly ResultPage<T> Items;
+        public readonly IPageable Pageable;
+
         /// <summary>
         /// Gets or sets the PageFunc.
         /// </summary>
@@ -56,25 +48,25 @@ namespace System.Web.Mvc.UI
         public static string TextAfter { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PageGenerator&lt;T&gt;"/> class.
+        /// Initializes a new instance of the <see cref="PageGenerator"/> class.
         /// </summary>
-        /// <param name="items">The items.</param>
+        /// <param name="pageable">The pageable.</param>
         /// <param name="pageFunc">The page func.</param>
-        public PageGenerator(ResultPage<T> items, Func<PageData, MvcHtmlString> pageFunc)
-            : this(items, pageFunc, DefaultMaximumNumberOfPagesToShow.GetValueOrDefault(items.LastPage))
+        public PageGenerator(IPageable pageable, Func<PageData, MvcHtmlString> pageFunc)
+            : this(pageable, pageFunc, DefaultMaximumNumberOfPagesToShow.GetValueOrDefault(pageable.LastPage))
         {
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PageGenerator&lt;T&gt;"/> class.
+        /// Initializes a new instance of the <see cref="PageGenerator"/> class.
         /// </summary>
-        /// <param name="items">The items.</param>
+        /// <param name="pageable">The pageable.</param>
         /// <param name="pageFunc">The page func.</param>
         /// <param name="maximumNumberOfPagesToShow">The maximum number of pages to show.</param>
-        public PageGenerator(ResultPage<T> items, Func<PageData, MvcHtmlString> pageFunc, int maximumNumberOfPagesToShow)
-            : base()
+        public PageGenerator(IPageable pageable, Func<PageData, MvcHtmlString> pageFunc, int maximumNumberOfPagesToShow)
+            : base(HtmlTextWriterTag.Span, false)
         {
             this.ControlCssClass = "pager";
-            this.Items = items;
+            this.Pageable = pageable;
             this.PageFunc = pageFunc;
             this.MaximumNumberOfPagesToShow = maximumNumberOfPagesToShow;
         }
@@ -96,7 +88,7 @@ namespace System.Web.Mvc.UI
         /// <param name="htmlTextWriter">The writer to write to.</param>
         protected override void Render(HtmlTextWriter htmlTextWriter)
         {
-            if (HideIfEmpty.GetValueOrDefault(false) && this.Items.LastPage <= 1)
+            if (HideIfEmpty.GetValueOrDefault(false) && this.Pageable.LastPage <= 1)
             {
                 return;
             }
@@ -110,34 +102,34 @@ namespace System.Web.Mvc.UI
         protected override void RenderContents(HtmlTextWriter htmlTextWriter)
         {
             int diff = this.MaximumNumberOfPagesToShow / 2;
-            int min = this.Items.CurrentPage - diff;
-            int max = this.Items.CurrentPage + diff;
-            if (this.MaximumNumberOfPagesToShow >= this.Items.LastPage)
+            int min = this.Pageable.CurrentPage - diff;
+            int max = this.Pageable.CurrentPage + diff;
+            if (this.MaximumNumberOfPagesToShow >= this.Pageable.LastPage)
             {
-                max = this.Items.LastPage;
-                min = ResultPage<T>.ValueOfFirstPage;
+                max = this.Pageable.LastPage;
+                min = PageGenerator.ValueOfFirstPage;
             }
-            if (min < ResultPage<T>.ValueOfFirstPage)
+            if (min < PageGenerator.ValueOfFirstPage)
             {
-                min = ResultPage<T>.ValueOfFirstPage;
-                max = Math.Min(this.MaximumNumberOfPagesToShow, this.Items.LastPage);
+                min = PageGenerator.ValueOfFirstPage;
+                max = Math.Min(this.MaximumNumberOfPagesToShow, this.Pageable.LastPage);
             }
-            if (max > this.Items.LastPage)
+            if (max > this.Pageable.LastPage)
             {
-                max = this.Items.LastPage;
-                min = Math.Max(Math.Abs(this.Items.LastPage - this.MaximumNumberOfPagesToShow), ResultPage<T>.ValueOfFirstPage);
-            }
-
-            if (min > ResultPage<T>.ValueOfFirstPage)
-            {
-                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("FirstPage"), ResultPage<T>.ValueOfFirstPage)));
+                max = this.Pageable.LastPage;
+                min = Math.Max(Math.Abs(this.Pageable.LastPage - this.MaximumNumberOfPagesToShow), PageGenerator.ValueOfFirstPage);
             }
 
-            if (this.Items.CurrentPage > ResultPage<T>.ValueOfFirstPage)
+            if (min > PageGenerator.ValueOfFirstPage)
             {
-                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("PreviousPage"), this.Items.CurrentPage - 1)));
+                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("FirstPage"), PageGenerator.ValueOfFirstPage)));
             }
-            if (min > ResultPage<T>.ValueOfFirstPage)
+
+            if (this.Pageable.CurrentPage > PageGenerator.ValueOfFirstPage)
+            {
+                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("PreviousPage"), this.Pageable.CurrentPage - 1)));
+            }
+            if (min > PageGenerator.ValueOfFirstPage)
             {
                 htmlTextWriter.WriteLine(@"<span class=""first-page-separator"">...</span>");
             }
@@ -145,7 +137,7 @@ namespace System.Web.Mvc.UI
             for (int i = min; i <= max; i++)
             {
                 string text = TextBefore + i.ToString() + TextAfter;
-                if (this.Items.CurrentPage == i)
+                if (this.Pageable.CurrentPage == i)
                 {
                     htmlTextWriter.WriteLine(@"<span class=""current-page"">" + text + @"</span>");
                 }
@@ -155,18 +147,18 @@ namespace System.Web.Mvc.UI
                 }
             }
 
-            if (max < this.Items.LastPage)
+            if (max < this.Pageable.LastPage)
             {
                 htmlTextWriter.WriteLine(@"<span class=""last-page-separator"">...</span>");
             }
-            if (this.Items.CurrentPage < this.Items.LastPage)
+            if (this.Pageable.CurrentPage < this.Pageable.LastPage)
             {
-                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("NextPage"), this.Items.CurrentPage + 1)));
+                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("NextPage"), this.Pageable.CurrentPage + 1)));
             }
 
-            if (max < this.Items.LastPage)
+            if (max < this.Pageable.LastPage)
             {
-                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("LastPage"), this.Items.LastPage)));
+                htmlTextWriter.WriteLine(this.PageFunc(new PageData(Control.TranslationDelegate("LastPage"), this.Pageable.LastPage)));
             }
         }
     }

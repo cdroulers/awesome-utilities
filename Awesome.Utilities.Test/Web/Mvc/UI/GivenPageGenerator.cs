@@ -21,7 +21,7 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
         {
             var temp = new List<string>() { "one", "two", "three" };
             var results = new ResultPage<string>(temp, currentPage, perPage, total);
-            var control = new PageGenerator<string>(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString()) { CssClass = "loller-skates" };
+            var control = new PageGenerator(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString()) { CssClass = "loller-skates" };
 
             string actual = control.ToString();
             var element = this.GetHtmlNode(actual);
@@ -72,7 +72,7 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
 
             var temp = new List<string>() { "one", "two", "three" };
             var results = new ResultPage<string>(temp, 3, 3, 15);
-            var control = new PageGenerator<string>(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString(), maxPerPage);
+            var control = new PageGenerator(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString(), maxPerPage);
 
             string actual = control.ToString();
             var element = this.GetHtmlNode(actual);
@@ -139,7 +139,7 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
             PageGenerator.HideIfEmpty = true;
             var temp = new List<string>() { "one", "two", "three" };
             var results = new ResultPage<string>(temp, 1, 3, 3);
-            var control = new PageGenerator<string>(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString());
+            var control = new PageGenerator(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString());
 
             var actual = control.ToString();
 
@@ -154,7 +154,7 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
             PageGenerator.DefaultMaximumNumberOfPagesToShow = 3;
             var temp = new List<string>() { "one", "two", "three" };
             var results = new ResultPage<string>(temp, 2, 3, 15);
-            var control = new PageGenerator<string>(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString());
+            var control = new PageGenerator(results, p => new A(p.Text, "http://wot.com/?page=" + p.Page).ToHtmlString());
 
             Assert.That(control.MaximumNumberOfPagesToShow, Is.EqualTo(3));
 
