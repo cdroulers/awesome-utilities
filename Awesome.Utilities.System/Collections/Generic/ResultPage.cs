@@ -12,7 +12,7 @@ namespace System.Collections.Generic
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [DataContract]
-    public class ResultPage<T> : ReadOnlyCollection<T>
+    public class ResultPage<T> : ReadOnlyCollection<T>, IPageable
     {
         [DataMember(Name = "CurrentPage")]
         private int currentPage;

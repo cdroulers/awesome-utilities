@@ -53,6 +53,7 @@
     <Compile Include="Clock.cs" />
     <Compile Include="Collections\Generic\DictionaryExtensions.cs" />
     <Compile Include="Collections\Generic\DictionaryHelper.cs" />
+    <Compile Include="Collections\Generic\IPageable.cs" />
     <Compile Include="Collections\Generic\ResultPage.cs" />
     <Compile Include="Collections\Specialized\NameValueCollectionExtensions.cs" />
     <Compile Include="ComponentModel\DataAnnotations\RequiredBooleanAttribute.cs" />
@@ -69,6 +70,10 @@
     <Compile Include="Configuration\IFlexibleConfiguration.cs" />
     <Compile Include="ArgumentNotNullException.cs" />
     <Compile Include="Data\DbConnectionExtensions.cs" />
+    <Compile Include="Data\OrderByDirection.cs" />
+    <Compile Include="Data\PagedDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DisposableAction.cs" />
     <Compile Include="Globalization\Culture.cs" />
     <Compile Include="Globalization\Currencies\CurrencyHelper.cs" />
