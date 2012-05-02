@@ -44,27 +44,9 @@ namespace System.Data
         public IEnumerable<DataRow> Items { get { return this.Rows.Cast<DataRow>(); } }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PagedDataTable"/> class.
+        /// Gets or sets how the current data table is ordered.
         /// </summary>
-        /// <param name="currentPage">The current page.</param>
-        /// <param name="perPage">The per page.</param>
-        /// <param name="totalNumberOfRecords">The total number of records.</param>
-        public PagedDataTable(int currentPage, int perPage, int totalNumberOfRecords)
-            : this(currentPage, perPage, totalNumberOfRecords, null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PagedDataTable"/> class.
-        /// </summary>
-        /// <param name="currentPage">The current page.</param>
-        /// <param name="perPage">The per page.</param>
-        /// <param name="totalNumberOfRecords">The total number of records.</param>
-        /// <param name="tableName">Name of the table.</param>
-        public PagedDataTable(int currentPage, int perPage, int totalNumberOfRecords, string tableName)
-            : this(currentPage, perPage, totalNumberOfRecords, tableName, null)
-        {
-        }
+        public OrderParameter[] OrderedBy { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PagedDataTable"/> class.
@@ -74,24 +56,13 @@ namespace System.Data
         /// <param name="totalNumberOfRecords">The total number of records.</param>
         /// <param name="tableName">Name of the table.</param>
         /// <param name="tableNamespace">The table namespace.</param>
-        public PagedDataTable(int currentPage, int perPage, int totalNumberOfRecords, string tableName, string tableNamespace)
+        public PagedDataTable(int currentPage, int perPage, int totalNumberOfRecords, string tableName = null, string tableNamespace = null, OrderParameter[] orderedBy = null)
             : base(tableName, tableNamespace)
         {
             this.CurrentPage = currentPage;
             this.PerPage = perPage;
             this.TotalNumberOfRecords = totalNumberOfRecords;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PagedDataTable"/> class.
-        /// </summary>
-        /// <param name="info">The data needed to serialize or deserialize an object.</param>
-        /// <param name="context">The source and destination of a given serialized stream.</param>
-        protected PagedDataTable(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-            this.CurrentPage = info.GetInt32("CurrentPage");
-            this.PerPage = info.GetInt32("PerPage");
-            this.TotalNumberOfRecords = info.GetInt32("TotalNumberOfRecords");
+            this.OrderedBy = orderedBy ?? new OrderParameter[0];
         }
     }
 }

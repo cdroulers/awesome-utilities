@@ -71,6 +71,7 @@
     <Compile Include="ArgumentNotNullException.cs" />
     <Compile Include="Data\DbConnectionExtensions.cs" />
     <Compile Include="Data\OrderByDirection.cs" />
+    <Compile Include="Data\OrderParameter.cs" />
     <Compile Include="Data\PagedDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
