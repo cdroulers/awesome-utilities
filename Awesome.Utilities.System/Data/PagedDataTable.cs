@@ -41,6 +41,11 @@ namespace System.Data
         /// <summary>
         /// Gets the items in the data table. i.e. The rows already cast as objects.
         /// </summary>
+        public IEnumerable<DataColumn> AllColumns { get { return this.Columns.Cast<DataColumn>(); } }
+
+        /// <summary>
+        /// Gets the items in the data table. i.e. The rows already cast as objects.
+        /// </summary>
         public IEnumerable<DataRow> Items { get { return this.Rows.Cast<DataRow>(); } }
 
         /// <summary>
@@ -56,6 +61,7 @@ namespace System.Data
         /// <param name="totalNumberOfRecords">The total number of records.</param>
         /// <param name="tableName">Name of the table.</param>
         /// <param name="tableNamespace">The table namespace.</param>
+        /// <param name="orderedBy">The ordered by.</param>
         public PagedDataTable(int currentPage, int perPage, int totalNumberOfRecords, string tableName = null, string tableNamespace = null, OrderParameter[] orderedBy = null)
             : base(tableName, tableNamespace)
         {
