@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
@@ -67,18 +68,26 @@ namespace System.Collections.Generic
         public static ResultPage<T> Empty { get { return new ResultPage<T>(new List<T>(), 1, 1, 0); } }
 
         /// <summary>
+        /// Gets how the current result page is ordered.
+        /// </summary>
+        [DataMember]
+        public OrderParameter[] OrderedBy { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ResultPage&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="items">The items.</param>
         /// <param name="currentPage">The current page.</param>
         /// <param name="perPage">The per page.</param>
         /// <param name="totalNumberOfRecords">The total number of records.</param>
-        public ResultPage(IList<T> items, int currentPage, int perPage, int totalNumberOfRecords)
+        /// <param name="orderedBy">The ordered by.</param>
+        public ResultPage(IList<T> items, int currentPage, int perPage, int totalNumberOfRecords, OrderParameter[] orderedBy =  null)
             : base(items)
         {
             this.currentPage = currentPage;
             this.perPage = perPage;
             this.totalNumberOfRecords = totalNumberOfRecords;
+            this.OrderedBy = orderedBy ?? new OrderParameter[0];
 
             this.lastPage = (int)Math.Ceiling((totalNumberOfRecords * 1.0d / perPage));
             this.nextPage = currentPage < this.lastPage ? currentPage + 1 : new int?();

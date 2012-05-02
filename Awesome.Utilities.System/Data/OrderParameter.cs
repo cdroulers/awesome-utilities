@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace System.Data
@@ -8,15 +9,18 @@ namespace System.Data
     /// <summary>
     ///     An order parameter for anything that requires sorting.
     /// </summary>
+    [DataContract]
     public class OrderParameter
     {
         /// <summary>
         /// Gets or sets the name of the property.
         /// </summary>
+        [DataMember]
         public string PropertyName { get; set; }
         /// <summary>
         /// Gets or sets the direction.
         /// </summary>
+        [DataMember]
         public OrderByDirection Direction { get; set; }
 
         /// <summary>

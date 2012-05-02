@@ -44,7 +44,7 @@ namespace System.Data
         public IEnumerable<DataRow> Items { get { return this.Rows.Cast<DataRow>(); } }
 
         /// <summary>
-        /// Gets or sets how the current data table is ordered.
+        /// Gets how the current data table is ordered.
         /// </summary>
         public OrderParameter[] OrderedBy { get; private set; }
 

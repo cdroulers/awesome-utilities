@@ -1,3 +1,5 @@
+using System.Data;
+
 namespace System.Collections.Generic
 {
     /// <summary>
@@ -34,5 +36,10 @@ namespace System.Collections.Generic
         /// Gets the previous page, if there is one.
         /// </summary>
         int? PreviousPage { get; }
+
+        /// <summary>
+        /// Gets how the current pageable is ordered.
+        /// </summary>
+        OrderParameter[] OrderedBy { get; }
     }
 }
