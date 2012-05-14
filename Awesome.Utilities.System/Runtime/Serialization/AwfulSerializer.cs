@@ -5,6 +5,8 @@ using System.Net;
 using System.Text;
 using System.Reflection;
 using System.Collections;
+using System.Globalization;
+using System.Net.Mail;
 
 namespace System.Runtime.Serialization
 {
@@ -37,7 +39,9 @@ namespace System.Runtime.Serialization
                 typeof(DateTime),
                 typeof(TimeSpan),
                 typeof(IPAddress),
-                typeof(Uri)
+                typeof(Uri),
+                typeof(CultureInfo),
+                typeof(MailAddress)
             };
         }
 
@@ -147,7 +151,14 @@ namespace System.Runtime.Serialization
                 foreach (var property in properties)
                 {
                     this.Append(builder, level, AwfulSerializer.GetPropertyName(property));
-                    this.Serialize(property.GetValue(graph, null), builder, level + 1);
+                    if (property.PropertyType == type)
+                    {
+                        this.AppendLine(builder, level, "RECURSION DETECTED!");
+                    }
+                    else
+                    {
+                        this.Serialize(property.GetValue(graph, null), builder, level + 1);
+                    }
                 }
             }
         }

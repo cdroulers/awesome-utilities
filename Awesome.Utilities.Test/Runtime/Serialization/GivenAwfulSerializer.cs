@@ -119,5 +119,20 @@ namespace Awesome.Utilities.Test.Runtime.Serialization
   Clé one => CurrentCulture"));
             }
         }
+
+        [Test]
+        public void When_recursion_Then_doesnt_explode()
+        {
+            using (Culture.As(CultureInfo.InvariantCulture))
+            {
+                var serializer = new AwfulSerializer("  ");
+                serializer.StringableTypes.Remove(typeof(CultureInfo));
+
+                string actual = serializer.Serialize(new CultureInfo("en-US"));
+
+                Assert.That(actual, Is.Not.Null);
+                Assert.That(actual, Contains.Substring(@"Parent (CultureInfo) =>   RECURSION DETECTED!"));
+            }
+        }
     }
 }
