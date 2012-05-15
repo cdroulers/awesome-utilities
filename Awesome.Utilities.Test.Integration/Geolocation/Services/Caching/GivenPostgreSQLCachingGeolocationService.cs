@@ -86,6 +86,35 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services.Caching
         }
 
         [Test]
+        public void When_getting_all_info_Then_caches_in_right_order()
+        {
+            if (!this.canTest)
+            {
+                return;
+            }
+            var multipleResults = new AddressInformation[]
+            {
+                new AddressInformation(new AddressInformationComponent[] { new AddressInformationComponent("LONG", "SHORT", new string[] { "type1", "type2" }) },
+                        new Coordinates(15, 15),
+                        "address",
+                        "type"),
+                new AddressInformation(new AddressInformationComponent[] { new AddressInformationComponent("ALONG", "ASHORT", new string[] { "type1", "type2" }) },
+                        new Coordinates(30, 30),
+                        "aaddress",
+                        "type")
+            };
+            geoMock.Setup(x => x.GetAllAddressInformation("Boston, Massachusetts")).Returns(multipleResults);
+            this.postgresGeo = new PostgreSQLCachingGeolocationService(geoMock.Object, this.settings);
+
+            var actual = this.postgresGeo.GetAllAddressInformation("Boston, Massachusetts");
+
+            var second = this.postgresGeo.GetAllAddressInformation("Boston, Massachusetts");
+
+            Assert.That(second, Is.EqualTo(actual));
+            geoMock.Verify(x => x.GetAllAddressInformation(It.IsAny<string>()), Times.Once());
+        }
+
+        [Test]
         public void When_getting_coordinates_Then_caches()
         {
             if (!this.canTest)

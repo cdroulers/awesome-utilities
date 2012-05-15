@@ -120,7 +120,7 @@ namespace System.Geolocation.Services.Caching
             using (var connection = this.GetConnection())
             {
                 bool deleteValues = false;
-                using (var reader = connection.ExecuteReader("SELECT formatted_address, longitude, latitude, type, components, updated_on FROM address_cache WHERE LOWER(address) = {0}", address.ToLowerInvariant()))
+                using (var reader = connection.ExecuteReader("SELECT formatted_address, longitude, latitude, type, components, updated_on FROM address_cache WHERE LOWER(address) = {0} ORDER BY updated_on ASC", address.ToLowerInvariant()))
                 {
                     var addresses = new List<AddressInformation>();
                     while (reader.Read())
