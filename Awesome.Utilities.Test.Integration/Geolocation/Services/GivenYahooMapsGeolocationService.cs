@@ -42,7 +42,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         }
 
         [TestCase("")]
-        [TestCase("245 N W 8 asdf sadf asdf as Street, Miami, FL 33136-3913, USA")]
+        [TestCase("1870aec8-dded-4c28-a53c-40a24df51eb4")]
         public void When_getting_coordinates_that_have_no_results_Then_throws(string address)
         {
             Assert.Throws<AddressNotFoundException>(() => this.geo.GetCoordinates(address));

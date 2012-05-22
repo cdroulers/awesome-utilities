@@ -25,6 +25,10 @@ namespace System.Web.Uploads
         public LocalSiteFileUploader(string localPath, Func<string, Uri> resultToUriFunc = null)
         {
             this.localPath = localPath;
+            if (!VirtualPathUtility.IsAppRelative(localPath))
+            {
+                Validate.Is.Not.Null(resultToUriFunc, "resultToUriFunc");
+            }
             this.resultToUriFunc = resultToUriFunc;
         }
 
@@ -37,7 +41,7 @@ namespace System.Web.Uploads
         public Uri Upload(HttpPostedFileBase file, string fileName)
         {
             var fullPath = Path.Combine(this.localPath, fileName);
-            var serverPath = fullPath.StartsWith("~") ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
+            var serverPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
             var directory = Path.GetDirectoryName(serverPath);
             new DirectoryInfo(directory).Create();
 
@@ -69,10 +73,10 @@ namespace System.Web.Uploads
         public Uri Rename(string fileName, string newFileName)
         {
             var fullPath = Path.Combine(this.localPath, fileName);
-            var serverPath = fullPath.StartsWith("~") ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
+            var serverPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
             
             var newFullPath = Path.Combine(this.localPath, newFileName);
-            var newServerPath = fullPath.StartsWith("~") ? HttpContext.Current.Server.MapPath(newFullPath) : newFullPath;
+            var newServerPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(newFullPath) : newFullPath;
 
             if (File.Exists(newServerPath))
             {
@@ -81,6 +85,21 @@ namespace System.Web.Uploads
             File.Move(serverPath, newServerPath);
 
             return this.GetUri(newFullPath);
+        }
+
+        /// <summary>
+        /// Deletes a previously uploaded file.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        public void Delete(string fileName)
+        {
+            var fullPath = Path.Combine(this.localPath, fileName);
+            var serverPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
+
+            if (File.Exists(serverPath))
+            {
+                File.Delete(serverPath);
+            }
         }
     }
 }

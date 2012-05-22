@@ -25,5 +25,11 @@ namespace System.Web.Uploads
         /// <param name="newFileName">New name of the file.</param>
         /// <returns></returns>
         Uri Rename(string fileName, string newFileName);
+
+        /// <summary>
+        ///     Deletes a previously uploaded file.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        void Delete(string fileName);
     }
 }
