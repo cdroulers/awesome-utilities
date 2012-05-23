@@ -50,6 +50,27 @@ namespace System.Web.Uploads
             return this.GetUri(fullPath);
         }
 
+        /// <summary>
+        /// Uploads the specified file.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns></returns>
+        public Uri Upload(Stream stream, string fileName)
+        {
+            var fullPath = Path.Combine(this.localPath, fileName);
+            var serverPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
+            var directory = Path.GetDirectoryName(serverPath);
+            new DirectoryInfo(directory).Create();
+
+            using (var file = File.OpenWrite(serverPath))
+            {
+                stream.CopyTo(file);
+            }
+
+            return this.GetUri(fullPath);
+        }
+
         private Uri GetUri(string fullPath)
         {
             if (this.resultToUriFunc != null)

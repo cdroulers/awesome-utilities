@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace System.Web.Mvc
+namespace System.Web.Mvc.Binders
 {
     /// <summary>
     /// A binder for strings that trims them

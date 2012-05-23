@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,14 @@ namespace System.Web.Uploads
         /// <param name="fileName">Name of the file.</param>
         /// <returns></returns>
         Uri Upload(HttpPostedFileBase file, string fileName);
+
+        /// <summary>
+        /// Uploads the specified stream.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns></returns>
+        Uri Upload(Stream stream, string fileName);
 
         /// <summary>
         ///     Renames a previously uploaded file to the specified file name.

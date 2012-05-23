@@ -53,6 +53,7 @@
     <Reference Include="System.Data.SQLite.Linq">
       <HintPath>..\packages\System.Data.SQLite.x64.1.0.80.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -78,12 +79,14 @@
     <Compile Include="ComponentModel\DataAnnotations\GivenRequiredGroupAttribute.cs" />
     <Compile Include="Configuration\GivenFlexibleConfiguration.cs" />
     <Compile Include="Data\Common\GivenConnectionStringHelper.cs" />
+    <Compile Include="Drawing\GivenImage.cs" />
     <Compile Include="Geolocation\GivenBoundingBox.cs" />
     <Compile Include="Geolocation\GivenCoordinates.cs" />
     <Compile Include="GivenClock.cs" />
     <Compile Include="Globalization\Countries\GivenRegionInfoCountryRepository.cs" />
     <Compile Include="Globalization\Currencies\GivenMoneyHelper.cs" />
     <Compile Include="Globalization\GivenCulture.cs" />
+    <Compile Include="IO\GivenFileExtensions.cs" />
     <Compile Include="Messages\GivenNotification.cs" />
     <Compile Include="Collections\Generic\GivenResultPage.cs" />
     <Compile Include="GivenAdvancedMath.cs" />
@@ -98,6 +101,7 @@
     <Compile Include="Units\Distances\GivenDistance.cs" />
     <Compile Include="WebTestApp\Controllers\TestController.cs" />
     <Compile Include="WebTestApp\Controllers\TestEmptyController.cs" />
+    <Compile Include="Web\GivenDataUriPostedFile.cs" />
     <Compile Include="Web\GivenMvcHtmlString.cs" />
     <Compile Include="Web\Mvc\GivenAccess.cs" />
     <Compile Include="Web\Mvc\Helpers.cs" />
@@ -130,6 +134,9 @@
     <None Include="Configuration\External.config" />
     <None Include="Configuration\External2.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web\onebyone.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
