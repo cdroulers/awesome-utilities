@@ -134,5 +134,29 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
                 Assert.That(node.InnerText.Trim(), Is.EqualTo(dates[i].ToString("yyyy-MM-dd")));
             }
         }
+
+        [Test]
+        public void When_playing_with_css_class_Then_doesnt_fail()
+        {
+            var control = new LiteralControl(System.Web.UI.HtmlTextWriterTag.Span) { CssClass = "lol" };
+
+            Assert.That(control.CssClass, Is.EqualTo("lol"));
+
+            control.AddCssClass("wat");
+
+            Assert.That(control.CssClass, Is.EqualTo("lol wat"));
+
+            control.AddCssClass("");
+
+            Assert.That(control.CssClass, Is.EqualTo("lol wat"));
+
+            control.RemoveCssClass("");
+
+            Assert.That(control.CssClass, Is.EqualTo("lol wat"));
+
+            control.RemoveCssClass("wat");
+
+            Assert.That(control.CssClass, Is.EqualTo("lol"));
+        }
     }
 }

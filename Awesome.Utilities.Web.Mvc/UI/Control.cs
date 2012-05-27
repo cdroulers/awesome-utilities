@@ -569,12 +569,16 @@ namespace System.Web.Mvc.UI
         /// <returns></returns>
         public virtual Control AddCssClass(string cssClass)
         {
-            string temp = this.CssClass ?? string.Empty;
-            if (!temp.Contains(cssClass))
+            if (string.IsNullOrWhiteSpace(cssClass))
             {
-                temp += " " + cssClass;
+                return this;
             }
-            this.CssClass = temp.Trim();
+            var classes = (this.CssClass ?? string.Empty).Split(' ');
+            if (!classes.Contains(cssClass))
+            {
+                this.CssClass += " " + cssClass;
+                this.CssClass = this.CssClass.Trim();
+            }
 
             return this;
         }
@@ -586,12 +590,16 @@ namespace System.Web.Mvc.UI
         /// <returns></returns>
         public virtual Control RemoveCssClass(string cssClass)
         {
-            string temp = this.CssClass ?? string.Empty;
-            if (temp.Contains(cssClass))
+            if (string.IsNullOrWhiteSpace(cssClass))
             {
-                temp = temp.Replace(this.ControlCssClass, string.Empty);
+                return this;
             }
-            this.CssClass = temp.Trim();
+            var classes = (this.CssClass ?? string.Empty).Split(' ').ToList();
+            if (classes.Contains(cssClass))
+            {
+                classes.Remove(cssClass);
+                this.CssClass = string.Join(" ", classes);
+            }
 
             return this;
         }
