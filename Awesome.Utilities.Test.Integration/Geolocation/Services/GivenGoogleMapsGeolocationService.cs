@@ -114,7 +114,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
             Assert.That(info, Is.Not.Null);
             Assert.That(info.Type, Is.EqualTo("street_address"));
             Assert.That(info.FormattedAddress, Is.EqualTo("304 Chemin Rockland, Mont-Royal, QC H3P 2W8, Canada"));
-            Assert.That(info.Coordinates, Is.EqualTo(new Coordinates(-73.62904170, 45.52085170)));
+            ComparisonHelper.CompareCoordinates(info.Coordinates, new Coordinates(-73.62904170, 45.52085170), 0.0001);
             Assert.That(info.Components, Has.Length.EqualTo(7));
             Assert.That(info.Components[0], Is.EqualTo(new AddressInformationComponent("304", "304", new string[] { "street_number" })));
             Assert.That(info.Components[1], Is.EqualTo(new AddressInformationComponent("Chemin Rockland", "Chemin Rockland", new string[] { "route" })));

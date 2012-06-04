@@ -43,5 +43,14 @@ namespace Awesome.Utilities.Test.Web.Mvc.UI
             Assert.That(element.Attributes["title"], Is.Null);
             Assert.That(element.Attributes["type"].Value, Is.EqualTo("submit"));
         }
+
+        [Test]
+        public void When_creating_literal_control_and_not_indenting_Then_renders_properly()
+        {
+            var control = new LiteralControl(WebUI.HtmlTextWriterTag.Span) { Content = "wot", IsIndented = false };
+
+            string actual = control.ToString();
+            Assert.That(actual, Is.EqualTo("<span>wot</span>"));
+        }
     }
 }

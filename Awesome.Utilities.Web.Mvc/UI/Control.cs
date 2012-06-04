@@ -18,7 +18,7 @@ namespace System.Web.Mvc.UI
         /// <summary>
         ///     If set to false, will not create new lines before and after the tags
         /// </summary>
-        public bool IsIndented { get; protected set; }
+        public bool IsIndented { get; set; }
 
         /// <summary>
         ///     The html Id of this control.

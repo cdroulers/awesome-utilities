@@ -37,7 +37,14 @@ namespace System.Web.Mvc.UI
         {
             if (!string.IsNullOrEmpty(this.Content))
             {
-                htmlTextWriter.WriteLine(this.Content);
+                if (this.IsIndented)
+                {
+                    htmlTextWriter.WriteLine(this.Content);
+                }
+                else
+                {
+                    htmlTextWriter.Write(this.Content);
+                }
             }
             base.RenderContents(htmlTextWriter);
         }
