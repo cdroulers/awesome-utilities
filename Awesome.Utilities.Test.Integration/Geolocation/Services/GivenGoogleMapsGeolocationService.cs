@@ -62,9 +62,9 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         [Test]
         public void When_getting_coordinates_that_have_close_match_with_param_to_false_Then_throws()
         {
-            var exc = Assert.Throws<MultipleCoordinatesException>(() => this.geo.GetCoordinates("Boisbriand, QC, Canada"));
+            var exc = Assert.Throws<MultipleCoordinatesException>(() => this.geo.GetCoordinates("London"));
 
-            Assert.That(exc.Addresses, Has.Length.EqualTo(2));
+            Assert.That(exc.Addresses, Has.Length.EqualTo(4));
         }
 
         [Test]

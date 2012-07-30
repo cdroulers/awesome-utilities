@@ -69,7 +69,7 @@ namespace System.Geolocation.Services
                 double longitude = (double)add.geometry.location.lng;
                 double latitude = (double)add.geometry.location.lat;
 
-                addresses.Add(new AddressInformation(components.ToArray(), new Coordinates(longitude, latitude), add.formatted_address, (add.types as Collections.ArrayList).ToArray().First() as string));
+                addresses.Add(new AddressInformation(components.ToArray(), new Coordinates(longitude, latitude), add.formatted_address, (add.types as Collections.ArrayList).ToArray().FirstOrDefault() as string));
             }
 
             return addresses.ToArray();
@@ -114,7 +114,7 @@ namespace System.Geolocation.Services
 
             if (this.IgnoreCloseMatches)
             {
-                if (results.Any(r => !Priorities.ContainsKey(r.Type)))
+                if (results.Any(r => r.Type == null || !Priorities.ContainsKey(r.Type)))
                 {
                     return addresses;
                 }

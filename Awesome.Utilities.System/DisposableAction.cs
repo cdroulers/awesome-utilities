@@ -18,6 +18,7 @@ namespace System
         /// <param name="action">The action.</param>
         public DisposableAction(Action action)
         {
+            Validate.Is.Not.Null(action, "action");
             this.action = action;
         }
 
