@@ -5,3 +5,4 @@ glob:obj/
 glob:*.user
 syntax: glob
 packages/*
+nuget.exe
