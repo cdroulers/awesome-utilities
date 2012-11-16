@@ -21,6 +21,13 @@ using this tokenized nuspec file.
     <title />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
+    <licenseUrl>http://awesome-utilities.googlecode.com/hg/LICENSE</licenseUrl>
+    <projectUrl>http://code.google.com/p/awesome-utilities/</projectUrl>
+
+    <dependencies>
+      <dependency id="Awesome.Utilities.System" version="[$version$]"/>
+      <dependency id="Awesome.Utilities.Units" version="[$version$]"/>
+    </dependencies>
   </metadata>
   <files />
 </package>

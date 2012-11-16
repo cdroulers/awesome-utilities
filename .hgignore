@@ -6,3 +6,4 @@ glob:*.user
 syntax: glob
 packages/*
 nuget.exe
+builds/
