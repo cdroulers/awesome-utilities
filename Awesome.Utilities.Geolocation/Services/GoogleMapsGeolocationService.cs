@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Json;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -24,14 +25,21 @@ namespace System.Geolocation.Services
         public readonly bool IgnoreCloseMatches;
 
         /// <summary>
+        ///     The language to query Google Servers with.
+        /// </summary>
+        public readonly CultureInfo Language;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GoogleMapsGeolocationService"/> class.
         /// </summary>
         /// <param name="baseAddress">The base address.</param>
         /// <param name="ignoreCloseMatches">if set to <c>true</c> [ignore close matches].</param>
-        public GoogleMapsGeolocationService(Uri baseAddress = null, bool ignoreCloseMatches = false)
+        /// <param name="language">The language for all queries.</param>
+        public GoogleMapsGeolocationService(Uri baseAddress = null, bool ignoreCloseMatches = false, CultureInfo language = null)
             : base(baseAddress ?? BaseAddressDefault)
         {
             this.IgnoreCloseMatches = ignoreCloseMatches;
+            this.Language = language;
         }
 
         private UriBuilder GetBuilder(string path, NameValueCollection query)
@@ -43,6 +51,10 @@ namespace System.Geolocation.Services
             }
             builder.Path += path;
             query["sensor"] = "false";
+            if (this.Language != null)
+            {
+                query["language"] = this.Language.Name;
+            }
             builder.Query += string.Join("&", Array.ConvertAll(query.AllKeys, key => string.Format("{0}={1}", key, query[key])));
             return builder;
         }

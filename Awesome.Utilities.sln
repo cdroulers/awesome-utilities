@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.System", "Awesome.Utilities.System\Awesome.Utilities.System.csproj", "{BD269F95-E64C-489D-AA68-5FDF6E513AED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Test", "Awesome.Utilities.Test\Awesome.Utilities.Test.csproj", "{F6F124C2-DC6E-457E-863D-EFDFC1942D36}"
@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE = LICENSE
 		nuspec.2010.7.xsd = nuspec.2010.7.xsd
 		nuspec.2011.8.xsd = nuspec.2011.8.xsd
+		publish.ps1 = publish.ps1
 		SolutionAssemblyInfo.cs = SolutionAssemblyInfo.cs
 	EndProjectSection
 EndProject
@@ -25,8 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{25E3B4
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.targets = .nuget\NuGet.targets
-		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Geolocation.Caching.PostgreSQL", "Awesome.Utilities.Geolocation.Caching.PostgreSQL\Awesome.Utilities.Geolocation.Caching.PostgreSQL.csproj", "{6A38C982-1FBA-4F84-ADFE-1A4A40092744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Geolocation.Caching.SQLite", "Awesome.Utilities.Geolocation.Caching.SQLite\Awesome.Utilities.Geolocation.Caching.SQLite.csproj", "{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,18 @@ Global
 		{0652D591-6565-4FC4-811E-A86BD3CBBC89}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0652D591-6565-4FC4-811E-A86BD3CBBC89}.ReleaseNuGet|Any CPU.ActiveCfg = ReleaseNuGet|Any CPU
 		{0652D591-6565-4FC4-811E-A86BD3CBBC89}.ReleaseNuGet|Any CPU.Build.0 = ReleaseNuGet|Any CPU
+		{6A38C982-1FBA-4F84-ADFE-1A4A40092744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A38C982-1FBA-4F84-ADFE-1A4A40092744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A38C982-1FBA-4F84-ADFE-1A4A40092744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A38C982-1FBA-4F84-ADFE-1A4A40092744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A38C982-1FBA-4F84-ADFE-1A4A40092744}.ReleaseNuGet|Any CPU.ActiveCfg = ReleaseNuGet|Any CPU
+		{6A38C982-1FBA-4F84-ADFE-1A4A40092744}.ReleaseNuGet|Any CPU.Build.0 = ReleaseNuGet|Any CPU
+		{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}.ReleaseNuGet|Any CPU.ActiveCfg = ReleaseNuGet|Any CPU
+		{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}.ReleaseNuGet|Any CPU.Build.0 = ReleaseNuGet|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

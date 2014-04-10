@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Geolocation.Caching.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using System.Geolocation.Services.Caching;
 using System.Geolocation.Services;
 using Moq;
 using System.Geolocation;
 using System.Configuration;
-using System.Data.Common;
 using System.Data.SQLite;
 
 namespace Awesome.Utilities.Test.Integration.Geolocation.Services.Caching

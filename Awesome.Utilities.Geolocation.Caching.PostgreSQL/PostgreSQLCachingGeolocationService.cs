@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Geolocation.Services;
+using System.Geolocation.Services.Caching;
 using System.Linq;
 using System.Text;
 using System.Configuration;
 using Npgsql;
-using System.IO;
 using System.Data.Common;
 using System.Data;
 
-namespace System.Geolocation.Services.Caching
+namespace System.Geolocation.Caching.PostgreSQL
 {
     /// <summary>
     ///     A caching class for PostgreSQL
@@ -16,7 +17,7 @@ namespace System.Geolocation.Services.Caching
     public class PostgreSQLCachingGeolocationService : BaseCachingGeolocationService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SQLiteCachingGeolocationService"/> class.
+        /// Initializes a new instance of the <see cref="PostgreSQLCachingGeolocationService"/> class.
         /// </summary>
         /// <param name="decorated">The decorated.</param>
         /// <param name="connectionString">The connection string.</param>

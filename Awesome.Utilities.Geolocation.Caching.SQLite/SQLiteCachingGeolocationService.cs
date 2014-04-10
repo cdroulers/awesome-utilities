@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Geolocation.Services;
+using System.Geolocation.Services.Caching;
 using System.Linq;
 using System.Text;
 using System.Configuration;
 using System.Data.SQLite;
 using System.IO;
-using System.Data.Common;
 using System.Data;
 
-namespace System.Geolocation.Services.Caching
+namespace System.Geolocation.Caching.SQLite
 {
     /// <summary>
     ///     A caching class for SQLite

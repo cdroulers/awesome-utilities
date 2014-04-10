@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
+using System.Geolocation.Caching.PostgreSQL;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using System.Geolocation.Services.Caching;
 using System.Geolocation.Services;
 using Moq;
 using System.Geolocation;
 using System.Configuration;
-using System.Data.Common;
 using Npgsql;
 
 namespace Awesome.Utilities.Test.Integration.Geolocation.Services.Caching

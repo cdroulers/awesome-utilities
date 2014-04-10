@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E54299C9-B5DE-424A-9E31-D4FB45C783BA}</ProjectGuid>
+    <ProjectGuid>{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Awesome.Utilities.Test.Integration</RootNamespace>
-    <AssemblyName>Awesome.Utilities.Test.Integration</AssemblyName>
+    <RootNamespace>Awesome.Utilities.Geolocation.Caching.SQLite</RootNamespace>
+    <AssemblyName>Awesome.Utilities.Geolocation.Caching.SQLite</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,40 +33,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNuGet|AnyCPU'">
-    <OutputPath>bin\ReleaseNuGet\</OutputPath>
+    <OutputPath>..\builds\nuget\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>..\builds\nuget\Awesome.Utilities.System.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <BuildPackage>true</BuildPackage>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npgsql.2.0.11\lib\Net40\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql, Version=2.0.11.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Npgsql.2.0.11\lib\Net40\Npgsql.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.92.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
+    <Reference Include="System.Data.SQLite, Version=1.0.92.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.92.0\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,36 +63,22 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ComparisonHelper.cs" />
-    <Compile Include="Data\GivenDbConnectionExtensions.cs" />
-    <Compile Include="Geolocation\Services\Caching\GivenPostgreSQLCachingGeolocationService.cs" />
-    <Compile Include="Geolocation\Services\Caching\GivenSQLiteCachingGeolocationService.cs" />
-    <Compile Include="Geolocation\Services\GivenGoogleMapsGeolocationService.cs" />
-    <Compile Include="Geolocation\Services\GivenMapQuestGeolocationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web\Uploads\GivenLocalSiteFileUploader.cs" />
+    <Compile Include="SQLiteCachingGeolocationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Awesome.Utilities.Geolocation.Caching.PostgreSQL\Awesome.Utilities.Geolocation.Caching.PostgreSQL.csproj">
-      <Project>{6a38c982-1fba-4f84-adfe-1a4a40092744}</Project>
-      <Name>Awesome.Utilities.Geolocation.Caching.PostgreSQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Awesome.Utilities.Geolocation.Caching.SQLite\Awesome.Utilities.Geolocation.Caching.SQLite.csproj">
-      <Project>{6b53248d-bac7-4b84-ac1c-af61c11b10e0}</Project>
-      <Name>Awesome.Utilities.Geolocation.Caching.SQLite</Name>
-    </ProjectReference>
+    <None Include="Awesome.Utilities.Geolocation.Caching.SQLite.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Awesome.Utilities.Geolocation\Awesome.Utilities.Geolocation.csproj">
-      <Project>{A7BF2FBE-2BC3-4D3E-9363-52FE6ACBF00E}</Project>
+      <Project>{a7bf2fbe-2bc3-4d3e-9363-52fe6acbf00e}</Project>
       <Name>Awesome.Utilities.Geolocation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Awesome.Utilities.System\Awesome.Utilities.System.csproj">
       <Project>{BD269F95-E64C-489D-AA68-5FDF6E513AED}</Project>
       <Name>Awesome.Utilities.System</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="x64\SQLite.Interop.dll">
@@ -117,11 +89,13 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

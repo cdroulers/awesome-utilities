@@ -7,3 +7,5 @@ syntax: glob
 packages/*
 nuget.exe
 builds/
+SQLite.Interop.dll
+.nuget/key.txt

@@ -22,7 +22,7 @@ namespace Awesome.Utilities.Test.Globalization.Countries
             this.countries = new RegionInfoCountryRepository();
         }
 
-        [TestCase("CA", "CAN", "Canada", "ᑲᓇᑕ", "fr-CA", "Canada")]
+        [TestCase("CA", "CAN", "Canada", "Canada", "fr-CA", "Canada")]
         [TestCase("US", "USA", "United States", "United States", "fr-CA", "United States")]
         [TestCase("DE", "DEU", "Germany", "Deutschland", "fr-CA", "Germany")]
         public void When_getting_by_ID_Then_returns_the_proper_country(string two, string three, string englishName, string nativeName, string culture, string cultureName)
@@ -41,7 +41,7 @@ namespace Awesome.Utilities.Test.Globalization.Countries
         {
             var results = this.countries.GetAll().ToList();
 
-            Assert.That(results, Has.Count.EqualTo(128));
+            Assert.That(results, Has.Count.EqualTo(143));
         }
 
         [TestCase("US", 55)]
