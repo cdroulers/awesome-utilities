@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Configuration\External3.config" />
     <None Include="Configuration\External.config" />
     <None Include="Configuration\External2.config" />
     <None Include="packages.config">

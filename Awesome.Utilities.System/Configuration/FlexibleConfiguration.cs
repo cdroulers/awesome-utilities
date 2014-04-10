@@ -77,30 +77,38 @@ namespace System.Configuration
             {
                 var configuration = OpenFile(fileName);
 
-                var csDataSet = XDocument.Parse(configuration.ConnectionStrings.SectionInformation.GetRawXml());
-                foreach (var cs in csDataSet.Descendants("add"))
+                var connectionStringsXml =configuration.ConnectionStrings.SectionInformation.GetRawXml();
+                if (!string.IsNullOrWhiteSpace(connectionStringsXml))
                 {
-                    string name = cs.Attribute("name").Value;
-                    string value = cs.Attribute("connectionString").Value;
-                    string provider = cs.Attribute("providerName").Value;
-                    var csSettings = new ConnectionStringSettings(name, value, provider);
-                    int index = config.connectionStrings.IndexOf(csSettings);
-                    if (index >= 0)
+                    var csDataSet = XDocument.Parse(connectionStringsXml);
+                    foreach (var cs in csDataSet.Descendants("add"))
                     {
-                        config.connectionStrings[index] = csSettings;
-                    }
-                    else
-                    {
-                        config.ConnectionStrings.Add(csSettings);
+                        string name = cs.Attribute("name").Value;
+                        string value = cs.Attribute("connectionString").Value;
+                        string provider = cs.Attribute("providerName").Value;
+                        var csSettings = new ConnectionStringSettings(name, value, provider);
+                        int index = config.connectionStrings.IndexOf(csSettings);
+                        if (index >= 0)
+                        {
+                            config.connectionStrings[index] = csSettings;
+                        }
+                        else
+                        {
+                            config.ConnectionStrings.Add(csSettings);
+                        }
                     }
                 }
 
-                var asDataSet = XDocument.Parse(configuration.AppSettings.SectionInformation.GetRawXml());
-                foreach (var cs in asDataSet.Descendants("add"))
+                var appSettingsXml = configuration.AppSettings.SectionInformation.GetRawXml();
+                if (!string.IsNullOrWhiteSpace(appSettingsXml))
                 {
-                    string key = cs.Attribute("key").Value;
-                    string value = cs.Attribute("value").Value;
-                    config.AppSettings[key] = value;
+                    var asDataSet = XDocument.Parse(appSettingsXml);
+                    foreach (var cs in asDataSet.Descendants("add"))
+                    {
+                        string key = cs.Attribute("key").Value;
+                        string value = cs.Attribute("value").Value;
+                        config.AppSettings[key] = value;
+                    }
                 }
             }
 

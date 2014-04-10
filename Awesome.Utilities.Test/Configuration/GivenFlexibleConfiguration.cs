@@ -66,5 +66,11 @@ namespace Awesome.Utilities.Test.Configuration
             Assert.That(DbProviderFactories.GetFactory("System.Data.SQLite"), Is.Not.Null);
             Assert.That(DbProviderFactories.GetFactory("System.Data.PostgreSQL"), Is.Not.Null);
         }
+
+        [Test]
+        public void When_loading_empty_file_Then_works()
+        {
+            FlexibleConfiguration.Load(false, "../../Configuration/External3.config");
+        }
     }
 }
