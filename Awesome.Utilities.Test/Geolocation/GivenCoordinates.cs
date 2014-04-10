@@ -31,8 +31,8 @@ namespace Awesome.Utilities.Test.Geolocation
 
             var actual = coordinates.BoundingBox(new Kilometers(radius));
 
-            Assert.That(actual.TopLeft, Is.EqualTo(new Coordinates(minLong, minLat)));
-            Assert.That(actual.BottomRight, Is.EqualTo(new Coordinates(maxLong, maxLat)));
+            Assert.That(actual.SouthWest, Is.EqualTo(new Coordinates(minLong, minLat)));
+            Assert.That(actual.NorthEast, Is.EqualTo(new Coordinates(maxLong, maxLat)));
         }
     }
 }

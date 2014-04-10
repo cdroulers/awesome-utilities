@@ -13,21 +13,21 @@ namespace System.Geolocation
         /// <summary>
         ///     Top left coordinates of the bounding box.
         /// </summary>
-        public readonly Coordinates TopLeft;
+        public readonly Coordinates SouthWest;
         /// <summary>
         ///     Bottom right coordinates of the bounding box.
         /// </summary>
-        public readonly Coordinates BottomRight;
+        public readonly Coordinates NorthEast;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BoundingBox"/> struct.
         /// </summary>
-        /// <param name="topLeft">The top left.</param>
-        /// <param name="bottomRight">The bottom right.</param>
-        public BoundingBox(Coordinates topLeft, Coordinates bottomRight)
+        /// <param name="southWest">The top left.</param>
+        /// <param name="northEast">The bottom right.</param>
+        public BoundingBox(Coordinates southWest, Coordinates northEast)
         {
-            this.TopLeft = topLeft;
-            this.BottomRight = bottomRight;
+            this.SouthWest = southWest;
+            this.NorthEast = northEast;
         }
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace System.Geolocation
         /// </returns>
         public bool Contains(Coordinates coordinates)
         {
-            return (coordinates.Longitude >= this.TopLeft.Longitude &&
-                coordinates.Longitude <= this.BottomRight.Longitude) &&
-                (coordinates.Latitude >= this.TopLeft.Latitude &&
-                coordinates.Latitude <= this.BottomRight.Latitude);
+            return (coordinates.Longitude >= this.SouthWest.Longitude &&
+                coordinates.Longitude <= this.NorthEast.Longitude) &&
+                (coordinates.Latitude >= this.SouthWest.Latitude &&
+                coordinates.Latitude <= this.NorthEast.Latitude);
         }
     }
 }
