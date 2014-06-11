@@ -16,7 +16,7 @@ namespace System.Collections.Specialized
         /// </summary>
         /// <param name="self">The self.</param>
         /// <param name="prependQueryStringDelimiter">if set to <c>true</c> prepends the query string delimiter "?".</param>
-        /// <returns></returns>
+        /// <returns>A query string from the name value collection.</returns>
         public static string ToQueryString(this NameValueCollection self, bool prependQueryStringDelimiter = false)
         {
             return (prependQueryStringDelimiter ? "?" : string.Empty) + string.Join("&", self.AllKeys.Select(k => k + "=" + self[k]));

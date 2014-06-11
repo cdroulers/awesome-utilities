@@ -21,7 +21,7 @@ namespace System
         /// <summary>
         /// Initializes a new instance of the <see cref="StringArgumentNullOrEmptyException"/> class.
         /// </summary>
-        /// <param name="paramName">Name of the param.</param>
+        /// <param name="paramName">Name of the parameter.</param>
         public StringArgumentNullOrEmptyException(string paramName)
             : base(null, paramName)
         {
@@ -50,7 +50,7 @@ namespace System
         /// <summary>
         /// Initializes a new instance of the <see cref="StringArgumentNullOrEmptyException"/> class.
         /// </summary>
-        /// <param name="paramName">Name of the param.</param>
+        /// <param name="paramName">Name of the parameter.</param>
         /// <param name="message">The message.</param>
         public StringArgumentNullOrEmptyException(string paramName, string message)
             : base(message, paramName)

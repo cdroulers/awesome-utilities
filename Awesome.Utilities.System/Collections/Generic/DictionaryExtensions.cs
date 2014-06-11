@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
-using System.Collections.Specialized;
 
 namespace System.Collections.Generic
 {
@@ -14,12 +14,12 @@ namespace System.Collections.Generic
         /// <summary>
         /// Transforms a dictionary into a key value collection using the specified functions.
         /// </summary>
-        /// <typeparam name="K"></typeparam>
-        /// <typeparam name="V"></typeparam>
+        /// <typeparam name="K">The key type.</typeparam>
+        /// <typeparam name="V">The value type.</typeparam>
         /// <param name="self">The self.</param>
-        /// <param name="keyFunc">The key func.</param>
-        /// <param name="valueFunc">The value func.</param>
-        /// <returns></returns>
+        /// <param name="keyFunc">The key function.</param>
+        /// <param name="valueFunc">The value function.</param>
+        /// <returns>A name value collection from the dictionary.</returns>
         public static NameValueCollection ToNameValueCollection<K, V>(this IDictionary<K, V> self, Func<K, string> keyFunc = null, Func<V, string> valueFunc = null)
         {
             keyFunc = keyFunc ?? (k => k.ToString());
@@ -35,12 +35,12 @@ namespace System.Collections.Generic
         /// <summary>
         /// Gets the value for the specified key, or a specified default.
         /// </summary>
-        /// <typeparam name="K"></typeparam>
-        /// <typeparam name="V"></typeparam>
+        /// <typeparam name="K">The key type.</typeparam>
+        /// <typeparam name="V">The value type.</typeparam>
         /// <param name="self">The self.</param>
         /// <param name="key">The key.</param>
         /// <param name="defaultValue">The default value.</param>
-        /// <returns></returns>
+        /// <returns>The value from the dictionary or a default value.</returns>
         public static V GetValueOrDefault<K, V>(this IDictionary<K, V> self, K key, V defaultValue = default(V))
         {
             V value;

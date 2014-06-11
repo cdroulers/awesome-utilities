@@ -38,7 +38,7 @@ namespace System.Collections.Generic
         int? PreviousPage { get; }
 
         /// <summary>
-        /// Gets how the current pageable is ordered.
+        /// Gets how the current <see cref="IPageable"/> is ordered.
         /// </summary>
         OrderParameter[] OrderedBy { get; }
     }

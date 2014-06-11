@@ -13,6 +13,7 @@ namespace System
     {
         private static DateTime? now;
         private static DateTime? utcNow;
+
         /// <summary>
         /// Gets a value indicating whether this instance is paused.
         /// </summary>
@@ -39,8 +40,9 @@ namespace System
         }
 
         /// <summary>
-        ///     Pauses the clock on the current time.
+        /// Pauses the clock on the current time.
         /// </summary>
+        /// <returns>An IDisposable object that will resume the clock on dispose.</returns>
         public static IDisposable Pause()
         {
             return Clock.Pause(DateTime.UtcNow);
@@ -49,6 +51,7 @@ namespace System
         /// <summary>
         ///     Pauses the clock on the specified time.
         /// </summary>
+        /// <returns>An IDisposable object that will resume the clock on dispose.</returns>
         public static IDisposable Pause(DateTime utcNow)
         {
             Clock.IsPaused = true;

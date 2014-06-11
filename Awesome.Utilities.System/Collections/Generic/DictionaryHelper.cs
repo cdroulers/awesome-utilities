@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.ComponentModel;
 
 namespace System.Collections.Generic
 {
@@ -15,7 +15,7 @@ namespace System.Collections.Generic
         /// Builds a dictionary from an anonymous object.
         /// </summary>
         /// <param name="obj">The obj.</param>
-        /// <returns></returns>
+        /// <returns>A dictionary from the anonymous object.</returns>
         public static IDictionary<string, object> BuildDictionaryFromAnonymousObject(object obj)
         {
             var result = new Dictionary<string, object>();

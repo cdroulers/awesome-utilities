@@ -11,7 +11,7 @@ namespace System
     public interface IValidate
     {
         /// <summary>
-        /// Negates the current validation hypothesis.
+        /// Gets a negateion of the current validation hypothesis.
         /// </summary>
         IValidate Not { get; }
 

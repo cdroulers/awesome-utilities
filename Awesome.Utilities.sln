@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.System", "Awesome.Utilities.System\Awesome.Utilities.System.csproj", "{BD269F95-E64C-489D-AA68-5FDF6E513AED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Test", "Awesome.Utilities.Test\Awesome.Utilities.Test.csproj", "{F6F124C2-DC6E-457E-863D-EFDFC1942D36}"
@@ -31,6 +33,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Geolocation.Caching.PostgreSQL", "Awesome.Utilities.Geolocation.Caching.PostgreSQL\Awesome.Utilities.Geolocation.Caching.PostgreSQL.csproj", "{6A38C982-1FBA-4F84-ADFE-1A4A40092744}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Geolocation.Caching.SQLite", "Awesome.Utilities.Geolocation.Caching.SQLite\Awesome.Utilities.Geolocation.Caching.SQLite.csproj", "{6B53248D-BAC7-4B84-AC1C-AF61C11B10E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{263D9758-FCFA-4620-86AD-34FCD2DFC93D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,5 +94,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6F124C2-DC6E-457E-863D-EFDFC1942D36} = {263D9758-FCFA-4620-86AD-34FCD2DFC93D}
+		{E54299C9-B5DE-424A-9E31-D4FB45C783BA} = {263D9758-FCFA-4620-86AD-34FCD2DFC93D}
 	EndGlobalSection
 EndGlobal

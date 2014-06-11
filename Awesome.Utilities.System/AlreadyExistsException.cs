@@ -14,10 +14,12 @@ namespace System
         /// Gets the type.
         /// </summary>
         public Type Type { get; private set; }
+
         /// <summary>
         /// Gets the key.
         /// </summary>
         public object Key { get; private set; }
+
         /// <summary>
         /// Gets the name of the key.
         /// </summary>

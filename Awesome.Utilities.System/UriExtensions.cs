@@ -15,7 +15,7 @@ namespace System
         /// </summary>
         /// <param name="self">The self.</param>
         /// <param name="newQueryString">The new query string, no need to put "?" in it.</param>
-        /// <returns></returns>
+        /// <returns>A new URI with the query string updated.</returns>
         public static Uri ChangeQueryString(this Uri self, string newQueryString)
         {
             var builder = new UriBuilder(self);
@@ -28,7 +28,7 @@ namespace System
         /// </summary>
         /// <param name="self">The self.</param>
         /// <param name="newPath">The new query string, no need to put "?" in it.</param>
-        /// <returns></returns>
+        /// <returns>A new URI with the path updated.</returns>
         public static Uri ChangePath(this Uri self, string newPath)
         {
             var builder = new UriBuilder(self);

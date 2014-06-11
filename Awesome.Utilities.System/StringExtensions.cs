@@ -32,6 +32,7 @@ namespace System
             if (self != null && self.Length > maximumLength)
             {
                 string truncatedString = self.Substring(0, subStringLength);
+
                 // incase the last character is a space
                 if (trimSpace)
                 {
@@ -45,10 +46,8 @@ namespace System
 
                 return truncatedString;
             }
-            else
-            {
+
                 return self;
-            }
         }
 
         /// <summary>
@@ -58,7 +57,7 @@ namespace System
         /// <param name="self">The self.</param>
         /// <param name="startIndex">The start index.</param>
         /// <param name="endIndex">The end index.</param>
-        /// <returns></returns>
+        /// <returns>A substring from startIndex to endIndex</returns>
         public static string SubstringStartEnd(this string self, int startIndex, int endIndex)
         {
             if (string.IsNullOrEmpty(self))
@@ -72,12 +71,12 @@ namespace System
         /// Removes the diacritics from the string.
         /// </summary>
         /// <param name="self">The string.</param>
-        /// <returns></returns>
+        /// <returns>A string without diacritics.</returns>
         public static string RemoveDiacritics(this string self)
         {
-            string stFormD = self.Normalize(NormalizationForm.FormD);
+            string normalized = self.Normalize(NormalizationForm.FormD);
             var sb = new StringBuilder();
-            foreach (char t in stFormD)
+            foreach (char t in normalized)
             {
                 if (CharUnicodeInfo.GetUnicodeCategory(t) != UnicodeCategory.NonSpacingMark)
                 {
@@ -91,7 +90,7 @@ namespace System
         ///     Removes the HTML from the string. will return funky results for invalid markup.
         /// </summary>
         /// <param name="self">The self.</param>
-        /// <returns></returns>
+        /// <returns>A string without any HTML.</returns>
         public static string RemoveHtml(this string self)
         {
             var array = new char[self.Length];
@@ -125,17 +124,20 @@ namespace System
         /// </summary>
         /// <param name="self">The phrase.</param>
         /// <param name="maxLength">Length of the max.</param>
-        /// <returns></returns>
+        /// <returns>A slug of the string</returns>
         public static string ToSlug(this string self, int maxLength = 50)
         {
             string str = self.ToLower().RemoveDiacritics();
 
             // invalid chars, make into spaces
-            str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
+            str = Regex.Replace(str, @"[^a-z0-9\s-]", string.Empty);
+
             // convert multiple spaces/hyphens into one space       
             str = Regex.Replace(str, @"[\s-]+", " ").Trim();
+
             // cut and trim it
             str = str.Substring(0, str.Length <= maxLength ? str.Length : maxLength).Trim();
+
             // hyphens
             str = Regex.Replace(str, @"\s", "-");
 
