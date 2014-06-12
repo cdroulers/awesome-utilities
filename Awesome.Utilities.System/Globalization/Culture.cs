@@ -19,18 +19,25 @@ namespace System.Globalization
         /// <summary>
         /// Gets the current culture.
         /// </summary>
-        public static CultureInfo CurrentCulture { get { return CultureInfo.CurrentCulture; } }
+        public static CultureInfo CurrentCulture
+        {
+            get { return CultureInfo.CurrentCulture; }
+        }
+
         /// <summary>
         /// Gets the current UI culture.
         /// </summary>
-        public static CultureInfo CurrentUICulture { get { return CultureInfo.CurrentUICulture; } }
+        public static CultureInfo CurrentUICulture
+        {
+            get { return CultureInfo.CurrentUICulture; }
+        }
 
         /// <summary>
         /// Sets the culture as the specified cultures until disposed.
         /// </summary>
         /// <param name="culture">The culture.</param>
         /// <param name="uiCulture">The UI culture.</param>
-        /// <returns></returns>
+        /// <returns>An IDisposable instance</returns>
         public static IDisposable As(CultureInfo culture, CultureInfo uiCulture = null)
         {
             Culture.IsSet = true;
@@ -64,6 +71,7 @@ namespace System.Globalization
                     result = null;
                     return false;
                 }
+
                 result = new CultureInfo((culture ?? string.Empty).Replace("_", "-"));
                 return true;
             }

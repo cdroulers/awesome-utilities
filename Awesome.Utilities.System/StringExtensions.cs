@@ -39,6 +39,7 @@ namespace System
                     truncatedString = truncatedString.TrimEnd();
                     truncatedString += suffix;
                 }
+
                 if (!trimSpace && !truncatedString.EndsWith(" "))
                 {
                     truncatedString += suffix;
@@ -64,6 +65,7 @@ namespace System
             {
                 return self;
             }
+
             return self.Substring(startIndex, endIndex - startIndex + 1);
         }
 
@@ -83,6 +85,7 @@ namespace System
                     sb.Append(t);
                 }
             }
+
             return sb.ToString();
         }
 
@@ -105,17 +108,20 @@ namespace System
                     inside = true;
                     continue;
                 }
+
                 if (let == '>')
                 {
                     inside = false;
                     continue;
                 }
+
                 if (!inside)
                 {
                     array[arrayIndex] = let;
                     arrayIndex++;
                 }
             }
+
             return new string(array, 0, arrayIndex);
         }
 

@@ -29,6 +29,7 @@ namespace System.Collections.Generic
             {
                 result[keyFunc(kv.Key)] = valueFunc(kv.Value);
             }
+
             return result;
         }
 

@@ -11,7 +11,7 @@ namespace System.Geolocation
     /// <summary>
     ///     Earth coordinates.
     /// </summary>
-    [DebuggerDisplay("Coordinates {Longitude} - {Latitude}")]
+    [DebuggerDisplay("Coordinates {ToString()}")]
     public struct Coordinates
     {
         /// <summary>
@@ -135,7 +135,7 @@ namespace System.Geolocation
         /// </returns>
         public override string ToString()
         {
-            return string.Format("Longitude: {0}, Latitude: {1}", Longitude, Latitude);
+            return string.Format("Latitude: {0}, Longitude: {1}", this.Latitude, this.Longitude);
         }
     }
 }

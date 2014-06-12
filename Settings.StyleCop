@@ -13,6 +13,10 @@
       <Value>ninject</Value>
       <Value>ms</Value>
       <Value>int</Value>
+      <Value>serializers</Value>
+      <Value>substracted</Value>
+      <Value>substracts</Value>
+      <Value>Rijndael</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Analyzers>

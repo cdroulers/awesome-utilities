@@ -1,7 +1,7 @@
 ﻿namespace System.Net.Mail
 {
     /// <summary>
-    ///     A wrapper around the base SmtpClient
+    ///     A wrapper around the base <see cref="SmtpClient" />
     /// </summary>
     public class SmtpClientWrapper : ISmtpClient
     {
@@ -28,7 +28,7 @@
         /// <summary>
         /// Sends the specified message.
         /// </summary>
-        /// <param name="from">From.</param>
+        /// <param name="from">The sender of the email.</param>
         /// <param name="recipients">The recipients.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The body.</param>

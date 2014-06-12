@@ -20,7 +20,7 @@ namespace System
         public static bool IsPaused { get; private set; }
 
         /// <summary>
-        /// Returns a DateTime representing the current date and time. The
+        /// Gets a DateTime representing the current date and time. The
         /// resolution of the returned value depends on the system timer. For Windows NT 3.5 and later the timer resolution is approximately 10ms, 
         /// for Windows NT 3.1 it is approximately 16ms, and for Windows 95 and 98 it is approximately 55ms. 
         /// </summary>
@@ -30,7 +30,7 @@ namespace System
         }
 
         /// <summary>
-        /// Returns a DateTime representing the current date and time in UTC format. The
+        /// Gets a DateTime representing the current date and time in UTC format. The
         /// resolution of the returned value depends on the system timer. For Windows NT 3.5 and later the timer resolution is approximately 10ms, 
         /// for Windows NT 3.1 it is approximately 16ms, and for Windows 95 and 98 it is approximately 55ms. 
         /// </summary>
@@ -49,14 +49,17 @@ namespace System
         }
 
         /// <summary>
-        ///     Pauses the clock on the specified time.
+        /// Pauses the clock on the specified time.
         /// </summary>
-        /// <returns>An IDisposable object that will resume the clock on dispose.</returns>
-        public static IDisposable Pause(DateTime utcNow)
+        /// <param name="utcNowDate">The dateTime at which we want to pause..</param>
+        /// <returns>
+        /// An IDisposable object that will resume the clock on dispose.
+        /// </returns>
+        public static IDisposable Pause(DateTime utcNowDate)
         {
             Clock.IsPaused = true;
-            Clock.now = utcNow.ToLocalTime();
-            Clock.utcNow = utcNow;
+            Clock.now = utcNowDate.ToLocalTime();
+            Clock.utcNow = utcNowDate;
             return new DisposableAction(() => Clock.IsPaused = false);
         }
 

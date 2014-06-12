@@ -15,7 +15,7 @@ namespace System.Globalization.Currencies
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="culture">The culture.</param>
-        /// <returns></returns>
+        /// <returns>A key value pair list for parts and values.</returns>
         public static KeyValuePair<CurrencyPart, string>[] Split(decimal value, CultureInfo culture = null)
         {
             culture = culture ?? CultureInfo.CurrentUICulture;
@@ -23,12 +23,12 @@ namespace System.Globalization.Currencies
             var results = new List<KeyValuePair<CurrencyPart, string>>();
 
             string number = s.Replace(culture.NumberFormat.CurrencySymbol, string.Empty).Trim();
-            int indexOfNumber = s.IndexOf(number);
-            int indexOfCurrency = s.IndexOf(culture.NumberFormat.CurrencySymbol);
+            int indexOfNumber = s.IndexOf(number, StringComparison.CurrentCulture);
+            int indexOfCurrency = s.IndexOf(culture.NumberFormat.CurrencySymbol, StringComparison.CurrentCulture);
 
             if (indexOfCurrency < indexOfNumber)
             {
-                results.Add(new KeyValuePair<CurrencyPart,string>(CurrencyPart.Symbol, s.Replace(number, string.Empty)));
+                results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Symbol, s.Replace(number, string.Empty)));
                 var parts = number.Split(new[] { culture.NumberFormat.CurrencyDecimalSeparator }, StringSplitOptions.RemoveEmptyEntries);
                 results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Amount, parts[0]));
                 results.Add(new KeyValuePair<CurrencyPart, string>(CurrencyPart.Decimals, parts.Length > 1 ? parts[1] : string.Empty));

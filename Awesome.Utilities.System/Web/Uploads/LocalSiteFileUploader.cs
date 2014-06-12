@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 
 namespace System.Web.Uploads
 {
@@ -12,6 +11,7 @@ namespace System.Web.Uploads
     public class LocalSiteFileUploader : IFileUploader
     {
         private readonly string localPath;
+
         /// <summary>
         ///     Allows the caller to specify how to create a URI from the resulting path of the saved file.
         /// </summary>
@@ -29,7 +29,17 @@ namespace System.Web.Uploads
             {
                 Validate.Is.Not.Null(resultToUriFunc, "resultToUriFunc");
             }
+
             this.resultToUriFunc = resultToUriFunc;
+        }
+
+        private static void CreateDirectory(string serverPath)
+        {
+            var directory = Path.GetDirectoryName(serverPath);
+            if (!string.IsNullOrWhiteSpace(directory))
+            {
+                new DirectoryInfo(directory).Create();
+            }
         }
 
         /// <summary>
@@ -37,13 +47,14 @@ namespace System.Web.Uploads
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="fileName">Name of the file.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// The URI of the file that was uploaded.
+        /// </returns>
         public Uri Upload(HttpPostedFileBase file, string fileName)
         {
             var fullPath = Path.Combine(this.localPath, fileName);
             var serverPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
-            var directory = Path.GetDirectoryName(serverPath);
-            new DirectoryInfo(directory).Create();
+            LocalSiteFileUploader.CreateDirectory(serverPath);
 
             file.SaveAs(serverPath);
 
@@ -55,13 +66,14 @@ namespace System.Web.Uploads
         /// </summary>
         /// <param name="stream">The stream.</param>
         /// <param name="fileName">Name of the file.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// The URI of the file that was uploaded.
+        /// </returns>
         public Uri Upload(Stream stream, string fileName)
         {
             var fullPath = Path.Combine(this.localPath, fileName);
             var serverPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
-            var directory = Path.GetDirectoryName(serverPath);
-            new DirectoryInfo(directory).Create();
+            LocalSiteFileUploader.CreateDirectory(serverPath);
 
             using (var file = File.OpenWrite(serverPath))
             {
@@ -77,12 +89,10 @@ namespace System.Web.Uploads
             {
                 return this.resultToUriFunc(fullPath);
             }
-            else
-            {
-                var builder = new UriBuilder(HttpContext.Current.Request.Url);
-                builder.Path = VirtualPathUtility.ToAbsolute(fullPath, HttpContext.Current.Request.ApplicationPath);
-                return builder.Uri;
-            }
+
+            var builder = new UriBuilder(HttpContext.Current.Request.Url);
+            builder.Path = VirtualPathUtility.ToAbsolute(fullPath, HttpContext.Current.Request.ApplicationPath);
+            return builder.Uri;
         }
 
         /// <summary>
@@ -90,12 +100,14 @@ namespace System.Web.Uploads
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="newFileName">New name of the file.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// The URI of the file that was renamed.
+        /// </returns>
         public Uri Rename(string fileName, string newFileName)
         {
             var fullPath = Path.Combine(this.localPath, fileName);
             var serverPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(fullPath) : fullPath;
-            
+
             var newFullPath = Path.Combine(this.localPath, newFileName);
             var newServerPath = VirtualPathUtility.IsAppRelative(fullPath) ? HttpContext.Current.Server.MapPath(newFullPath) : newFullPath;
 
@@ -103,6 +115,7 @@ namespace System.Web.Uploads
             {
                 File.Delete(newServerPath);
             }
+
             File.Move(serverPath, newServerPath);
 
             return this.GetUri(newFullPath);

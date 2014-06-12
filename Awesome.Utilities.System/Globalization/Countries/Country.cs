@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
 
 namespace System.Globalization.Countries
 {
@@ -16,7 +16,7 @@ namespace System.Globalization.Countries
         /// <summary>
         /// Initializes a new instance of the <see cref="Country"/> class.
         /// </summary>
-        /// <param name="twoLetterIsoCode">The two letter iso code.</param>
+        /// <param name="twoLetterIsoCode">The two letter ISO code.</param>
         protected Country(string twoLetterIsoCode)
         {
             Validate.Is.Not.Null(twoLetterIsoCode, "twoLetterIsoCode");
@@ -35,12 +35,12 @@ namespace System.Globalization.Countries
         }
 
         /// <summary>
-        /// Gets the two letter code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+        /// Gets the two letter code. <see href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" />
         /// </summary>
         public abstract string TwoLetterCode { get; }
 
         /// <summary>
-        /// Gets the three letter code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+        /// Gets the three letter code. <see href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3" />
         /// </summary>
         public abstract string ThreeLetterCode { get; }
 
@@ -54,8 +54,8 @@ namespace System.Globalization.Countries
         /// </summary>
         public abstract string NativeName { get; }
 
-
         private readonly ReadOnlyCollection<CountryDivision> divisions;
+
         /// <summary>
         /// Gets the divisions of this country.
         /// </summary>
@@ -68,17 +68,17 @@ namespace System.Globalization.Countries
         /// Gets the display name.
         /// </summary>
         /// <param name="cultureInfo">The culture info. Should use current UI culture if not specified</param>
-        /// <returns></returns>
+        /// <returns>The display name of the country.</returns>
         public string GetDisplayName(CultureInfo cultureInfo = null)
         {
             return Properties.Languages.ResourceManager.GetString(this.TwoLetterCode, cultureInfo ?? CultureInfo.CurrentUICulture);
         }
 
         /// <summary>
-        /// Equalses the specified other.
+        /// Checks whether the country is equal to this instance.
         /// </summary>
         /// <param name="other">The other.</param>
-        /// <returns></returns>
+        /// <returns>True if the countries are the same.</returns>
         public bool Equals(Country other)
         {
             return this.TwoLetterCode == other.TwoLetterCode && this.ThreeLetterCode == other.ThreeLetterCode && this.EnglishName == other.EnglishName && this.NativeName == other.NativeName &&
@@ -94,10 +94,17 @@ namespace System.Globalization.Countries
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof(Country)) return false;
-            return Equals((Country)obj);
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == typeof(Country) && this.Equals((Country)obj);
         }
 
         /// <summary>
@@ -110,11 +117,11 @@ namespace System.Globalization.Countries
         {
             unchecked
             {
-                int result = (TwoLetterCode != null ? TwoLetterCode.GetHashCode() : 0);
-                result = (result * 397) ^ (ThreeLetterCode != null ? ThreeLetterCode.GetHashCode() : 0);
-                result = (result * 397) ^ (EnglishName != null ? EnglishName.GetHashCode() : 0);
-                result = (result * 397) ^ (NativeName != null ? NativeName.GetHashCode() : 0);
-                result = (result * 397) ^ (Divisions != null ? Divisions.GetHashCode() : 0);
+                int result = this.TwoLetterCode != null ? this.TwoLetterCode.GetHashCode() : 0;
+                result = (result * 397) ^ (this.ThreeLetterCode != null ? this.ThreeLetterCode.GetHashCode() : 0);
+                result = (result * 397) ^ (this.EnglishName != null ? this.EnglishName.GetHashCode() : 0);
+                result = (result * 397) ^ (this.NativeName != null ? this.NativeName.GetHashCode() : 0);
+                result = (result * 397) ^ (this.Divisions != null ? this.Divisions.GetHashCode() : 0);
                 return result;
             }
         }

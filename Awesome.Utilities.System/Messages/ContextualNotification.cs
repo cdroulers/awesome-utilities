@@ -10,69 +10,45 @@ namespace System.Messages
     public class ContextualNotification
     {
         private ContextualNotificationData info;
+        private ContextualNotificationData success;
+        private ContextualNotificationData warning;
+        private ContextualNotificationData error;
+
         /// <summary>
         /// Gets or sets the info notification.
         /// </summary>
         public ContextualNotificationData Info
         {
-            get
-            {
-                return info;
-            }
-            set
-            {
-                this.Set(ref info, value, "Info");
-            }
+            get { return this.info; }
+            set { this.Set(ref this.info, value); }
         }
-        private ContextualNotificationData success;
+
         /// <summary>
         /// Gets or sets the success notification.
         /// </summary>
         public ContextualNotificationData Success
         {
-            get
-            {
-                return success;
-            }
-            set
-            {
-                this.Set(ref success, value, "Notice");
-            }
+            get { return this.success; }
+            set { this.Set(ref this.success, value); }
         }
-
-        private ContextualNotificationData warning;
+        
         /// <summary>
         /// Gets or sets the warning notification.
         /// </summary>
         public ContextualNotificationData Warning
         {
-            get
-            {
-                return warning;
-            }
-            set
-            {
-                this.Set(ref warning, value, "Warning");
-            }
+            get { return this.warning; }
+            set { this.Set(ref this.warning, value); }
         }
-
-        private ContextualNotificationData error;
+        
         /// <summary>
         /// Gets or sets the error notification.
         /// </summary>
         public ContextualNotificationData Error
         {
-            get
-            {
-                return error;
-            }
-            set
-            {
-                this.Set(ref error, value, "Error");
-            }
+            get { return this.error; }
+            set { this.Set(ref this.error, value); }
         }
-
-        private readonly IDictionary<string, object> store;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ContextualNotification"/> class.
@@ -80,27 +56,27 @@ namespace System.Messages
         /// <param name="store">The store.</param>
         public ContextualNotification(IDictionary<string, object> store)
         {
-            this.store = store;
-            this.info = new ContextualNotificationData(this.store, "Info");
-            this.success = new ContextualNotificationData(this.store, "Notice");
-            this.warning = new ContextualNotificationData(this.store, "Warning");
-            this.error = new ContextualNotificationData(this.store, "Error");
+            this.info = new ContextualNotificationData(store, "Info");
+            this.success = new ContextualNotificationData(store, "Notice");
+            this.warning = new ContextualNotificationData(store, "Warning");
+            this.error = new ContextualNotificationData(store, "Error");
         }
 
-        private void Set(ref ContextualNotificationData flash, ContextualNotificationData newValue, string type)
+        private void Set(ref ContextualNotificationData flash, ContextualNotificationData newValue)
         {
             if (newValue.Type != ContextualNotificationData.DefaultType)
             {
                 throw new InvalidCastException("Cannot set a flash that is not new");
             }
+
             flash.Clear();
-            flash.Add((string)newValue);
+            flash.Add(newValue);
         }
 
         /// <summary>
         /// returns whether any of the notifications have data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if there are any notifications.</returns>
         public bool Any()
         {
             return !this.Info.IsEmpty || !this.Success.IsEmpty || !this.Warning.IsEmpty || !this.Error.IsEmpty;

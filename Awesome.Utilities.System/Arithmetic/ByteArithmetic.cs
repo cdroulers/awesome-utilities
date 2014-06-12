@@ -66,7 +66,7 @@ namespace System.Arithmetic
         }
 
         /// <summary>
-        /// Moduloes the specified x.
+        /// Modulo the specified x.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>

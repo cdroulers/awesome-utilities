@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.IO;
+﻿using System.IO;
+using System.Text;
 
 namespace System.Net.Mail
 {
@@ -15,7 +15,7 @@ namespace System.Net.Mail
         /// Initializes a new instance of the <see cref="FileSmtpClient"/> class.
         /// </summary>
         /// <param name="directory">The directory.</param>
-        /// <param name="getFileNameFunc">A func to create a file name in the directory for each message sent.</param>
+        /// <param name="getFileNameFunc">A function to create a file name in the directory for each message sent.</param>
         public FileSmtpClient(string directory = null, Func<MailMessage, string> getFileNameFunc = null)
         {
             this.directory = directory ?? "emails";
@@ -38,15 +38,18 @@ namespace System.Net.Mail
             {
                 builder.AppendLine(string.Format("HEADER: {0} = {1}", header, message.Headers[header]));
             }
+
             builder.AppendLine("From: " + message.From);
             foreach (var to in message.To)
             {
                 builder.AppendLine("To: " + to);
             }
+
             foreach (var cc in message.CC)
             {
                 builder.AppendLine("CC: " + cc);
             }
+
             foreach (var bcc in message.Bcc)
             {
                 builder.AppendLine("Bcc: " + bcc);
@@ -63,7 +66,7 @@ namespace System.Net.Mail
         /// <summary>
         /// Sends the specified message.
         /// </summary>
-        /// <param name="from">From.</param>
+        /// <param name="from">The sender of the email.</param>
         /// <param name="recipients">The recipients.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The body.</param>

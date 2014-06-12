@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.ObjectModel;
 
 namespace System.Globalization.Countries.Implementations
 {
@@ -25,7 +24,7 @@ namespace System.Globalization.Countries.Implementations
         }
 
         /// <summary>
-        /// Gets the two letter code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+        /// Gets the two letter code. <see href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" />
         /// </summary>
         public override string TwoLetterCode
         {
@@ -33,7 +32,7 @@ namespace System.Globalization.Countries.Implementations
         }
 
         /// <summary>
-        /// Gets the three letter code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+        /// Gets the three letter code. <see href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3" />
         /// </summary>
         public override string ThreeLetterCode
         {

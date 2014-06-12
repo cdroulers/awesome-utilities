@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
+using System.Text;
 
 namespace System.Drawing
 {
@@ -21,8 +20,10 @@ namespace System.Drawing
         /// <param name="compositingQuality">The compositing quality.</param>
         /// <param name="interpolationMode">The interpolation mode.</param>
         /// <param name="smoothingMode">The smoothing mode.</param>
-        /// <returns></returns>
-        public static Bitmap Resize(this Image self, Size newSize,
+        /// <returns>A resized bitmap.</returns>
+        public static Bitmap Resize(
+            this Image self,
+            Size newSize,
             CompositingQuality compositingQuality = CompositingQuality.Default,
             InterpolationMode interpolationMode = InterpolationMode.Default,
             SmoothingMode smoothingMode = SmoothingMode.Default)

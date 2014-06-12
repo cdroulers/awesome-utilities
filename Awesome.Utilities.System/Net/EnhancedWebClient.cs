@@ -41,10 +41,11 @@ namespace System.Net
         protected override WebRequest GetWebRequest(Uri address)
         {
             var result = base.GetWebRequest(address);
-            if (this.Timeout.HasValue)
+            if (result != null && this.Timeout.HasValue)
             {
                 result.Timeout = this.Timeout.Value;
             }
+
             return result;
         }
     }

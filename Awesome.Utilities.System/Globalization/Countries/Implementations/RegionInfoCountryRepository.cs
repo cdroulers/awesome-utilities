@@ -15,7 +15,9 @@ namespace System.Globalization.Countries.Implementations
         /// <summary>
         /// Gets all the countries.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A list of all countries.
+        /// </returns>
         public IEnumerable<Country> GetAll()
         {
             if (!this.countries.Any())
@@ -29,6 +31,7 @@ namespace System.Globalization.Countries.Implementations
                     }
                 }
             }
+
             return this.countries;
         }
 
@@ -36,7 +39,10 @@ namespace System.Globalization.Countries.Implementations
         /// Gets a country by two letter code.
         /// </summary>
         /// <param name="code">The code.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// The country with the specified two letter code.
+        /// </returns>
+        /// <exception cref="NotFoundException">If the code cannot be found.</exception>
         public Country GetByTwoLetterCode(string code)
         {
             var found = this.GetAll().FirstOrDefault(c => c.TwoLetterCode == code);
@@ -44,6 +50,7 @@ namespace System.Globalization.Countries.Implementations
             {
                 throw new NotFoundException(typeof(Country), code, "TwoLetterCode", string.Format(Properties.Strings.ICountry_NotFoundTwoLetterCode, code));
             }
+
             return found;
         }
 
@@ -51,7 +58,10 @@ namespace System.Globalization.Countries.Implementations
         /// Gets a country by three letter code.
         /// </summary>
         /// <param name="code">The code.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// The country with the specified three letter code.
+        /// </returns>
+        /// <exception cref="NotFoundException">If the code cannot be found.</exception>
         public Country GetByThreeLetterCode(string code)
         {
             var found = this.GetAll().FirstOrDefault(c => c.ThreeLetterCode == code);
@@ -59,6 +69,7 @@ namespace System.Globalization.Countries.Implementations
             {
                 throw new NotFoundException(typeof(Country), code, "ThreeLetterCode", string.Format(Properties.Strings.ICountry_NotFoundThreeLetterCode, code));
             }
+
             return found;
         }
     }

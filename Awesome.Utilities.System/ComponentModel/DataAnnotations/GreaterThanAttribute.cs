@@ -26,7 +26,7 @@ namespace System.ComponentModel.DataAnnotations
         /// </summary>
         /// <param name="otherValue">The other value.</param>
         /// <param name="thisValue">The this value.</param>
-        /// <returns></returns>
+        /// <returns>True if the values compared in the defined way.</returns>
         protected override bool Compare(IComparable otherValue, object thisValue)
         {
             return otherValue.CompareTo(thisValue) >= 0;

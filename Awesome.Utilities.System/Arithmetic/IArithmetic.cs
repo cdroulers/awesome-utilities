@@ -6,9 +6,9 @@ using System.Text;
 namespace System.Arithmetic
 {
     /// <summary>
-    ///     An interface for numbers
+    /// An interface for numbers
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of arithmetic.</typeparam>
     public interface IArithmetic<T>
     {
         /// <summary>
@@ -16,77 +16,87 @@ namespace System.Arithmetic
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The added value.</returns>
         T Add(T x, T y);
+
         /// <summary>
         /// Substracts the specified x.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The substracted value.</returns>
         T Substract(T x, T y);
+
         /// <summary>
         /// Multiplies the specified x.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The multiplied value.</returns>
         T Multiply(T x, T y);
+
         /// <summary>
         /// Divides the specified x.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The divided value.</returns>
         T Divide(T x, T y);
+
         /// <summary>
         /// Powers the specified x.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The value powered.</returns>
         T Power(T x, T y);
+
         /// <summary>
-        /// Moduloes the specified x.
+        /// Modulo the specified x.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The value with modulo applied.</returns>
         T Modulo(T x, T y);
+
         /// <summary>
-        /// Greaters the than.
+        /// Greater the than.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>True if greater than.</returns>
         bool GreaterThan(T x, T y);
+
         /// <summary>
-        /// Greaters the or equal to.
+        /// Greater the or equal to.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>True if greater or equal to.</returns>
         bool GreaterOrEqualTo(T x, T y);
+
         /// <summary>
-        /// Lesses the than.
+        /// Less the than.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>True if less than.</returns>
         bool LessThan(T x, T y);
+
         /// <summary>
-        /// Lesses the or equal to.
+        /// Less than or equal to.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>True if less or equal to.</returns>
         bool LessOrEqualTo(T x, T y);
+
         /// <summary>
-        /// Equalses the specified x.
+        /// Returns true if the values are equal.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>True if equal to.</returns>
         bool Equals(T x, T y);
 
         /// <summary>
@@ -94,7 +104,7 @@ namespace System.Arithmetic
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The max between the two.</returns>
         T Max(T x, T y);
 
         /// <summary>
@@ -102,14 +112,14 @@ namespace System.Arithmetic
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        /// <returns></returns>
+        /// <returns>The min between the two.</returns>
         T Min(T x, T y);
 
         /// <summary>
         /// Returns the absolute value of the number
         /// </summary>
         /// <param name="x">The x.</param>
-        /// <returns></returns>
+        /// <returns>The absolute value.</returns>
         T Abs(T x);
 
         /// <summary>

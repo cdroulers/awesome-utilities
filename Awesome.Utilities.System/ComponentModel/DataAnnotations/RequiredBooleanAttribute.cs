@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Globalization;
 
 namespace System.ComponentModel.DataAnnotations
 {
@@ -13,17 +13,17 @@ namespace System.ComponentModel.DataAnnotations
     public class RequiredBooleanAttribute : ValidationAttribute
     {
         /// <summary>
-        /// Gets or sets the value that the property should have
+        /// Gets or sets a value indicating whether the property should be true or false.
         /// </summary>
         public bool ExpectedValue { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RequiredBooleanAttribute"/> class.
         /// </summary>
-        /// <param name="expectecValue">if set to <c>true</c> [expectec value].</param>
-        public RequiredBooleanAttribute(bool expectecValue = true)
+        /// <param name="expectedValue">if set to <c>true</c> [expected value].</param>
+        public RequiredBooleanAttribute(bool expectedValue = true)
         {
-            this.ExpectedValue = expectecValue;
+            this.ExpectedValue = expectedValue;
         }
 
         /// <summary>
@@ -39,6 +39,7 @@ namespace System.ComponentModel.DataAnnotations
             {
                 this.ErrorMessage = this.ExpectedValue ? Properties.Strings.Validation_RequiredBooleanTrue : Properties.Strings.Validation_RequiredBooleanFalse;
             }
+
             return string.Format(CultureInfo.CurrentUICulture, this.ErrorMessageString, name, this.ExpectedValue);
         }
 

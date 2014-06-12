@@ -17,6 +17,7 @@ namespace System.Data
         /// </summary>
         [EnumMember]
         Ascending,
+
         /// <summary>
         ///     Descending order
         /// </summary>

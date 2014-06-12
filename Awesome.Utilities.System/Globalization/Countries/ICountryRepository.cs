@@ -13,21 +13,21 @@ namespace System.Globalization.Countries
         /// <summary>
         /// Gets all the countries.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list of all countries.</returns>
         IEnumerable<Country> GetAll();
 
         /// <summary>
         /// Gets a country by two letter code.
         /// </summary>
         /// <param name="code">The code.</param>
-        /// <returns></returns>
+        /// <returns>The country with the specified two letter code.</returns>
         Country GetByTwoLetterCode(string code);
 
         /// <summary>
         /// Gets a country by three letter code.
         /// </summary>
         /// <param name="code">The code.</param>
-        /// <returns></returns>
+        /// <returns>The country with the specified three letter code.</returns>
         Country GetByThreeLetterCode(string code);
     }
 }

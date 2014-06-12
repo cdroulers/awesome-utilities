@@ -15,14 +15,15 @@ namespace System.Security.Cryptography
         /// </summary>
         /// <param name="algorithm">The algorithm.</param>
         /// <param name="toHash">To hash.</param>
-        /// <returns></returns>
+        /// <returns>A hashed string</returns>
         string AsString(SupportedHashAlgorithm algorithm, string toHash);
+
         /// <summary>
         /// Hashes the string with the specified algorithm and returns an array of bytes.
         /// </summary>
         /// <param name="algorithm">The algorithm.</param>
         /// <param name="toHash">To hash.</param>
-        /// <returns></returns>
+        /// <returns>A hashed byte array</returns>
         byte[] AsBytes(SupportedHashAlgorithm algorithm, string toHash);
     }
 }

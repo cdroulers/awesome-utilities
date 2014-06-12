@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Xml;
 
 namespace System.Runtime.Serialization
@@ -19,6 +19,7 @@ namespace System.Runtime.Serialization
         ///   <c>true</c> if [omit XML declaration]; otherwise, <c>false</c>.
         /// </value>
         public bool OmitXmlDeclaration { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="DataContractSerializerHelper"/> is indent.
         /// </summary>
@@ -41,24 +42,26 @@ namespace System.Runtime.Serialization
         /// <summary>
         /// Serializes the specified graph.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type to serialize</typeparam>
         /// <param name="graph">The graph.</param>
-        /// <returns></returns>
+        /// <returns>A serialized string</returns>
         public virtual string Serialize<T>(T graph)
         {
             var data = new DataContractSerializer(typeof(T));
 
             using (var memory = new MemoryStream())
             {
-                using (var writer = XmlWriter.Create(memory, new XmlWriterSettings
+                var settings = new XmlWriterSettings
                 {
                     OmitXmlDeclaration = this.OmitXmlDeclaration,
                     NamespaceHandling = NamespaceHandling.OmitDuplicates,
                     Indent = this.Indent
-                }))
+                };
+                using (var writer = XmlWriter.Create(memory, settings))
                 {
                     data.WriteObject(writer, graph);
                 }
+
                 memory.Seek(0, SeekOrigin.Begin);
                 using (var reader = new StreamReader(memory))
                 {
@@ -70,9 +73,9 @@ namespace System.Runtime.Serialization
         /// <summary>
         /// Deserializes the specified graph.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type to serialize</typeparam>
         /// <param name="xml">The XML.</param>
-        /// <returns></returns>
+        /// <returns>A deserialized object.</returns>
         public virtual T Deserialize<T>(string xml)
         {
             var data = new DataContractSerializer(typeof(T));

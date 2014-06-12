@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
-using System.ComponentModel;
 
 namespace System.Data
 {
@@ -16,10 +14,12 @@ namespace System.Data
         /// Gets the current page.
         /// </summary>
         public int CurrentPage { get; private set; }
+
         /// <summary>
         /// Gets the per page.
         /// </summary>
         public int PerPage { get; private set; }
+
         /// <summary>
         /// Gets the total number of records.
         /// </summary>
@@ -28,25 +28,42 @@ namespace System.Data
         /// <summary>
         /// Gets the last page.
         /// </summary>
-        public int LastPage { get { return (int)Math.Ceiling((this.TotalNumberOfRecords * 1.0d / this.PerPage)); } }
+        public int LastPage
+        {
+            get { return (int)Math.Ceiling(this.TotalNumberOfRecords * 1.0d / this.PerPage); }
+        }
+
         /// <summary>
         /// Gets the next page.
         /// </summary>
-        public int? NextPage { get { return this.CurrentPage < this.LastPage ? this.CurrentPage + 1 : new int?(); } }
+        public int? NextPage
+        {
+            get { return this.CurrentPage < this.LastPage ? this.CurrentPage + 1 : new int?(); }
+        }
+
         /// <summary>
         /// Gets the previous page.
         /// </summary>
-        public int? PreviousPage { get { return this.CurrentPage > 1 ? this.CurrentPage - 1 : new int?(); } }
+        public int? PreviousPage
+        {
+            get { return this.CurrentPage > 1 ? this.CurrentPage - 1 : new int?(); }
+        }
 
         /// <summary>
         /// Gets the items in the data table. i.e. The rows already cast as objects.
         /// </summary>
-        public IEnumerable<DataColumn> AllColumns { get { return this.Columns.Cast<DataColumn>(); } }
+        public IEnumerable<DataColumn> AllColumns
+        {
+            get { return this.Columns.Cast<DataColumn>(); }
+        }
 
         /// <summary>
         /// Gets the items in the data table. i.e. The rows already cast as objects.
         /// </summary>
-        public IEnumerable<DataRow> Items { get { return this.Rows.Cast<DataRow>(); } }
+        public IEnumerable<DataRow> Items
+        {
+            get { return this.Rows.Cast<DataRow>(); }
+        }
 
         /// <summary>
         /// Gets how the current data table is ordered.

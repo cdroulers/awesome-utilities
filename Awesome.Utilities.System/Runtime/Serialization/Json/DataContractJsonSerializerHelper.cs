@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Xml;
 
 namespace System.Runtime.Serialization.Json
 {
@@ -15,9 +14,11 @@ namespace System.Runtime.Serialization.Json
         /// <summary>
         /// Serializes the specified graph.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type of the graph to serialize.</typeparam>
         /// <param name="graph">The graph.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A serialized string.
+        /// </returns>
         public virtual string Serialize<T>(T graph)
         {
             var data = new DataContractJsonSerializer(typeof(T));
@@ -36,9 +37,9 @@ namespace System.Runtime.Serialization.Json
         /// <summary>
         /// Deserializes the specified graph.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type of the graph to deserialize.</typeparam>
         /// <param name="json">The json.</param>
-        /// <returns></returns>
+        /// <returns>A deserialized object.</returns>
         public virtual T Deserialize<T>(string json)
         {
             var data = new DataContractJsonSerializer(typeof(T));

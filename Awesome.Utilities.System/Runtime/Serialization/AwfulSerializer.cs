@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Reflection;
-using System.Collections;
-using System.Globalization;
 using System.Net.Mail;
+using System.Reflection;
+using System.Text;
 
 namespace System.Runtime.Serialization
 {
@@ -46,20 +46,20 @@ namespace System.Runtime.Serialization
         }
 
         /// <summary>
-        /// Adds the specified stringable type to the list.
+        /// Adds the specified type to the list .
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="T">The type to add</typeparam>
+        /// <returns>This instance for fluent configuration.</returns>
         public virtual AwfulSerializer AddStringableType<T>()
         {
             return this.AddStringableTypes(typeof(T));
         }
 
         /// <summary>
-        /// Adds the specified stringable types to the list.
+        /// Adds the specified types to the list.
         /// </summary>
         /// <param name="types">The types.</param>
-        /// <returns></returns>
+        /// <returns>This instance for fluent configuration.</returns>
         public virtual AwfulSerializer AddStringableTypes(params Type[] types)
         {
             this.StringableTypes.AddRange(types);
@@ -69,8 +69,11 @@ namespace System.Runtime.Serialization
         /// <summary>
         /// Serializes the specified graph.
         /// </summary>
+        /// <typeparam name="T">The type of the object to serialize.</typeparam>
         /// <param name="graph">The graph.</param>
-        /// <returns>The graph, serialized</returns>
+        /// <returns>
+        /// The graph, serialized
+        /// </returns>
         public virtual string Serialize<T>(T graph)
         {
             var builder = new StringBuilder();
@@ -81,6 +84,7 @@ namespace System.Runtime.Serialization
         /// <summary>
         /// Serializes the specified graph.
         /// </summary>
+        /// <typeparam name="T">The type of the object to serialize.</typeparam>
         /// <param name="graph">The graph.</param>
         /// <param name="builder">The builder.</param>
         public virtual void Serialize<T>(T graph, StringBuilder builder)
@@ -98,6 +102,7 @@ namespace System.Runtime.Serialization
                 this.AppendLine(builder, level, "NULL");
                 return;
             }
+
             var type = graph.GetType();
             if (this.IsOneLine(type))
             {
@@ -109,10 +114,11 @@ namespace System.Runtime.Serialization
                 {
                     builder.AppendLine();
                 }
+
                 int index = 0;
-                foreach (var obj in graph as IEnumerable)
+                foreach (var obj in (IEnumerable)graph)
                 {
-                    Type objType = null;
+                    Type objType;
                     if (obj != null)
                     {
                         objType = obj.GetType();
@@ -121,10 +127,11 @@ namespace System.Runtime.Serialization
                     {
                         objType = graph.GetType().IsGenericType ? graph.GetType().GetGenericArguments().First() : typeof(void);
                     }
+
                     if (objType.Name.StartsWith("KeyValuePair`"))
                     {
-                        var keyProp = obj.GetType().GetProperty("Key");
-                        var valueProp = obj.GetType().GetProperty("Value");
+                        var keyProp = objType.GetProperty("Key");
+                        var valueProp = objType.GetProperty("Value");
                         var key = keyProp.GetValue(obj, null);
                         var value = valueProp.GetValue(obj, null);
 
@@ -140,8 +147,9 @@ namespace System.Runtime.Serialization
                     }
                     else
                     {
-                        this.SerializeOne(builder, level, index.ToString(), obj, objType);
+                        this.SerializeOne(builder, level, index.ToString(CultureInfo.InvariantCulture), obj, objType);
                     }
+
                     index++;
                 }
             }
@@ -178,8 +186,9 @@ namespace System.Runtime.Serialization
             string propertyType = type.Name;
             if (!type.IsArray && type.IsGenericType)
             {
-                propertyType = propertyType.Substring(0, propertyType.IndexOf("`")) + "<" + string.Join(", ", type.GetGenericArguments().Select(a => a.Name)) + ">";
+                propertyType = propertyType.Substring(0, propertyType.IndexOf("`", StringComparison.InvariantCultureIgnoreCase)) + "<" + string.Join(", ", type.GetGenericArguments().Select(a => a.Name)) + ">";
             }
+
             return propertyType;
         }
 
@@ -203,6 +212,7 @@ namespace System.Runtime.Serialization
             {
                 builder.Append(this.Indentation);
             }
+
             builder.Append(value);
         }
 
@@ -212,6 +222,7 @@ namespace System.Runtime.Serialization
             {
                 builder.Append(this.Indentation);
             }
+
             builder.AppendLine(value);
         }
     }

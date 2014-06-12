@@ -27,7 +27,7 @@ namespace System
         /// </summary>
         public void Dispose()
         {
-            action.Invoke();
+            this.action.Invoke();
         }
     }
 }

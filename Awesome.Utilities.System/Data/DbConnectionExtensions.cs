@@ -6,7 +6,7 @@ using System.Text;
 namespace System.Data
 {
     /// <summary>
-    ///     Extension methods for IDbConnection
+    ///     Extension methods for <see cref="IDbConnection" />
     /// </summary>
     public static class DbConnectionExtensions
     {
@@ -14,7 +14,7 @@ namespace System.Data
         {
             if (parameters.Any())
             {
-                var parameterNames = new List<string>();
+                var parameterNames = new List<object>();
                 for (int i = 0; i < parameters.Length; i++)
                 {
                     parameterNames.Add("@p" + i);
@@ -24,8 +24,10 @@ namespace System.Data
                     parameter.Value = parameters[i];
                     command.Parameters.Add(parameter);
                 }
+
                 text = string.Format(text, parameterNames.ToArray());
             }
+
             command.CommandText = text;
         }
 
@@ -35,7 +37,7 @@ namespace System.Data
         /// <param name="connection">The connection.</param>
         /// <param name="text">The text.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
+        /// <returns>The number of affected rows.</returns>
         public static int ExecuteNonQuery(this IDbConnection connection, string text, params object[] parameters)
         {
             using (var command = connection.CreateCommand())
@@ -51,7 +53,7 @@ namespace System.Data
         /// <param name="connection">The connection.</param>
         /// <param name="text">The text.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
+        /// <returns>A data reader</returns>
         public static IDataReader ExecuteReader(this IDbConnection connection, string text, params object[] parameters)
         {
             using (var command = connection.CreateCommand())
@@ -64,10 +66,13 @@ namespace System.Data
         /// <summary>
         /// Executes the query and returns a Scalar
         /// </summary>
+        /// <typeparam name="T">The type of the scalar to get.</typeparam>
         /// <param name="connection">The connection.</param>
         /// <param name="text">The text.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// The scalar value.
+        /// </returns>
         public static T ExecuteScalar<T>(this IDbConnection connection, string text, params object[] parameters)
         {
             using (var command = connection.CreateCommand())

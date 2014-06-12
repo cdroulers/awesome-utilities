@@ -14,6 +14,7 @@ namespace System.Security.Cryptography
         ///     The Rijndael cipher algorithm
         /// </summary>
         Rijndael,
+
         /// <summary>
         ///     The Triple DES cipher algorithm
         /// </summary>

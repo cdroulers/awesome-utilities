@@ -14,10 +14,12 @@ namespace System.Globalization.Currencies
         ///     Currency symbol ($, £, etc.)
         /// </summary>
         Symbol,
+
         /// <summary>
         ///     Dollars or Euros or equivalent
         /// </summary>
         Amount,
+
         /// <summary>
         ///     Cents or Hundredths of Euro or equivalent.
         /// </summary>

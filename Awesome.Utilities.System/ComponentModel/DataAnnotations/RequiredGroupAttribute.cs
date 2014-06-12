@@ -14,8 +14,9 @@ namespace System.ComponentModel.DataAnnotations
         /// Gets the name of the group.
         /// </summary>
         public string GroupName { get; private set; }
+
         /// <summary>
-        /// Gets a value indicating whether to allow multiple required elements in the same group to be set.
+        /// Gets or sets a value indicating whether to allow multiple required elements in the same group to be set.
         /// </summary>
         /// <value>
         ///   <c>true</c> if [allow multiple]; otherwise, <c>false</c>.
@@ -41,7 +42,7 @@ namespace System.ComponentModel.DataAnnotations
         /// </returns>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var properties = validationContext.ObjectType.GetProperties().Where(p => p.GetCustomAttributes(typeof(RequiredGroupAttribute), true).Cast<RequiredGroupAttribute>().Where(c => c.GroupName == this.GroupName).Any());
+            var properties = validationContext.ObjectType.GetProperties().Where(p => p.GetCustomAttributes(typeof(RequiredGroupAttribute), true).Cast<RequiredGroupAttribute>().Where(c => c.GroupName == this.GroupName).Any()).ToList();
 
             int count = properties.Count(p => base.IsValid(p.GetValue(validationContext.ObjectInstance, null)));
 

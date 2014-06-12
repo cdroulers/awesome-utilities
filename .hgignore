@@ -3,6 +3,7 @@ glob:*ReSharper*
 glob:bin/
 glob:obj/
 glob:*.user
+glob:*.Cache
 syntax: glob
 packages/*
 nuget.exe

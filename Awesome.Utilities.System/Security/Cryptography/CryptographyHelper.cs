@@ -19,11 +19,18 @@ namespace System.Security.Cryptography
         /// <summary>
         /// Gets the the hasher instance.
         /// </summary>
-        public static ICryptographyHasher Hash { get { return CryptographyHelper.Instance; } }
+        public static ICryptographyHasher Hash
+        {
+            get { return CryptographyHelper.Instance; }
+        }
+
         /// <summary>
         /// Gets the the cipher instance.
         /// </summary>
-        public static ICryptographyCipher Cipher { get { return CryptographyHelper.Instance; } }
+        public static ICryptographyCipher Cipher
+        {
+            get { return CryptographyHelper.Instance; }
+        }
 
         private static readonly IDictionary<SupportedHashAlgorithm, Func<HashAlgorithm>> HashAlgorithms = new Dictionary<SupportedHashAlgorithm, Func<HashAlgorithm>>()
         {
@@ -71,6 +78,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.HashBytes(HashAlgorithms[algorithm](), toHash);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -80,6 +88,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.CipherString(CipherAlgorithms[algorithm](), toEncipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -89,6 +98,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.CipherBytes(CipherAlgorithms[algorithm](), toEncipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -98,6 +108,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.CipherString(CipherAlgorithms[algorithm](), toEncipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -107,6 +118,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.CipherBytes(CipherAlgorithms[algorithm](), toEncipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -116,6 +128,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.DecipherString(CipherAlgorithms[algorithm](), toDecipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -125,6 +138,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.DecipherBytes(CipherAlgorithms[algorithm](), toDecipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -134,6 +148,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.DecipherString(CipherAlgorithms[algorithm](), toDecipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -143,6 +158,7 @@ namespace System.Security.Cryptography
             {
                 return CryptographyHelper.DecipherBytes(CipherAlgorithms[algorithm](), toDecipher, key);
             }
+
             throw GetAlgorithmNotSupported(algorithm);
         }
 
@@ -165,11 +181,12 @@ namespace System.Security.Cryptography
         private static string HashString(HashAlgorithm algorithm, string toHash)
         {
             byte[] bytesHashed = HashBytes(algorithm, toHash);
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             foreach (byte byteHashed in bytesHashed)
             {
                 sb.Append(byteHashed.ToString("x2").ToLower());
             }
+
             return sb.ToString();
         }
 
@@ -202,6 +219,7 @@ namespace System.Security.Cryptography
             byte[] keyBytes = HashBytes(HashAlgorithms[SupportedHashAlgorithm.Md5](), key);
             return CipherBytes(algorithm, bytesToHash, keyBytes);
         }
+
         private static byte[] CipherBytes(SymmetricAlgorithm algorithm, byte[] toHash, byte[] key)
         {
             algorithm.Key = key;
@@ -233,6 +251,7 @@ namespace System.Security.Cryptography
             byte[] keyBytes = HashBytes(HashAlgorithms[SupportedHashAlgorithm.Md5](), key);
             return DecipherBytes(algorithm, Convert.FromBase64String(toHash), keyBytes);
         }
+
         private static byte[] DecipherBytes(SymmetricAlgorithm algorithm, byte[] toHash, byte[] key)
         {
             algorithm.Key = key;

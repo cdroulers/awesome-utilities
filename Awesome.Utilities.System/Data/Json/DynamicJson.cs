@@ -18,22 +18,24 @@ namespace System.Data.Json
         /// Parses the specified json.
         /// </summary>
         /// <param name="json">The json.</param>
-        /// <returns></returns>
+        /// <returns>A dynamic object for accessing the JSON</returns>
         public static dynamic Parse(string json)
         {
             var jss = new JavaScriptSerializer();
             jss.RegisterConverters(new JavaScriptConverter[] { new DynamicJsonConverter() });
 
-            dynamic glossaryEntry = jss.Deserialize<object>(json) as dynamic;
+            dynamic glossaryEntry = jss.Deserialize<object>(json);
             return glossaryEntry;
         }
 
-        class DynamicJsonConverter : JavaScriptConverter
+        private class DynamicJsonConverter : JavaScriptConverter
         {
             public override object Deserialize(IDictionary<string, object> dictionary, Type type, JavaScriptSerializer serializer)
             {
                 if (dictionary == null)
+                {
                     throw new ArgumentNullException("dictionary");
+                }
 
                 var result = ToExpando(dictionary);
 
@@ -43,7 +45,7 @@ namespace System.Data.Json
             private static ExpandoObject ToExpando(IDictionary<string, object> dictionary)
             {
                 var result = new ExpandoObject();
-                var dic = result as IDictionary<String, object>;
+                var dic = result as IDictionary<string, object>;
 
                 foreach (var item in dictionary)
                 {
@@ -53,6 +55,7 @@ namespace System.Data.Json
                         dic.Add(item.Key, ToExpando(valueAsDic));
                         continue;
                     }
+
                     var arrayList = item.Value as ArrayList;
                     if (arrayList != null && arrayList.Count > 0)
                     {
@@ -62,12 +65,13 @@ namespace System.Data.Json
 
                     dic.Add(item.Key, item.Value);
                 }
+
                 return result;
             }
 
             private static ArrayList ToExpando(ArrayList obj)
             {
-                ArrayList result = new ArrayList();
+                var result = new ArrayList();
 
                 foreach (var item in obj)
                 {
@@ -87,6 +91,7 @@ namespace System.Data.Json
 
                     result.Add(item);
                 }
+
                 return result;
             }
 

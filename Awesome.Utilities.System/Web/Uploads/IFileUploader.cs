@@ -16,7 +16,7 @@ namespace System.Web.Uploads
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="fileName">Name of the file.</param>
-        /// <returns></returns>
+        /// <returns>The URI of the file that was uploaded.</returns>
         Uri Upload(HttpPostedFileBase file, string fileName);
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace System.Web.Uploads
         /// </summary>
         /// <param name="stream">The stream.</param>
         /// <param name="fileName">Name of the file.</param>
-        /// <returns></returns>
+        /// <returns>The URI of the file that was uploaded.</returns>
         Uri Upload(Stream stream, string fileName);
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace System.Web.Uploads
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="newFileName">New name of the file.</param>
-        /// <returns></returns>
+        /// <returns>The URI of the file that was renamed.</returns>
         Uri Rename(string fileName, string newFileName);
 
         /// <summary>

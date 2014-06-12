@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
-using System.Collections.Specialized;
 
 namespace System.Configuration
 {
@@ -27,12 +27,13 @@ namespace System.Configuration
             get { return ConfigurationManager.AppSettings; }
         }
 
-
         /// <summary>
         /// Gets the section. See the doc of ConfigurationManager to know exactly what it does.
         /// </summary>
         /// <param name="sectionName">Name of the section.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A configuration section.
+        /// </returns>
         public virtual object GetSection(string sectionName)
         {
             return ConfigurationManager.GetSection(sectionName);
@@ -42,7 +43,9 @@ namespace System.Configuration
         /// Opens the exe configuration. See the doc of ConfigurationManager to know exactly what it does.
         /// </summary>
         /// <param name="userLevel">The user level.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A configuration object
+        /// </returns>
         public virtual Configuration OpenExeConfiguration(ConfigurationUserLevel userLevel)
         {
             return ConfigurationManager.OpenExeConfiguration(userLevel);
@@ -52,7 +55,9 @@ namespace System.Configuration
         /// Opens the exe configuration. See the doc of ConfigurationManager to know exactly what it does.
         /// </summary>
         /// <param name="exePath">The exe path.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A configuration object
+        /// </returns>
         public virtual Configuration OpenExeConfiguration(string exePath)
         {
             return ConfigurationManager.OpenExeConfiguration(exePath);
@@ -61,7 +66,9 @@ namespace System.Configuration
         /// <summary>
         /// Opens the machine configuration. See the doc of ConfigurationManager to know exactly what it does.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A configuration object
+        /// </returns>
         public virtual Configuration OpenMachineConfiguration()
         {
             return ConfigurationManager.OpenMachineConfiguration();
@@ -72,7 +79,9 @@ namespace System.Configuration
         /// </summary>
         /// <param name="fileMap">The file map.</param>
         /// <param name="userLevel">The user level.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A configuration object
+        /// </returns>
         public virtual Configuration OpenMappedExeConfiguration(ExeConfigurationFileMap fileMap, ConfigurationUserLevel userLevel)
         {
             return ConfigurationManager.OpenMappedExeConfiguration(fileMap, userLevel);
@@ -82,7 +91,9 @@ namespace System.Configuration
         /// Opens the mapped machine configuration. See the doc of ConfigurationManager to know exactly what it does.
         /// </summary>
         /// <param name="fileMap">The file map.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A configuration object
+        /// </returns>
         public virtual Configuration OpenMappedMachineConfiguration(ConfigurationFileMap fileMap)
         {
             return ConfigurationManager.OpenMappedMachineConfiguration(fileMap);

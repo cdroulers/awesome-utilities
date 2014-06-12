@@ -13,8 +13,16 @@ namespace System.Messages
         private readonly string type;
         private readonly IDictionary<string, object> store;
 
-        private string Key { get { return ":Flash." + this.type; } }
-        internal string Type { get { return type; } }
+        private string Key
+        {
+            get { return ":Flash." + this.type; }
+        }
+
+        internal string Type
+        {
+            get { return type; }
+        }
+
         internal const string DefaultType = "new";
 
         private ContextualNotificationData(string data)
@@ -54,6 +62,7 @@ namespace System.Messages
             {
                 return flash.data;
             }
+
             return flash.store.ContainsKey(flash.Key) ? flash.store[flash.Key] as string : string.Empty;
         }
 
@@ -80,6 +89,7 @@ namespace System.Messages
             {
                 value += Environment.NewLine;
             }
+
             value += newData;
             this.store[this.Key] = value.Trim();
         }
@@ -98,6 +108,9 @@ namespace System.Messages
         /// <value>
         ///   <c>true</c> if this instance is empty; otherwise, <c>false</c>.
         /// </value>
-        public bool IsEmpty { get { return string.IsNullOrWhiteSpace(this); } }
+        public bool IsEmpty
+        {
+            get { return string.IsNullOrWhiteSpace(this); }
+        }
     }
 }

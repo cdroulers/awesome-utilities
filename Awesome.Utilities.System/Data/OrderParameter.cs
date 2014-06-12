@@ -17,6 +17,7 @@ namespace System.Data
         /// </summary>
         [DataMember]
         public string PropertyName { get; set; }
+
         /// <summary>
         /// Gets or sets the direction.
         /// </summary>

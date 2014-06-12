@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Globalization;
 
 namespace System.ComponentModel.DataAnnotations
 {
@@ -15,6 +15,7 @@ namespace System.ComponentModel.DataAnnotations
         /// Gets or sets the name of the property to compare it too.
         /// </summary>
         public string PropertyName { get; set; }
+
         /// <summary>
         /// Gets or sets the display name of the property, for error messages.
         /// </summary>
@@ -25,7 +26,6 @@ namespace System.ComponentModel.DataAnnotations
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
         protected ComparisonAttribute(string propertyName)
-            : base()
         {
             this.PropertyName = propertyName;
         }
@@ -35,7 +35,7 @@ namespace System.ComponentModel.DataAnnotations
         /// </summary>
         /// <param name="otherValue">The other value.</param>
         /// <param name="thisValue">The this value.</param>
-        /// <returns></returns>
+        /// <returns>True if the values compared in the defined way.</returns>
         protected abstract bool Compare(IComparable otherValue, object thisValue);
 
         /// <summary>
@@ -51,7 +51,8 @@ namespace System.ComponentModel.DataAnnotations
             {
                 this.ErrorMessage = Properties.Strings.Validation_Comparison;
             }
-            return string.Format(CultureInfo.CurrentUICulture, this.ErrorMessageString, name, (this.PropertyDisplayName ?? this.PropertyName));
+
+            return string.Format(CultureInfo.CurrentUICulture, this.ErrorMessageString, name, this.PropertyDisplayName ?? this.PropertyName);
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace System.ComponentModel.DataAnnotations
 
             if (this.Compare(otherValue, value))
             {
-                return new ValidationResult(this.FormatErrorMessage(validationContext.MemberName), new string[] { validationContext.MemberName });
+                return new ValidationResult(this.FormatErrorMessage(validationContext.MemberName), new[] { validationContext.MemberName });
             }
 
             return null;

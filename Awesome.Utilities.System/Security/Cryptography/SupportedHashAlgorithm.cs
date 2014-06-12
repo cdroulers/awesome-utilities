@@ -14,14 +14,17 @@ namespace System.Security.Cryptography
         ///     The MD5 hash algorithm
         /// </summary>
         Md5,
+
         /// <summary>
         ///     The SHA1 hash algorithm
         /// </summary>
         Sha1,
+
         /// <summary>
         ///     The SHA256 hash algorithm
         /// </summary>
         Sha256,
+
         /// <summary>
         ///     The SHA512 hash algorithm
         /// </summary>

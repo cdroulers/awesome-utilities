@@ -14,7 +14,7 @@ namespace System.Collections.Generic
         /// <summary>
         /// Builds a dictionary from an anonymous object.
         /// </summary>
-        /// <param name="obj">The obj.</param>
+        /// <param name="obj">The object.</param>
         /// <returns>A dictionary from the anonymous object.</returns>
         public static IDictionary<string, object> BuildDictionaryFromAnonymousObject(object obj)
         {
@@ -28,6 +28,7 @@ namespace System.Collections.Generic
                     result.Add(prop.Name, val);
                 }
             }
+
             return result;
         }
     }

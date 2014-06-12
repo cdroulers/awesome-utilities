@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Collections.ObjectModel;
 
 namespace System.Globalization.Countries
 {
@@ -20,7 +20,7 @@ namespace System.Globalization.Countries
         public readonly Country Country;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Country"/> class.
+        /// Initializes a new instance of the <see cref="CountryDivision" /> class.
         /// </summary>
         /// <param name="country">The country.</param>
         protected CountryDivision(Country country)
@@ -52,17 +52,17 @@ namespace System.Globalization.Countries
         /// Gets the display name.
         /// </summary>
         /// <param name="cultureInfo">The culture info. Should use current UI culture if not specified</param>
-        /// <returns></returns>
+        /// <returns>The display name</returns>
         public string GetDisplayName(CultureInfo cultureInfo = null)
         {
             return Properties.Languages.ResourceManager.GetString(this.Country.TwoLetterCode + "_" + this.TwoLetterCode, cultureInfo ?? CultureInfo.CurrentUICulture);
         }
 
         /// <summary>
-        /// Equalses the specified other.
+        /// Returns true if they are equal.
         /// </summary>
         /// <param name="other">The other.</param>
-        /// <returns></returns>
+        /// <returns>True if they are equal.</returns>
         public bool Equals(CountryDivision other)
         {
             return this.TwoLetterCode == other.TwoLetterCode && this.Type == other.Type && this.EnglishName == other.EnglishName && this.NativeName == other.NativeName;
@@ -77,10 +77,17 @@ namespace System.Globalization.Countries
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof(CountryDivision)) return false;
-            return Equals((CountryDivision)obj);
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == typeof(CountryDivision) && this.Equals((CountryDivision)obj);
         }
 
         /// <summary>
@@ -93,10 +100,10 @@ namespace System.Globalization.Countries
         {
             unchecked
             {
-                int result = (TwoLetterCode != null ? TwoLetterCode.GetHashCode() : 0);
-                result = (result * 397) ^ (Type != null ? Type.GetHashCode() : 0);
-                result = (result * 397) ^ (EnglishName != null ? EnglishName.GetHashCode() : 0);
-                result = (result * 397) ^ (NativeName != null ? NativeName.GetHashCode() : 0);
+                int result = this.TwoLetterCode != null ? this.TwoLetterCode.GetHashCode() : 0;
+                result = (result * 397) ^ (this.Type != null ? this.Type.GetHashCode() : 0);
+                result = (result * 397) ^ (this.EnglishName != null ? this.EnglishName.GetHashCode() : 0);
+                result = (result * 397) ^ (this.NativeName != null ? this.NativeName.GetHashCode() : 0);
                 return result;
             }
         }
