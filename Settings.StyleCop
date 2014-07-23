@@ -17,6 +17,7 @@
       <Value>substracted</Value>
       <Value>substracts</Value>
       <Value>Rijndael</Value>
+      <Value>Millimiters</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Analyzers>

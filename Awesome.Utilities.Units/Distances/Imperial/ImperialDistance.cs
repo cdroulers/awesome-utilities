@@ -24,7 +24,12 @@ namespace System.Units.Distances.Imperial
         /// Converts the current distance to a distance of another type.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A converted Distance
+        /// </returns>
+        /// <exception cref="System.NotSupportedException">
+        ///     If the type is not supported for conversion.
+        /// </exception>
         public override Distance ConvertTo(Type type)
         {
             if (this.GetType() == type)

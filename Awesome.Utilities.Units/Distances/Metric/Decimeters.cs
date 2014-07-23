@@ -6,7 +6,7 @@ using System.Text;
 namespace System.Units.Distances.Metric
 {
     /// <summary>
-    ///     Decimeters
+    ///     Decimeters unit
     /// </summary>
     public class Decimeters : MetricDistance
     {
@@ -18,7 +18,10 @@ namespace System.Units.Distances.Metric
         /// <summary>
         /// Gets the symbol representing the distance
         /// </summary>
-        public override string Abbreviation { get { return "dm"; } }
+        public override string Abbreviation
+        {
+            get { return "dm"; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Decimeters"/> class.

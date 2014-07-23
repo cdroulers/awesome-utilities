@@ -6,14 +6,17 @@ using System.Text;
 namespace System.Units.Distances.Imperial
 {
     /// <summary>
-    ///     Miles!
+    ///     Miles unit
     /// </summary>
     public class Miles : ImperialDistance
     {
         /// <summary>
         /// Gets the symbol representing the distance
         /// </summary>
-        public override string Abbreviation { get { return "mi"; } }
+        public override string Abbreviation
+        {
+            get { return "mi"; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Miles"/> class.

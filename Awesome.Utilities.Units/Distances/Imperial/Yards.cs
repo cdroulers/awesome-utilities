@@ -6,14 +6,17 @@ using System.Text;
 namespace System.Units.Distances.Imperial
 {
     /// <summary>
-    ///     Yards!
+    ///     Yards unit
     /// </summary>
     public class Yards : ImperialDistance
     {
         /// <summary>
         /// Gets the symbol representing the distance
         /// </summary>
-        public override string Abbreviation { get { return "yd"; } }
+        public override string Abbreviation
+        {
+            get { return "yd"; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Yards"/> class.

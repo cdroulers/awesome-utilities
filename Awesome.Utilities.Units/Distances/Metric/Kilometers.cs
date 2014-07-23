@@ -6,7 +6,7 @@ using System.Text;
 namespace System.Units.Distances.Metric
 {
     /// <summary>
-    ///     Kilometers
+    ///     Kilometers unit
     /// </summary>
     public class Kilometers : MetricDistance
     {
@@ -18,10 +18,13 @@ namespace System.Units.Distances.Metric
         /// <summary>
         /// Gets the symbol representing the distance
         /// </summary>
-        public override string Abbreviation { get { return "km"; } }
+        public override string Abbreviation
+        {
+            get { return "km"; }
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Meters"/> class.
+        /// Initializes a new instance of the <see cref="Kilometers" /> class.
         /// </summary>
         /// <param name="value">The value.</param>
         public Kilometers(decimal value)

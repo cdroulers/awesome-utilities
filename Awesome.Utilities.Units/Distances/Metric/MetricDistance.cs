@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Reflection;
 using System.Units.Distances.Imperial;
 
 namespace System.Units.Distances.Metric
@@ -30,7 +29,9 @@ namespace System.Units.Distances.Metric
         /// Converts the current distance to a distance of another type.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A converted Distance
+        /// </returns>
         public override Distance ConvertTo(Type type)
         {
             if (this.GetType() == type)

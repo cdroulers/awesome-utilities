@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Units.Distances;
 using System.Units.Distances.Imperial;
 using System.Units.Distances.Metric;
+
 using NUnit.Framework;
-using System.Units.Distances;
 
 namespace Awesome.Utilities.Test.Units.Distances
 {
@@ -242,7 +243,7 @@ namespace Awesome.Utilities.Test.Units.Distances
         [TestCase(1, typeof(Millimeters), 025.4, 0.1)]
         [TestCase(1, typeof(Miles), 1 / 63360.0, 0.0001)]
         [TestCase(1, typeof(Yards), 1 / 36.0, 0.001)]
-        [TestCase(1, typeof(Feet), 1 / 12-0, 0.1)]
+        [TestCase(1, typeof(Feet), 1 / 12 - 0, 0.1)]
         [TestCase(1, typeof(Inches), 1, 1)]
         public void When_converting_inches_Then_works(decimal distanceValue, Type type, decimal expected, decimal within)
         {
@@ -250,6 +251,54 @@ namespace Awesome.Utilities.Test.Units.Distances
             var actual = distance.ConvertTo(type);
 
             Assert.That(actual.Value, Is.EqualTo(expected).Within(within));
+        }
+
+        [TestCase(1, typeof(Kilometers), 1, typeof(Miles), true)]
+        [TestCase(1, typeof(Miles), 1, typeof(Kilometers), false)]
+        [TestCase(1, typeof(Kilometers), 2, typeof(Kilometers), true)]
+        [TestCase(1, typeof(Kilometers), 1, typeof(Kilometers), false)]
+        public void When_comparing_distances_LesserThan_Then_works(decimal d1, Type t1, decimal d2, Type t2, bool expected)
+        {
+            var distance1 = Distance.Build(t1, d1);
+            var distance2 = Distance.Build(t2, d2);
+
+            Assert.That(distance1 < distance2, Is.EqualTo(expected));
+        }
+
+        [TestCase(1, typeof(Kilometers), 1, typeof(Miles), true)]
+        [TestCase(1, typeof(Miles), 1, typeof(Kilometers), false)]
+        [TestCase(1, typeof(Kilometers), 2, typeof(Kilometers), true)]
+        [TestCase(1, typeof(Kilometers), 1, typeof(Kilometers), true)]
+        public void When_comparing_distances_LesserOrEqualTo_Then_works(decimal d1, Type t1, decimal d2, Type t2, bool expected)
+        {
+            var distance1 = Distance.Build(t1, d1);
+            var distance2 = Distance.Build(t2, d2);
+
+            Assert.That(distance1 <= distance2, Is.EqualTo(expected));
+        }
+
+        [TestCase(1, typeof(Kilometers), 1, typeof(Miles), false)]
+        [TestCase(1, typeof(Miles), 1, typeof(Kilometers), true)]
+        [TestCase(1, typeof(Kilometers), 2, typeof(Kilometers), false)]
+        [TestCase(1, typeof(Kilometers), 1, typeof(Kilometers), false)]
+        public void When_comparing_distances_GreaterThan_Then_works(decimal d1, Type t1, decimal d2, Type t2, bool expected)
+        {
+            var distance1 = Distance.Build(t1, d1);
+            var distance2 = Distance.Build(t2, d2);
+
+            Assert.That(distance1 > distance2, Is.EqualTo(expected));
+        }
+
+        [TestCase(1, typeof(Kilometers), 1, typeof(Miles), false)]
+        [TestCase(1, typeof(Miles), 1, typeof(Kilometers), true)]
+        [TestCase(1, typeof(Kilometers), 2, typeof(Kilometers), false)]
+        [TestCase(1, typeof(Kilometers), 1, typeof(Kilometers), true)]
+        public void When_comparing_distances_GreaterOrEqualTo_Then_works(decimal d1, Type t1, decimal d2, Type t2, bool expected)
+        {
+            var distance1 = Distance.Build(t1, d1);
+            var distance2 = Distance.Build(t2, d2);
+
+            Assert.That(distance1 >= distance2, Is.EqualTo(expected));
         }
     }
 }
