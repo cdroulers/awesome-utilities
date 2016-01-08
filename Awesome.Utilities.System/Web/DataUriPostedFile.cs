@@ -41,7 +41,7 @@ namespace System.Web
         {
             if (!dataUri.StartsWith(DataUriPostedFile.Begin))
             {
-                throw new ArgumentException(Properties.Strings.DataUriPostedFile_NotADataUri, "dataUri");
+                throw new ArgumentException(System.Properties.Strings.DataUriPostedFile_NotADataUri, "dataUri");
             }
 
             int indexOfDataSeparator = dataUri.IndexOf(DataUriPostedFile.DataSeparator, StringComparison.InvariantCultureIgnoreCase);
