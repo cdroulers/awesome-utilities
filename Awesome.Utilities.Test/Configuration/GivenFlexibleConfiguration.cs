@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Configuration;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using System.Configuration;
-using System.Data.Common;
 
 namespace Awesome.Utilities.Test.Configuration
 {
@@ -16,7 +15,7 @@ namespace Awesome.Utilities.Test.Configuration
         [Test]
         public void When_loading_just_one_file_with_no_override_Then_works()
         {
-            var result = FlexibleConfiguration.Load(false, "../../Configuration/External.config");
+            var result = FlexibleConfiguration.Load(false, "Configuration/External.config");
 
             Assert.That(result.AppSettings, Has.Count.EqualTo(2));
             Assert.That(result.AppSettings["Setting1"], Is.EqualTo("Setting1Value"));
@@ -29,7 +28,7 @@ namespace Awesome.Utilities.Test.Configuration
         [Test]
         public void When_loading_two_files_Then_works()
         {
-            var result = FlexibleConfiguration.Load(false, "../../Configuration/External.config", "../../Configuration/External2.config");
+            var result = FlexibleConfiguration.Load(false, "Configuration/External.config", "Configuration/External2.config");
 
             Assert.That(result.AppSettings, Has.Count.EqualTo(3));
             Assert.That(result.AppSettings["Setting1"], Is.EqualTo("Setting1Value"));
@@ -44,7 +43,7 @@ namespace Awesome.Utilities.Test.Configuration
         [Test]
         public void When_loading_two_files_and_allow_local_Then_works()
         {
-            var result = FlexibleConfiguration.Load(true, "../../Configuration/External.config", "../../Configuration/External2.config");
+            var result = FlexibleConfiguration.Load(true, "Configuration/External.config", "Configuration/External2.config");
 
             Assert.That(result.AppSettings, Has.Count.EqualTo(4));
             Assert.That(result.AppSettings["Setting1"], Is.EqualTo("Setting1Value"));
@@ -61,7 +60,7 @@ namespace Awesome.Utilities.Test.Configuration
         [Test]
         public void When_loading_provider_factories_Then_works()
         {
-            FlexibleConfiguration.LoadProviderFactories("../../Configuration/External.config", "../../Configuration/External2.config");
+            FlexibleConfiguration.LoadProviderFactories("Configuration/External.config", "Configuration/External2.config");
 
             Assert.That(DbProviderFactories.GetFactory("System.Data.SQLite"), Is.Not.Null);
             Assert.That(DbProviderFactories.GetFactory("System.Data.PostgreSQL"), Is.Not.Null);
@@ -70,7 +69,7 @@ namespace Awesome.Utilities.Test.Configuration
         [Test]
         public void When_loading_empty_file_Then_works()
         {
-            FlexibleConfiguration.Load(false, "../../Configuration/External3.config");
+            FlexibleConfiguration.Load(false, "Configuration/External3.config");
         }
     }
 }

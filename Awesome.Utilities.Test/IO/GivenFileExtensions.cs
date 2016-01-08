@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using System.Web;
-using System.IO;
 
 namespace Awesome.Utilities.Test.IO
 {
+#if !PLATFORM_UNIX
     // ReSharper disable InconsistentNaming
     [TestFixture]
     public class GivenFileExtensions
@@ -34,4 +34,5 @@ namespace Awesome.Utilities.Test.IO
             Assert.That(actual, Is.EqualTo(expected));
         }
     }
+#endif
 }

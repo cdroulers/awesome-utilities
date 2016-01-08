@@ -26,8 +26,6 @@ namespace Awesome.Utilities.Test.Globalization.Currencies
         [TestCase("kn-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
         [TestCase("kok-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
         [TestCase("mr-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
-        [TestCase("pa-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
-        [TestCase("sa-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
         [TestCase("ta-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
         [TestCase("te-IN", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
         [TestCase("hi", 123456789.123, 1, "12,34,56,789", 2, "12", 0, "₹ ")]
@@ -36,13 +34,11 @@ namespace Awesome.Utilities.Test.Globalization.Currencies
         [TestCase("kn-IN", 0, 1, "0", 2, "00", 0, "₹ ")]
         [TestCase("kok-IN", 0, 1, "0", 2, "00", 0, "₹ ")]
         [TestCase("mr-IN", 0, 1, "0", 2, "00", 0, "₹ ")]
-        [TestCase("pa-IN", 0, 1, "0", 2, "00", 0, "₹ ")]
-        [TestCase("sa-IN", 0, 1, "0", 2, "00", 0, "₹ ")]
         [TestCase("ta-IN", 0, 1, "0", 2, "00", 0, "₹ ")]
         [TestCase("te-IN", 0, 1, "0", 2, "00", 0, "₹ ")]
         [TestCase("hi", 0, 1, "0", 2, "00", 0, "₹ ")]
 
-        [TestCase("is", 123456789.123, 0, "123.456.789", 1, "", 2, " kr.")]
+        [TestCase("is", 123456789.123, 0, "123.456.789", 1, "", 2, " ISK")]
         public void When_splitting_Then_returns_proper_tokens(string culture, decimal amount, int amountIndex, string amountValue, int decimalsIndex, string decimalsValue, int symbolIndex, string symbolValue)
         {
             var actual = CurrencyHelper.Split(amount, culture: new CultureInfo(culture));

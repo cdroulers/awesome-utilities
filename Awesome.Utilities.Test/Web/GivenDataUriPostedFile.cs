@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
 using System.Web;
-using System.IO;
-using System.Diagnostics;
-using System.Security.Cryptography;
+using NUnit.Framework;
 
 namespace Awesome.Utilities.Test.Web
 {
@@ -17,7 +15,7 @@ namespace Awesome.Utilities.Test.Web
         [Test]
         public void When_parsing_Then_finds_right_info()
         {
-            var bytes = File.ReadAllBytes(@"..\..\Web\onebyone.bmp");
+            var bytes = File.ReadAllBytes(@"Web\onebyone.bmp");
             string temp = Convert.ToBase64String(bytes);
 
             var result = DataUriPostedFile.Parse(@"data:image/bmp;base64," + temp);

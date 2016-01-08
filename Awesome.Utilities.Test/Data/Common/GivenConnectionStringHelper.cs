@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using System.Data.Common;
 
 namespace Awesome.Utilities.Test.Data.Common
 {
@@ -22,7 +23,7 @@ namespace Awesome.Utilities.Test.Data.Common
 
             string actual = ConnectionStringHelper.SafeDataDirectoryReplacement(dataSource);
 
-            Assert.That(actual, Is.EqualTo(expected));
+            Assert.That(actual.Replace('\\', Path.DirectorySeparatorChar), Is.EqualTo(expected.Replace('\\', Path.DirectorySeparatorChar)));
         }
     }
 }

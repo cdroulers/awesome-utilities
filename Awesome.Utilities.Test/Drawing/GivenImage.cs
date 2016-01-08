@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using NUnit.Framework;
 
 namespace Awesome.Utilities.Test.Drawing
@@ -16,7 +15,7 @@ namespace Awesome.Utilities.Test.Drawing
         [Test]
         public void When_resizing_image_Then_works()
         {
-            using (var image = Image.FromFile(@"..\..\Web\onebyone.bmp"))
+            using (var image = Image.FromFile(@"Web\onebyone.bmp"))
             {
                 using (var resized = image.Resize(new Size(5, 5)))
                 {

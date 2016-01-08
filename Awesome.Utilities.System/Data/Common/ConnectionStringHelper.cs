@@ -23,8 +23,8 @@ namespace System.Data.Common
                 return dataSource;
             }
 
-            var parts = dataSource.Split(new string[] { "|DataDirectory|" }, StringSplitOptions.RemoveEmptyEntries);
-            return Path.Combine(((string)AppDomain.CurrentDomain.GetData("DataDirectory")).TrimEnd('\\'), parts.Last().TrimStart('\\'));
+            var parts = dataSource.Split(new[] { "|DataDirectory|" }, StringSplitOptions.RemoveEmptyEntries);
+            return Path.Combine(((string)AppDomain.CurrentDomain.GetData("DataDirectory")).TrimEnd(Path.DirectorySeparatorChar), parts.Last().TrimStart(Path.DirectorySeparatorChar));
         }
     }
 }
