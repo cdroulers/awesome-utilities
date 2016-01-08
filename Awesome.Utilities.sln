@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.System", "Awesome.Utilities.System\Awesome.Utilities.System.csproj", "{BD269F95-E64C-489D-AA68-5FDF6E513AED}"
 EndProject
@@ -15,11 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Test.Inte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{00F81025-03AD-404E-9D04-C0F7C1F578DD}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.travis.yml = .travis.yml
 		LICENSE = LICENSE
 		nuspec.2010.7.xsd = nuspec.2010.7.xsd
 		nuspec.2011.8.xsd = nuspec.2011.8.xsd
 		publish.ps1 = publish.ps1
 		README.md = README.md
+		Rebracer.xml = Rebracer.xml
 		SolutionAssemblyInfo.cs = SolutionAssemblyInfo.cs
 	EndProjectSection
 EndProject
@@ -28,7 +31,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{25E3B4AE-FB0F-4EDF-8959-0562B3CB25EC}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Awesome.Utilities.Geolocation.Caching.PostgreSQL", "Awesome.Utilities.Geolocation.Caching.PostgreSQL\Awesome.Utilities.Geolocation.Caching.PostgreSQL.csproj", "{6A38C982-1FBA-4F84-ADFE-1A4A40092744}"

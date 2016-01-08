@@ -1,0 +1,7 @@
+language: csharp
+solution: Awesome.Utilities.sln
+install:
+  - nuget restore ./Awesome.Utilities.sln -OutputDirectory ./packages
+script:
+  - xbuild /p:Configuration=Release Awesome.Utilities.sln
+  - mono ./packages/NUnit.Runners.*/tools/nunit-console.exe ./Awesome.Utilities.Test/bin/Release/Awesome.Utilities.Test.dll

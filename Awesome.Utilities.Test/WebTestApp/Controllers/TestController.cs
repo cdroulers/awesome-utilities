@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Awesome.Utilities.Test.WebTestApp.Controllers
 {
+    // ReSharper disable Mvc.ViewNotResolved It's only a test controller.
     public class TestController : Controller
     {
-        [Authorize()]
+        [Authorize]
         public ActionResult IndexNoRoles()
         {
-            return View();
+            return this.View();
         }
 
         [Authorize(Roles = "Role1")]
         public ActionResult IndexRole1()
         {
-            return View();
+            return this.View();
         }
 
         [Authorize(Roles = "Role2")]
@@ -25,7 +25,7 @@ namespace Awesome.Utilities.Test.WebTestApp.Controllers
         [ActionName("IndexRole1")]
         public ActionResult IndexRole1Post()
         {
-            return View();
+            return this.View();
         }
 
     }

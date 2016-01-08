@@ -1,0 +1,11 @@
+*.suo
+*ReSharper*
+bin/
+obj/
+*.user
+*.Cache
+packages/*
+nuget.exe
+builds/
+SQLite.Interop.dll
+.nuget/key.txt
