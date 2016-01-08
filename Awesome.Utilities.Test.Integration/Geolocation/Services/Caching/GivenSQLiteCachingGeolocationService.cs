@@ -82,7 +82,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services.Caching
             this.sqliteGeo = new SQLiteCachingGeolocationService(geoMock.Object, settings);
             var actual = this.sqliteGeo.GetAllAddressInformation("OH GOD WHY");
 
-            var second = this.sqliteGeo.GetAllAddressInformation("OH GOD WHY");
+            this.sqliteGeo.GetAllAddressInformation("OH GOD WHY");
 
             using (Clock.Pause(Clock.UtcNow.AddYears(1)))
             {

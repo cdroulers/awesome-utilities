@@ -57,7 +57,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services
         {
             this.geo = new GoogleMapsGeolocationService(ignoreCloseMatches: true, language: new CultureInfo("fr-CA"));
 
-            var coordinates = this.geo.GetCoordinates("Florida International University - Modesto A. Maidique Campus, Miami, FL");
+            this.geo.GetCoordinates("Florida International University - Modesto A. Maidique Campus, Miami, FL");
         }
 
         [Test]

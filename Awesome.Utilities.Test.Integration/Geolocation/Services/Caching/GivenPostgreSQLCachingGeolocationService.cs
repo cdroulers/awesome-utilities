@@ -140,7 +140,7 @@ namespace Awesome.Utilities.Test.Integration.Geolocation.Services.Caching
 
             var actual = this.postgresGeo.GetAllAddressInformation("OH GOD WHY");
 
-            var second = this.postgresGeo.GetAllAddressInformation("OH GOD WHY");
+            this.postgresGeo.GetAllAddressInformation("OH GOD WHY");
 
             using (Clock.Pause(Clock.UtcNow.AddYears(1)))
             {
